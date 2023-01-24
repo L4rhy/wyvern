@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Botao, Caixa, Fundo, Input,  Texto  } from '@/styles/styleIndex'
 import { useFormState } from 'ariakit/form'
 import Head from 'next/head'
-import { supabase } from "./api/supabase.js"
 import { useRouter } from "next/router"
 import {typeTabelas} from "./types"
 
@@ -54,13 +53,4 @@ export default function Home({ usuarios }:typeTabelas) {
       </Fundo>
     </>
   )
-}
-
-export async function getStaticProps(){
-  const {data: usuarios} = await supabase.from("usuarios").select("*")
-  return {
-      props: {
-          usuarios
-      }
-  }
 }

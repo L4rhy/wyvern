@@ -52,7 +52,9 @@ export const Texto = styled(FormLabel)`
 
 `;
 export const Input = styled(FormInput)`
+    border: 3px solid ${(props) => props.theme.cores.psicodelicas[800]};
     margin: 2.5%;
+    padding: 1%;
     font-size: 2rem;
     color: ${(props) => props.theme.cores.rosinhas[50]};
     background-color:${(props) => props.theme.cores.psicodelicas[700]};
@@ -63,7 +65,7 @@ export const Input = styled(FormInput)`
         background-color:${(props) => props.theme.cores.psicodelicas[800]};
     }
     @media ${device.desktop}{
-        height: 5vh;
+        height: 10vh;
         width: 20vw;
     }
     @media ${device.laptopL}{
@@ -84,16 +86,16 @@ export const Input = styled(FormInput)`
     }
 `;
 export const Botao = styled(FormSubmit)`
-    margin: 2.5%;   
+    border: 3px solid ${(props) => props.theme.cores.psicodelicas[800]};
+    margin: 2.5%;  
     font-size: 3rem;
-    border: none;
     color: ${(props) => props.theme.cores.rosinhas[50]};
     background-color:${(props) => props.theme.cores.psicodelicas[700]};
     :hover{
         background-color:${(props) => props.theme.cores.psicodelicas[800]}; 
     }
     @media ${device.desktop}{
-        height: 10vh;
+        height: 15vh;
         width: 20vw;
     }
     @media ${device.laptopL}{

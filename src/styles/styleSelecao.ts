@@ -4,12 +4,10 @@ import {
     FormSubmit,
  } from "ariakit/form";
  import {
-    Menu,
-    MenuButton,
-    MenuButtonArrow,
-    MenuItem,
-    MenuSeparator,
-  } from "ariakit/menu";
+    Combobox,
+    ComboboxItem,
+    ComboboxPopover
+  } from "ariakit/combobox";
 import styled from "styled-components"
 import { device } from "./devices"
 
@@ -24,7 +22,7 @@ export const Fundo = styled.div`
         ${(props) => props.theme.cores.psicodelicas[500]},
         ${(props) => props.theme.cores.psicodelicas[900]});
 `;
-export const Caixa = styled(Form)`
+export const Caixa = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -52,8 +50,12 @@ export const Caixa = styled(Form)`
         width: 90vw;
     }
 `;
-export const Texto = styled(FormLabel)`
+export const Texto = styled.h1`
     font-size:3rem;
     color: ${(props) => props.theme.cores.rosinhas[50]};
 
 `;
+export const Botao = styled.button``;
+export const Menuzito = styled(ComboboxPopover)``;
+export const BotaoMenu = styled(Combobox)``;
+export const ItemMenu = styled(ComboboxItem)``;

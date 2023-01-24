@@ -54,13 +54,13 @@ export const Texto = styled(FormLabel)`
 export const Input = styled(FormInput)`
     margin: 2.5%;
     font-size: 2rem;
-    color: ${(props) => props.theme.cores.psicodelicas[900]};
-    background-color:${(props) => props.theme.cores.rosinhas[700]};
+    color: ${(props) => props.theme.cores.rosinhas[50]};
+    background-color:${(props) => props.theme.cores.psicodelicas[700]};
     :hover{
-        background-color:${(props) => props.theme.cores.rosinhas[800]}; 
+        background-color:${(props) => props.theme.cores.psicodelicas[800]}; 
     }
     :focus{
-        background-color:${(props) => props.theme.cores.rosinhas[800]};
+        background-color:${(props) => props.theme.cores.psicodelicas[800]};
     }
     @media ${device.desktop}{
         height: 5vh;
@@ -87,10 +87,10 @@ export const Botao = styled(FormSubmit)`
     margin: 2.5%;   
     font-size: 3rem;
     border: none;
-    color: ${(props) => props.theme.cores.psicodelicas[900]};
-    background-color:${(props) => props.theme.cores.rosinhas[700]};
+    color: ${(props) => props.theme.cores.rosinhas[50]};
+    background-color:${(props) => props.theme.cores.psicodelicas[700]};
     :hover{
-        background-color:${(props) => props.theme.cores.rosinhas[800]}; 
+        background-color:${(props) => props.theme.cores.psicodelicas[800]}; 
     }
     @media ${device.desktop}{
         height: 10vh;

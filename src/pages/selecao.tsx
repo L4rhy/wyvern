@@ -5,6 +5,8 @@ import { typeTabelas } from "./api/types";
 import { Fundo, Caixa } from "../styles/styleSelecao";
 import { useFormState } from "ariakit/form";
 import { useMenuState } from "ariakit/menu";
+import { supabase } from "./api/supabase.js";
+
 export default function Selecao({ usuarios }: typeTabelas) {
    const router = useRouter();
    const [usuario, setUsuario] = useState({});
@@ -29,3 +31,15 @@ export default function Selecao({ usuarios }: typeTabelas) {
       </>
    );
 }
+export async function getStaticProps() {
+    const { data: usuarios } = await supabase.from("usuarios").select("*")
+    const { data: campanhas } = await supabase.from("campanhas").select("*")
+    const { data: personagens } = await supabase.from("personagens").select("*")
+    return {
+        props: {
+            usuarios,
+            campanhas,
+            personagens
+        }
+    }
+  }

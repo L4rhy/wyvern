@@ -7,7 +7,7 @@ import { useFormState } from "ariakit/form";
 import { useMenuState } from "ariakit/menu";
 import { supabase } from "./api/supabase.js";
 
-export default function Selecao({ usuarios }: typeTabelas) {
+export default function Selecao(props: typeTabelas) {
    const router = useRouter();
    const [usuario, setUsuario] = useState({});
    const id = parseInt(router.query.id as string);
@@ -15,7 +15,7 @@ export default function Selecao({ usuarios }: typeTabelas) {
       defaultValues: { campanha: "", personagem: "" },
    });
    const menu = useMenuState({ gutter: 8 });
-   usuarios.forEach((value) => {
+   props.usuarios.forEach((value) => {
       if (value.id == id) {
          setUsuario(value);
       }

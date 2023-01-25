@@ -3,21 +3,23 @@ import { ThemeProvider } from 'styled-components'
 import { theme } from '@/styles/theme'
 import GlobalStyle from '@/styles/global'
 import { Roboto } from '@next/font/google'
-import UserProvider from "../context/userProvider"
+import {Provider} from "react-redux"
+import store from "../stack"
 const roboto = Roboto({
   weight: '400',
   subsets: ['latin'],
   variable: '--font',
 })
+
 export default function App({ Component, pageProps }: AppProps) {
   return (
-  <UserProvider>  
     <ThemeProvider theme={theme}>
-      <GlobalStyle/>
-      <main className={roboto.className}>
-        <Component {...pageProps} />
-      </main>
+      <Provider store={store}>
+        <GlobalStyle/>
+        <main className={roboto.className}>
+          <Component {...pageProps} />
+        </main>
+      </Provider>
     </ThemeProvider>
-  </UserProvider>
   )
 }

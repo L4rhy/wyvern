@@ -2,9 +2,19 @@ export interface typeUsuario {
     id:number
     nomeUsuario:string
     senha:string
-    campanhas:object
-    personagens:object
+    campanhas:Array<string>
+    personagens:Array<string>
+}
+export interface typePersonagem {
+    id:number
+
+}
+export interface typeCamapanha {
+    id:number
+
 }
 export interface typeTabelas{
-        usuarios:typeUsuario[]
+        usuarios:typeUsuario[],
+        campanhas: typeCamapanha[],
+        personagens: typePersonagem[],
 }

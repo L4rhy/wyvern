@@ -1,67 +1,93 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
-import { typeTabelas, typeUsuario } from "./api/types";
-import { Fundo, Caixa, Texto, Botao, Menuzito, BotaoMenu, ItemMenu } from "../styles/styleSelecao";
-import { useFormState } from "ariakit/form";
-import { useComboboxState } from "ariakit/combobox";
-import { supabase } from "./api/supabase.js";
-import { useUserContext } from "../context/userContext"
+import { useState } from "react";
+import { Fundo, Caixa, Texto, Botao, BotaoMenu, BotaoIcon, IconUser, Menuzito, ItemMenu, 
+    CaixaOculta, Flechinha, CaixaOcultaTitulo, BotaoOculto
+} from "../styles/styleSelecao";
+import {useDispatch, useSelector} from "react-redux"
+import {RootState} from "../stack"
+import {logout, atualizaEscolha} from "../stack/stock"
+import { usePopoverState } from "ariakit";
 
-export default function Selecao(props: typeTabelas) {
+export default function Selecao() {
+    const [campanhaEscolhida,setCampanhaEscolhida] = useState("")
+    const [personagemEscolhido,setPersonagemEscolhido] = useState("")
     const router = useRouter();
-    const form = useFormState({
-        defaultValues: { campanha: "", personagem: "" },
-    });
-    const {usuario} = useUserContext()
-    
-    const menu = useComboboxState({ gutter: 8, sameWidth: true });
+    const stock = useSelector((state:RootState)=>state.stock)
+    const dispatch = useDispatch()
+    const stateUser = usePopoverState({placement:"right-start"})
+    const stateCampanhas = usePopoverState()
+    const statePersonagens = usePopoverState()
+    //const personagens = stock.usuario.personagens
 
-    const CriadorCampanhas = () =>{
-        usuario.personagens.personagens.forEach((value:string)=>{
-            <ItemMenu value={value}>{value}</ItemMenu>
-        })
+    const ativaLogout = () =>{
+        dispatch(logout)
+        router.push("/")
     }
-    const CriadorPersonagens = () =>{
-        usuario.campanhas.campanhas.forEach((value:string)=>{
-            <ItemMenu value={value}>{value}</ItemMenu>
-        })
-    }
-  
-    form.useSubmit(async()=>{
+    const listaCampanhas = (valor:string) =>{
+        return(<ItemMenu onClick={()=>setCampanhaEscolhida(valor)}>{valor}</ItemMenu>)
+    }  
+    const listaPersonagens = (valor:string) =>{
+        return(<ItemMenu onClick={()=>setPersonagemEscolhido(valor)}>{valor}</ItemMenu>)
+    }       
+
         
-    })
+
+    const entrarMapa = () =>{
+        const escolha = {personagem:personagemEscolhido,campanha:campanhaEscolhida}
+        dispatch(atualizaEscolha(escolha))
+        router.push("/mesa")
+    }
+    
     return (
         <>
             <Head>
                 <title>Selicione - Faery Wyvern</title>
             </Head>
             <Fundo>
+                <BotaoIcon state={stateUser}>
+                    <IconUser/>
+                </BotaoIcon>
+                <CaixaOculta state={stateUser}>
+                    <Flechinha/>
+                    <CaixaOcultaTitulo>{stock.usuario.nomeUsuario}</CaixaOcultaTitulo>
+                    <BotaoOculto onClick={()=>ativaLogout()}>Sair</BotaoOculto>
+                </CaixaOculta>
                 <Caixa>
-                    <Texto>Escolha Oque Jogar {usuario.nomeUsuario}</Texto>
-                    <BotaoMenu 
-                    state={menu}
-                    placeholder="Escolha sua Campanha"
-                    />
-                    {CriadorCampanhas()}
-                    <BotaoMenu 
-                    state={menu}
-                    placeholder="Escolha seu Personagem"
-                    />
-                    {CriadorPersonagens()}
-                    <Botao>Jogar</Botao>
+                    <Texto>Escolha Oque Jogar {stock.usuario.nomeUsuario}</Texto>
+                    <BotaoMenu state={stateCampanhas}>
+                        {campanhaEscolhida===""?
+                        <div>
+                        Escolha sua Campanha
+                        </div>
+                        :
+                        <div>
+                        {campanhaEscolhida}
+                        </div>
+                        }
+                        <Menuzito state={stateCampanhas}>
+                        
+                            {stock.usuario.campanhas.map(listaCampanhas)}
+                        </Menuzito>
+                    </BotaoMenu>
+                    <BotaoMenu state={statePersonagens}>
+                    {personagemEscolhido===""?
+                        <div>
+                        Escolha sua Campanha
+                        </div>
+                        :
+                        <div>
+                        {personagemEscolhido}
+                        </div>
+                        }
+                        
+                        <Menuzito state={statePersonagens}>
+                            {stock.usuario.personagens.map(listaPersonagens)}
+                        </Menuzito>
+                    </BotaoMenu>
+                    <Botao onClick={()=>entrarMapa()}>Jogar</Botao>
                 </Caixa>
             </Fundo>
         </>
    );
 }
-export async function getStaticProps() {
-    const { data: campanhas } = await supabase.from("campanhas").select("*")
-    const { data: personagens } = await supabase.from("personagens").select("*")
-    return {
-        props: {
-            campanhas,
-            personagens
-        }
-    }
-  }

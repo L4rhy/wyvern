@@ -40,11 +40,9 @@ export default function Login({usuarios}:Usuario) {
          if (value.nomeUsuario === nomeUsuario && value.senha === senha) {
             dispatch(atualizaUsuario(value));
             dispatch(login());
+            router.push(`/usuario`);
          }
-      });
-      if (stock.logged == true) {
-         router.push(`/usuario`);
-      }
+      })
    }
    //pagina
    return (

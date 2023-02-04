@@ -35,7 +35,7 @@ export default function Login({usuarios}:Usuario) {
       setSenha(e.target.value);
    };
    //botao form submission
-   form.useSubmit(async () => {
+   const verificaUser = () =>{
       usuarios.forEach((value) => {
          if (value.nomeUsuario === nomeUsuario && value.senha != senha) {
             alert("senha incorreta");
@@ -48,7 +48,7 @@ export default function Login({usuarios}:Usuario) {
       if (stock.logged == true) {
          router.push(`/usuario`);
       }
-   });
+   }
    //pagina
    return (
       <>
@@ -74,7 +74,7 @@ export default function Login({usuarios}:Usuario) {
                   placeholder="Sua Senha"
                   onChange={(e) => handleSenha(e)}
                />
-               <Botao>Entrar</Botao>
+               <Botao onClick={()=>verificaUser}>Entrar</Botao>
             </Caixa>
          </Fundo>
       </>

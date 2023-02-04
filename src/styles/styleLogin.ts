@@ -90,7 +90,7 @@ export const Input = styled(FormInput)`
     }
 `;
 
-export const Botao = styled(FormSubmit)`
+export const Botao = styled.button`
     border: 2px solid ${(props) => props.theme.cores.rosinhas[50]};
     border-radius: .375rem;
     box-sizing: border-box;

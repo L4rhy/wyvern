@@ -36,7 +36,7 @@ export default function Selecao() {
     const entrarMapa = () =>{
         const escolha = {personagem:personagemEscolhido,campanha:campanhaEscolhida}
         dispatch(atualizaEscolha(escolha))
-        if(stock.personagemUsuario==="Narradora"){
+        if(personagemEscolhido==="Narradora"){
             router.push("/mesaNarradora")
         }else{
             router.push("/mesa")

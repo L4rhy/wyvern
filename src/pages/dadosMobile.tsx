@@ -111,9 +111,6 @@ export default function Dados() {
             {value.nome}
          </BotaoInimigo>
       );
-   };
-   const VoltaMesa = () =>{
-      router.push("/mesa")
    }
    return (
       <>
@@ -121,7 +118,7 @@ export default function Dados() {
             <title>Rolagens</title>
          </Head>
       <Fundo>
-         <BotaoVolta onClick={()=>VoltaMesa}>
+         <BotaoVolta onClick={()=>router.push("/mesa")}>
                 <IconVolta/>
          </BotaoVolta>
          <Caixa>

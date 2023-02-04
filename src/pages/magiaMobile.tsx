@@ -112,16 +112,13 @@ export default function Magia() {
          </Texto>
       );
    };
-   const VoltaMesa = () =>{
-      router.push("/mesa")
-   }
    return (
       <>
          <Head>
             <title>Magias e Habilidades</title>
          </Head>
       <Fundo>
-         <BotaoVolta onClick={()=>VoltaMesa}>
+         <BotaoVolta onClick={()=>router.push("/mesa")}>
                 <IconVolta/>
          </BotaoVolta>
          <Caixa>

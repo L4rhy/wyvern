@@ -116,9 +116,6 @@ export default function Ataque() {
             </BotaoIcon>
          </Texto>
       );
-   };
-   const VoltaMesa = () =>{
-      router.push("/mesa")
    }
    return (
       <>
@@ -126,7 +123,7 @@ export default function Ataque() {
             <title>Ataques</title>
          </Head>
       <Fundo>
-         <BotaoVolta onClick={()=>VoltaMesa}>
+         <BotaoVolta onClick={()=>router.push("/mesa")}>
                 <IconVolta/>
          </BotaoVolta>
          <Caixa>

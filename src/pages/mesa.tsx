@@ -123,7 +123,6 @@ export default function Mesa(){
                 </>
                 :
                 <>
-                    {alert("Está paginá precisa ser vista na orientação paisagem")}
                     <BotaoUserMobile onClick={()=>router.push("/usuarioMobile")}>
                         <IconUser/>
                     </BotaoUserMobile>

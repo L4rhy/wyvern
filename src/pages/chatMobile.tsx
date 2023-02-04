@@ -82,17 +82,14 @@ export default function Chat() {
       return () => {
          supabase.removeChannel(subscribe);
       };
-   }, []);
-   const VoltaMesa = () =>{
-      router.push("/mesa")
-   }
+   }, [])
    return (
       <>
          <Head>
             <title>Chat</title>
          </Head>
       <Fundo>
-            <BotaoVolta onClick={()=>VoltaMesa}>
+            <BotaoVolta onClick={()=>router.push("/mesa")}>
                 <IconVolta/>
             </BotaoVolta>
          <Caixa>

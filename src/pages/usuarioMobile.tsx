@@ -8,33 +8,27 @@ export default function Usuario(){
     const stock = useSelector((state:RootState)=>state.stock)
     const dispatch = useDispatch()
     const router = useRouter()
-    const VoltaUsuario = () =>{
-        router.push("/usuario")
-    }
-    const Logout = () =>{
-        dispatch(logout())
-        router.push("/login")
-    }
-    const VoltaMesa = () =>{
-        router.push("/mesa")
-    }
     return(
         <>
          <Head>
             <title>Perfil de Usuario</title>
          </Head>
         <Fundo>
-            <BotaoVolta onClick={()=>VoltaMesa}>
+            <BotaoVolta onClick={()=>router.push("/mesa")}>
                 <IconVolta/>
             </BotaoVolta>
             <Caixa>
                 <CaixaUsuario>
                     <NomeUsuario>{stock.usuario.nomeUsuario}</NomeUsuario>
-                    <BotaoLogout onClick={()=>Logout}>Logout</BotaoLogout>
+                    <BotaoLogout onClick={()=>{
+                        dispatch(logout())
+                        router.push("/login")}}>
+                            Logout
+                    </BotaoLogout>
                 </CaixaUsuario>
                 <CaixaAcoes>
                     <Texto>Voltar a <br/>Pagina de Usuario</Texto>
-                    <Botao onClick={()=>VoltaUsuario}>Voltar</Botao>
+                    <Botao onClick={()=>router.push("/usuario")}>Voltar</Botao>
                 </CaixaAcoes>
             </Caixa>
         </Fundo>

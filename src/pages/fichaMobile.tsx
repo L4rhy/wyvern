@@ -840,16 +840,13 @@ export default function Ficha() {
          </Iten>
       );
    };
-   const VoltaMesa = () =>{
-      router.push("/mesa")
-   }
    return (
       <>
          <Head>
             <title>Ficha</title>
          </Head>
          <Fundo>
-            <BotaoVolta onClick={()=>VoltaMesa}>
+            <BotaoVolta onClick={()=>router.push("/mesa")}>
                   <IconVolta/>
             </BotaoVolta>
             <Caixa>

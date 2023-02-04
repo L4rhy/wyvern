@@ -20,7 +20,7 @@ export const Fundo = styled.div`
         ${(props) => props.theme.cores.psicodelicas[800]});
 `;
 
-export const Caixa = styled(Form)`
+export const Caixa = styled.div`
     border: 2px solid ${(props) => props.theme.cores.rosinhas[50]};
     border-radius: .375rem;
     box-sizing: border-box;
@@ -48,12 +48,12 @@ export const Caixa = styled(Form)`
     }
 `;
 
-export const Texto = styled(FormLabel)`
+export const Texto = styled.p`
     font-size:3rem;
     color: ${(props) => props.theme.cores.rosinhas[50]};
 `;
 
-export const Input = styled(FormInput)`
+export const Input = styled.input`
     border: 2px solid ${(props) => props.theme.cores.rosinhas[50]};
     border-radius: .375rem;
     box-sizing: border-box;

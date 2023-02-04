@@ -8,7 +8,6 @@ import {
    BotaoIcon,
    IconHome,
 } from "@/styles/styleLogin";
-import { useFormState } from "ariakit/form";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { supabase } from "./api/supabase";
@@ -17,8 +16,6 @@ import { RootState } from "../stack";
 import { login, atualizaUsuario } from "../stack/stock";
 import { Usuario } from "../../types/supabase"
 export default function Login({usuarios}:Usuario) {
-   //estado do form
-   const form = useFormState({ defaultValues: { nome: "", senha: "" } });
    //variaves da pagina
    const [nomeUsuario, setNomeUsuario] = useState("");
    const [senha, setSenha] = useState("");
@@ -59,16 +56,14 @@ export default function Login({usuarios}:Usuario) {
             <BotaoIcon onClick={() => router.push("/")}>
                <IconHome />
             </BotaoIcon>
-            <Caixa state={form}>
-               <Texto name={form.names.nome}>Login</Texto>
+            <Caixa>
+               <Texto>Login</Texto>
                <Input
-                  name={form.names.nome}
                   value={nomeUsuario}
                   placeholder="Nome de Usuario"
                   onChange={(e) => handleUsuario(e)}
                />
                <Input
-                  name={form.names.senha}
                   type="password"
                   value={senha}
                   placeholder="Sua Senha"

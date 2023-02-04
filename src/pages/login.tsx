@@ -74,7 +74,7 @@ export default function Login({usuarios}:Usuario) {
                   placeholder="Sua Senha"
                   onChange={(e) => handleSenha(e)}
                />
-               <Botao onClick={()=>verificaUser}>Entrar</Botao>
+               <Botao onClick={()=>verificaUser} onTouchEnd={()=>verificaUser}>Entrar</Botao>
             </Caixa>
          </Fundo>
       </>

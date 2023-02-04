@@ -489,6 +489,7 @@ export default function Ficha() {
                Personagens.forEach((value)=>{
                   if(value.nome===stock.personagemUsuario){
                      setPersonagem(Personagens)
+                     console.log(personagem)
                   }
                })
             }

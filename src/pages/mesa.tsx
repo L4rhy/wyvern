@@ -145,7 +145,7 @@ export default function Mesa(){
                 </>
                 }
                 <ContainerMapa>
-                    <Mapa defaultValue={campanhaAtual.mapaAtual}>
+                    <Mapa defaultValue={campanhaAtual?.mapaAtual}>
                         
                     </Mapa>
                 </ContainerMapa>

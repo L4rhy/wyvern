@@ -26,18 +26,23 @@ export default function Login({usuarios}:Usuario) {
    const dispatch = useDispatch();
    //atualizacao variaveis
    const handleUsuario = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setNomeUsuario(e.target.value);
+      setNomeUsuario(e.target.value)
+      console.log(e)
    };
    const handleSenha = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setSenha(e.target.value);
+      setSenha(e.target.value)
+      console.log(e)
    };
    //botao form submission
-   const verificaUser = () =>{
+   const verificaUser = (e:any) =>{
+      e.preventDefault()
       usuarios.forEach((value) => {
          if (value.nomeUsuario === nomeUsuario && value.senha != senha) {
-            alert("senha incorreta");
+            alert("senha incorreta")
+
          }
          if (value.nomeUsuario === nomeUsuario && value.senha === senha) {
+            console.log("passou por aqui")
             dispatch(atualizaUsuario(value));
             dispatch(login());
             router.push(`/usuario`);
@@ -54,7 +59,7 @@ export default function Login({usuarios}:Usuario) {
             <BotaoIcon onClick={() => router.push("/")}>
                <IconHome />
             </BotaoIcon>
-            <Caixa>
+            <Caixa as="form" onSubmit={(e)=>verificaUser(e)}>
                <Texto>Login</Texto>
                <Input
                   value={nomeUsuario}
@@ -67,7 +72,7 @@ export default function Login({usuarios}:Usuario) {
                   placeholder="Sua Senha"
                   onChange={(e) => handleSenha(e)}
                />
-               <Botao onClick={()=>verificaUser}>Entrar</Botao>
+               <Botao type="submit">Entrar</Botao>
             </Caixa>
          </Fundo>
       </>

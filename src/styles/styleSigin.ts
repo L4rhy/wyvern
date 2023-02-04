@@ -26,10 +26,6 @@ border: 2px solid ${(props) => props.theme.cores.rosinhas[50]};
         height: 60vh;
         width: 40vw;
     }
-    @media ${device.laptopL}{
-        height: 60vh;
-        width: 40vw;
-    }
     @media ${device.laptop}{
         height: 60vh;
         width: 40vw;
@@ -38,7 +34,7 @@ border: 2px solid ${(props) => props.theme.cores.rosinhas[50]};
         height: 60vh;
         width: 40vw;
     }
-    @media ${device.mobileL}{
+    @media ${device.mobile}{
         height: 90vh;
         width: 90vw;
     }
@@ -64,12 +60,6 @@ export const BotaoIcon = styled.button`
         left: 20px;
         top: 20px;
     }
-    @media ${device.laptopL}{
-        height: 70px;
-        width: 70px;
-        left: 20px;
-        top: 20px; 
-    }
     @media ${device.laptop}{
         height: 70px;
         width: 70px;
@@ -82,7 +72,7 @@ export const BotaoIcon = styled.button`
         left: 20px;
         top: 20px;
     }
-    @media ${device.mobileL}{
+    @media ${device.mobile}{
         height: 50px;
         width: 50px;
         left: 20px;
@@ -96,10 +86,6 @@ export const IconHome = styled(FiHome)`
         height: 40px;
         width: 40px;
     }
-    @media ${device.laptopL}{
-        height: 40px;
-        width: 40px;
-    }
     @media ${device.laptop}{
         height: 40px;
         width: 40px;
@@ -108,7 +94,7 @@ export const IconHome = styled(FiHome)`
         height: 40px;
         width: 40px;
     }
-    @media ${device.mobileL}{
+    @media ${device.mobile}{
     height: 25px;
     width: 25px;
     }

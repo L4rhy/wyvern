@@ -69,12 +69,12 @@ export const CaixaMensagem = styled.div`
     box-sizing: border-box;
     gap: 10px;
 `;
-export const CaixaEnvio = styled(Form)`
+export const CaixaEnvio = styled.div`
     height: 10%;
     width: 98%;
     flex-direction: row;
 `;
-export const Input = styled(FormInput)`
+export const Input = styled.input`
     height: 96%;
     width: 90%;
     color: ${(props) => props.theme.cores.rosinhas[50]};
@@ -86,7 +86,7 @@ export const Input = styled(FormInput)`
         border: 2px solid ${(props) => props.theme.cores.rosinhas[200]};
     }
 `;
-export const BotaoIcon = styled(FormSubmit)`
+export const BotaoIcon = styled.button`
     height: 9.5%;
     width: 10%;
     border: 2px solid ${(props) => props.theme.cores.rosinhas[50]};

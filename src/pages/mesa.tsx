@@ -35,20 +35,24 @@ export default function Mesa(){
     const router = useRouter()
     useEffect(()=>{
         const pegaCampanha = async () =>{
-            const { data: campanhas } = await supabase.from("campanhas").select("*")
-            if(campanhas){
-                campanhas.forEach((value)=>{
-                    if(value.nomeCampanha===nomeCampanha)
-                    setCampanhaAtual(value);
-                })
-            }
+            const { data: campanha } = await supabase
+            .from("campanhas")
+            .select("*")
+            .eq("nomeCampanha", nomeCampanha)
+            
+            setCampanhaAtual(campanha)
         }
         pegaCampanha()
     }, [nomeCampanha])
     useEffect(()=>{
         const subscription = supabase
         .channel('public:campanhas')
-        .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'campanhas' }, payload => {
+        .on('postgres_changes', { 
+            event: 'UPDATE', 
+            schema: 'public', 
+            table: 'campanhas',
+            filter: `nomeCampanha=eq.${nomeCampanha}`
+        }, payload => {
             setCampanhaAtual(payload.new)
         })
         .subscribe()
@@ -56,7 +60,7 @@ export default function Mesa(){
         return () =>{
             supabase.removeChannel(subscription)
         }
-    }, [])
+    }, [nomeCampanha])
     useEffect(()=>{
         if(!stock.logged){
             router.push("/login")

@@ -20,23 +20,16 @@ import { useState, useEffect } from "react";
 import { supabase } from "./api/supabase";
 import { useRouter } from "next/router";
 import Head from "next/head";
-export const enviaMensagem = async (usuario: string, novaMensagem: string) => {
+export const enviaMensagem = async (usuario: string, novaMensagem: string, campanha:string) => {
    const mensagens = await supabase
       .from("chatCampanhaVilaEsquecida")
-      .insert({ nomeMensagem: usuario, textoMensagem: novaMensagem });
+      .insert({ nomeMensagem: usuario, textoMensagem: novaMensagem, campanha: campanha});
 };
 export default function Chat() {
-   const form = useFormState({ defaultValues: { texto: "" } });
-   const router = useRouter()
    const stock = useSelector((state: RootState) => state.stock);
+   const router = useRouter()
    const [novaMensagem, setNovaMensagem] = useState("");
-   const [listaMensagens, setListaMensagens] = useState<any>([
-      {
-         id: 0,
-         nomeMensagem: "",
-         textoMensagem: "",
-      },
-   ]);
+   const [listaMensagens, setListaMensagens] = useState<any>([]);
    const HandleNovaMensagem = (value: React.ChangeEvent<HTMLInputElement>) => {
       setNovaMensagem(value.target.value);
    };
@@ -48,20 +41,22 @@ export default function Chat() {
          </CaixaMensagem>
       );
    };
-   form.useSubmit(() => {
-      enviaMensagem(stock.usuario.nomeUsuario, novaMensagem);
-   });
+   const Envio = (e:any) =>{
+      e.preventDefault()
+      enviaMensagem(stock.usuario.nomeUsuario, novaMensagem, stock.campanhaUsuario)
+   }
    useEffect(() => {
       const getMensagens = async () => {
          const { data: mensagens } = await supabase
             .from("chatCampanhaVilaEsquecida")
             .select("*")
+            .eq("campanha", stock.campanhaUsuario)
             .order("id", { ascending: true });
 
          setListaMensagens(mensagens);
       };
       getMensagens();
-   }, []);
+   }, [stock]);
    useEffect(() => {
       const subscribe = supabase
          .channel("public:chatCampanhaVilaEsquecida")
@@ -71,6 +66,7 @@ export default function Chat() {
                event: "INSERT",
                schema: "public",
                table: "chatCampanhaVilaEsquecida",
+               filter: `eq:campanha:${stock.campanhaUsuario}`
             },
             (payload) => {
                setListaMensagens((listaMensagens: any) => {
@@ -82,7 +78,7 @@ export default function Chat() {
       return () => {
          supabase.removeChannel(subscribe);
       };
-   }, [])
+   }, [stock]);
    return (
       <>
          <Head>
@@ -98,15 +94,14 @@ export default function Chat() {
                   {listaMensagens?.map(ListaMensagem)}
                </ListaMensagens>
             </CaixaMensagens>
-            <CaixaEnvio state={form}>
-               <Input
-                  name={form.names.texto}
-                  onChange={(value) => HandleNovaMensagem(value)}
-               ></Input>
-               <BotaoIcon>
-                  <IconEnviar />
-               </BotaoIcon>
-            </CaixaEnvio>
+            <CaixaEnvio as="form" onSubmit={(e)=>Envio(e)}>
+            <Input
+               onChange={(value) => HandleNovaMensagem(value)}
+            ></Input>
+            <BotaoIcon type="submit">
+               <IconEnviar />
+            </BotaoIcon>
+         </CaixaEnvio>
          </Caixa>
       </Fundo>
    </>

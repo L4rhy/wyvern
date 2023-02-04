@@ -488,41 +488,23 @@ export default function Ficha() {
    };
    useEffect(() => {
       const getPersonagem = async () => {
-         const { data: personagens } = await supabase
+         const { data: Personagem } = await supabase
             .from("Personagens")
-            .select("*");
-
-         if (personagens) {
-            personagens.forEach((value) => {
-               if (value.nome === stock.personagemUsuario) {
-                  setPersonagem(value);
-               }
-            });
-         }
+            .select("*")
+            .eq("nome", stock.personagemUsuario)
+         
+            setPersonagem(Personagem)
       };
       getPersonagem();
       CriaBonus();
-      dispatch(
-         atualizaBonus({
-            forca: bonusForca,
-            destreza: bonusDestreza,
-            precisao: bonusPrecisao,
-            constituicao: bonusConstituicao,
-            inteligencia: bonusInteligencia,
-            carisma: bonusCarisma,
-         })
-      );
-   }, [
-      stock,
-      CriaBonus,
-      dispatch,
-      bonusForca,
-      bonusDestreza,
-      bonusPrecisao,
-      bonusConstituicao,
-      bonusInteligencia,
-      bonusCarisma,
-   ]);
+      dispatch(atualizaBonus({
+         forca:bonusForca,
+         destreza:bonusDestreza,
+         precisao:bonusPrecisao,
+         constituicao: bonusConstituicao,
+         inteligencia:bonusInteligencia,
+         carisma:bonusCarisma}))
+   }, [stock, CriaBonus, dispatch, bonusForca, bonusDestreza, bonusPrecisao, bonusConstituicao, bonusInteligencia, bonusCarisma]);
    useEffect(() => {
       const subscribe = supabase
          .channel(`public:Personagens`)
@@ -532,16 +514,17 @@ export default function Ficha() {
                event: "UPDATE",
                schema: "public",
                table: "Personagens",
+               filter: `nome=eq.${stock.personagemUsuario}`
             },
             (payload) => {
                setPersonagem(payload.new);
             }
          )
-         .subscribe();
+         .subscribe()
       return () => {
          supabase.removeChannel(subscribe);
       };
-   }, []);
+   }, [stock]);
    const CriaProeficiencias1 = () => {
       return (
          <>
@@ -788,7 +771,7 @@ export default function Ficha() {
                <BotaoIcon
                   onClick={() => {
                      const texto = `${value.nome}: ${value.descricao}`;
-                     enviaMensagem(usuario, texto);
+                     enviaMensagem(usuario, texto, stock.campanhaUsuario);
                   }}
                >
                   <Icon />
@@ -806,7 +789,7 @@ export default function Ficha() {
                <BotaoIcon
                   onClick={() => {
                      const texto = `${value.nome}: ${value.descricao}`;
-                     enviaMensagem(usuario, texto);
+                     enviaMensagem(usuario, texto, stock.campanhaUsuario);
                   }}
                >
                   <Icon />

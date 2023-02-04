@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { Fundo, Caixa, Texto, Botao, BotaoMenu, BotaoIcon, IconUser, Menuzito, ItemMenu, 
     CaixaOculta, Flechinha, CaixaOcultaTitulo, BotaoOculto
-} from "../styles/styleSelecao";
+} from "../styles/styleUsuario";
 import {useDispatch, useSelector} from "react-redux"
 import {RootState} from "../stack"
 import {logout, atualizaEscolha} from "../stack/stock"
@@ -24,11 +24,11 @@ export default function Selecao() {
         dispatch(logout)
         router.push("/")
     }
-    const listaCampanhas = (valor:string) =>{
-        return(<ItemMenu onClick={()=>setCampanhaEscolhida(valor)}>{valor}</ItemMenu>)
+    const listaCampanhas = (valor:string, index:number) =>{
+        return(<ItemMenu key={index} onClick={()=>setCampanhaEscolhida(valor)}>{valor}</ItemMenu>)
     }  
-    const listaPersonagens = (valor:string) =>{
-        return(<ItemMenu onClick={()=>setPersonagemEscolhido(valor)}>{valor}</ItemMenu>)
+    const listaPersonagens = (valor:string, index:number) =>{
+        return(<ItemMenu key={index} onClick={()=>setPersonagemEscolhido(valor)}>{valor}</ItemMenu>)
     }       
 
         
@@ -36,7 +36,11 @@ export default function Selecao() {
     const entrarMapa = () =>{
         const escolha = {personagem:personagemEscolhido,campanha:campanhaEscolhida}
         dispatch(atualizaEscolha(escolha))
-        router.push("/mesa")
+        if(stock.personagemUsuario==="Narradora"){
+            router.push("/mesaNarradora")
+        }else{
+            router.push("/mesa")
+        }
     }
     
     return (
@@ -54,7 +58,7 @@ export default function Selecao() {
                     <BotaoOculto onClick={()=>ativaLogout()}>Sair</BotaoOculto>
                 </CaixaOculta>
                 <Caixa>
-                    <Texto>Escolha Oque Jogar {stock.usuario.nomeUsuario}</Texto>
+                    <Texto>Escolha Oque Jogar <br/>{stock.usuario.nomeUsuario}</Texto>
                     <BotaoMenu state={stateCampanhas}>
                         {campanhaEscolhida===""?
                         <div>

@@ -6,7 +6,8 @@ import {
 import styled from "styled-components";
 import { device } from "./devices";
 import { FiUser, FiFileText, FiMessageSquare } from "react-icons/fi"
-import { GiPolarStar, GiSwordWound, GiDiceTwentyFacesTwenty } from "react-icons/gi"
+import { GiPolarStar, GiAxeSword, GiDiceTwentyFacesTwenty } from "react-icons/gi"
+
 export const Fundo = styled.div`
     display: flex;
     align-items: center;
@@ -18,21 +19,20 @@ export const Fundo = styled.div`
         ${(props) => props.theme.cores.psicodelicas[400]},
         ${(props) => props.theme.cores.psicodelicas[700]});
 `;
+export const ContainerMapa = styled.div`
+    width: 65%;
+`;
 export const Mapa = styled.div`
-    height: 90vh;
-    width: 80vw;
+    width: 100%;
+    padding-top: 75%;
     background: no-repeat center;
     background-size: contain;
-    background-image: url("/AvisoDia27Mes1.svg");
+    background-image: url(${(props)=>props.defaultValue});
 
 `;
 export const IconUser = styled(FiUser)`
     color: ${(props) => props.theme.cores.rosinhas[50]};
     @media ${device.desktop}{
-        height: 40px;
-        width: 40px;
-    }
-    @media ${device.laptopL}{
         height: 40px;
         width: 40px;
     }
@@ -44,7 +44,7 @@ export const IconUser = styled(FiUser)`
         height: 40px;
         width: 40px;
     }
-    @media ${device.mobileL}{
+    @media ${device.mobile}{
     height: 25px;
     width: 25px;
     }
@@ -55,10 +55,6 @@ export const IconFicha = styled(FiFileText)`
         height: 40px;
         width: 40px;
     }
-    @media ${device.laptopL}{
-        height: 40px;
-        width: 40px;
-    }
     @media ${device.laptop}{
         height: 40px;
         width: 40px;
@@ -67,7 +63,7 @@ export const IconFicha = styled(FiFileText)`
         height: 40px;
         width: 40px;
     }
-    @media ${device.mobileL}{
+    @media ${device.mobile}{
     height: 25px;
     width: 25px;
     }
@@ -78,10 +74,6 @@ export const IconChat = styled(FiMessageSquare)`
         height: 40px;
         width: 40px;
     }
-    @media ${device.laptopL}{
-        height: 40px;
-        width: 40px;
-    }
     @media ${device.laptop}{
         height: 40px;
         width: 40px;
@@ -90,7 +82,7 @@ export const IconChat = styled(FiMessageSquare)`
         height: 40px;
         width: 40px;
     }
-    @media ${device.mobileL}{
+    @media ${device.mobile}{
     height: 25px;
     width: 25px;
     }
@@ -101,10 +93,6 @@ export const IconMagia = styled(GiPolarStar)`
         height: 40px;
         width: 40px;
     }
-    @media ${device.laptopL}{
-        height: 40px;
-        width: 40px;
-    }
     @media ${device.laptop}{
         height: 40px;
         width: 40px;
@@ -113,21 +101,17 @@ export const IconMagia = styled(GiPolarStar)`
         height: 40px;
         width: 40px;
     }
-    @media ${device.mobileL}{
+    @media ${device.mobile}{
     height: 25px;
     width: 25px;
     }
 `;
-export const IconEspada = styled(GiSwordWound)`
+export const IconEspada = styled(GiAxeSword)`
     color: ${(props) => props.theme.cores.rosinhas[50]};
     @media ${device.desktop}{
         height: 40px;
         width: 40px;
     }
-    @media ${device.laptopL}{
-        height: 40px;
-        width: 40px;
-    }
     @media ${device.laptop}{
         height: 40px;
         width: 40px;
@@ -136,7 +120,7 @@ export const IconEspada = styled(GiSwordWound)`
         height: 40px;
         width: 40px;
     }
-    @media ${device.mobileL}{
+    @media ${device.mobile}{
     height: 25px;
     width: 25px;
     }
@@ -147,10 +131,6 @@ export const IconDado = styled(GiDiceTwentyFacesTwenty)`
         height: 40px;
         width: 40px;
     }
-    @media ${device.laptopL}{
-        height: 40px;
-        width: 40px;
-    }
     @media ${device.laptop}{
         height: 40px;
         width: 40px;
@@ -159,7 +139,7 @@ export const IconDado = styled(GiDiceTwentyFacesTwenty)`
         height: 40px;
         width: 40px;
     }
-    @media ${device.mobileL}{
+    @media ${device.mobile}{
     height: 25px;
     width: 25px;
     }
@@ -180,12 +160,6 @@ export const BotaoUser = styled(PopoverDisclosure)`
         left: 20px;
         top: 20px;
     }
-    @media ${device.laptopL}{
-        height: 70px;
-        width: 70px;
-        left: 20px;
-        top: 20px; 
-    }
     @media ${device.laptop}{
         height: 70px;
         width: 70px;
@@ -198,7 +172,7 @@ export const BotaoUser = styled(PopoverDisclosure)`
         left: 20px;
         top: 20px;
     }
-    @media ${device.mobileL}{
+    @media ${device.mobile}{
         height: 50px;
         width: 50px;
         left: 20px;
@@ -221,12 +195,6 @@ export const BotaoFicha = styled(PopoverDisclosure)`
         left: 20px;
         top: 110px;
     }
-    @media ${device.laptopL}{
-        height: 70px;
-        width: 70px;
-        left: 20px;
-        top: 110px; 
-    }
     @media ${device.laptop}{
         height: 70px;
         width: 70px;
@@ -239,7 +207,7 @@ export const BotaoFicha = styled(PopoverDisclosure)`
         left: 20px;
         top: 110px;
     }
-    @media ${device.mobileL}{
+    @media ${device.mobile}{
         height: 50px;
         width: 50px;
         left: 20px;
@@ -262,12 +230,6 @@ export const BotaoChat = styled(PopoverDisclosure)`
         left: 20px;
         top: 200px;
     }
-    @media ${device.laptopL}{
-        height: 70px;
-        width: 70px;
-        left: 20px;
-        top: 200px; 
-    }
     @media ${device.laptop}{
         height: 70px;
         width: 70px;
@@ -280,7 +242,7 @@ export const BotaoChat = styled(PopoverDisclosure)`
         left: 20px;
         top: 200px;
     }
-    @media ${device.mobileL}{
+    @media ${device.mobile}{
         height: 50px;
         width: 50px;
         left: 20px;
@@ -303,12 +265,6 @@ export const BotaoMagia = styled(PopoverDisclosure)`
         right: 20px;
         top: 20px;
     }
-    @media ${device.laptopL}{
-        height: 70px;
-        width: 70px;
-        right: 20px;
-        top: 20px; 
-    }
     @media ${device.laptop}{
         height: 70px;
         width: 70px;
@@ -321,7 +277,7 @@ export const BotaoMagia = styled(PopoverDisclosure)`
         right: 20px;
         top: 20px;
     }
-    @media ${device.mobileL}{
+    @media ${device.mobile}{
         height: 50px;
         width: 50px;
         left: 20px;
@@ -344,12 +300,6 @@ export const BotaoEspada = styled(PopoverDisclosure)`
         right: 20px;
         top: 110px;
     }
-    @media ${device.laptopL}{
-        height: 70px;
-        width: 70px;
-        right: 20px;
-        top: 110px; 
-    }
     @media ${device.laptop}{
         height: 70px;
         width: 70px;
@@ -362,7 +312,7 @@ export const BotaoEspada = styled(PopoverDisclosure)`
         right: 20px;
         top: 110px;
     }
-    @media ${device.mobileL}{
+    @media ${device.mobile}{
         height: 50px;
         width: 50px;
         left: 20px;
@@ -385,12 +335,6 @@ export const BotaoDado = styled(PopoverDisclosure)`
         right: 20px;
         top: 200px;
     }
-    @media ${device.laptopL}{
-        height: 70px;
-        width: 70px;
-        right: 20px;
-        top: 200px; 
-    }
     @media ${device.laptop}{
         height: 70px;
         width: 70px;
@@ -403,16 +347,121 @@ export const BotaoDado = styled(PopoverDisclosure)`
         right: 20px;
         top: 200px;
     }
-    @media ${device.mobileL}{
+    @media ${device.mobile}{
         height: 50px;
         width: 50px;
         left: 20px;
         top: 40px;
     }
 `;
+export const BotaoUserMobile = styled.button`
+    cursor: pointer;
+    height: 50px;
+    width: 50px;
+    left: 20px;
+    top: 70px;
+    border: none;
+    border-radius: 100%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:${(props) => props.theme.cores.psicodelicas[800]};
+    :hover{
+        background-color:${(props) => props.theme.cores.psicodelicas[900]};
+    }
+`;
+export const BotaoFichaMobile = styled.button`
+    cursor: pointer;
+    height: 50px;
+    width: 50px;
+    left: 20px;
+    top: 140px;
+    border: none;
+    border-radius: 100%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:${(props) => props.theme.cores.psicodelicas[800]};
+    :hover{
+        background-color:${(props) => props.theme.cores.psicodelicas[900]};
+    }
+`;
+export const BotaoChatMobile = styled.button`
+    cursor: pointer;
+    height: 50px;
+    width: 50px;
+    left: 20px;
+    top: 210px;
+    border: none;
+    border-radius: 100%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:${(props) => props.theme.cores.psicodelicas[800]};
+    :hover{
+        background-color:${(props) => props.theme.cores.psicodelicas[900]};
+    }
+`;
+export const BotaoMagiaMobile = styled.button`
+    cursor: pointer;
+    height: 50px;
+    width: 50px;
+    right: 20px;
+    top: 70px;
+    border: none;
+    border-radius: 100%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:${(props) => props.theme.cores.psicodelicas[800]};
+    :hover{
+        background-color:${(props) => props.theme.cores.psicodelicas[900]};
+    }
+`;
+export const BotaoEspadaMobile = styled.button`
+    cursor: pointer;
+    height: 50px;
+    width: 50px;
+    right: 20px;
+    top: 140px;
+    border: none;
+    border-radius: 100%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:${(props) => props.theme.cores.psicodelicas[800]};
+    :hover{
+        background-color:${(props) => props.theme.cores.psicodelicas[900]};
+    }
+`;
+export const BotaoDadoMobile = styled.button`
+    cursor: pointer;
+    height: 50px;
+    width: 50px;
+    right: 20px;
+    top: 210px;
+    border: none;
+    border-radius: 100%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:${(props) => props.theme.cores.psicodelicas[800]};
+    :hover{
+        background-color:${(props) => props.theme.cores.psicodelicas[900]};
+    }
+`;
 export const Flechinha = styled(PopoverArrow)``;
 export const Caixa = styled(Popover)`
     height: 96vh;
     width: 46vw;
-    background-color:${(props) => props.theme.cores.psicodelicas[800]}
+    background-color:${(props) => props.theme.cores.psicodelicas[800]};
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;

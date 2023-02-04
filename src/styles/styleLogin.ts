@@ -31,24 +31,20 @@ export const Caixa = styled(Form)`
     gap: 10px;
     background-color: ${(props) => props.theme.cores.psicodelicas[900]};
     @media ${device.desktop}{
-        height: 60vh;
-        width: 40vw;
-    }
-    @media ${device.laptopL}{
-        height: 60vh;
-        width: 40vw;
+        height: 70%;
+        width: 50%;
     }
     @media ${device.laptop}{
-        height: 60vh;
-        width: 40vw;
+        height: 70%;
+        width: 50%;
     }
     @media ${device.tablet}{
-        height: 60vh;
-        width: 40vw;
+        height: 80%;
+        width: 80%;
     }
-    @media ${device.mobileL}{
-        height: 90vh;
-        width: 90vw;
+    @media ${device.mobile}{
+        height: 90%;
+        width: 90%;
     }
 `;
 
@@ -77,24 +73,20 @@ export const Input = styled(FormInput)`
         font-size: 1.5rem;
     }
     @media ${device.desktop}{
-        height: 10vh;
-        width: 20vw;
-    }
-    @media ${device.laptopL}{
-        height: 10;
-        width: 20vw;
+        height: 15%;
+        width: 90%;
     }
     @media ${device.laptop}{
-        height: 5vh;
-        width: 20vw;
+        height: 15%;
+        width: 90%;
     }
     @media ${device.tablet}{
-        height: 5vh;
-        width: 20vw;
+        height: 12.5%;
+        width: 90%;
     }
-    @media ${device.mobileL}{
-        height: 10vh;
-        width: 60vw;
+    @media ${device.mobile}{
+        height: 12.5%;
+        width: 90%;
     }
 `;
 
@@ -111,24 +103,22 @@ export const Botao = styled(FormSubmit)`
         background-color:${(props) => props.theme.cores.psicodelicas[900]}; 
     }
     @media ${device.desktop}{
-        height: 10vh;
-        width: 20vw;
-    }
-    @media ${device.laptopL}{
-        height: 10vh;
-        width: 20vw;
+        height: 15%;
+        width: 90%;
     }
     @media ${device.laptop}{
-        height: 10vh;
-        width: 20vw;
+        height: 15%;
+        width: 90%;
     }
     @media ${device.tablet}{
-        height: 10vh;
-        width: 20vw;
+        height: 12.5%;
+        width: 90%;
+        cursor: pointer;
     }
-    @media ${device.mobileL}{
-        height: 10vh;
-        width: 60vw;
+    @media ${device.mobile}{
+        height: 12.5%;
+        width: 90%;
+        cursor: pointer;
     }
 `;
 
@@ -144,34 +134,28 @@ export const BotaoIcon = styled.button`
         background-color:${(props) => props.theme.cores.psicodelicas[900]};
     }
     @media ${device.desktop}{
-        height: 70px;
-        width: 70px;
+        height: 80px;
+        width: 80px;
         left: 20px;
         top: 20px;
     }
-    @media ${device.laptopL}{
-        height: 70px;
-        width: 70px;
-        left: 20px;
-        top: 20px; 
-    }
     @media ${device.laptop}{
-        height: 70px;
-        width: 70px;
+        height: 80px;
+        width: 80px;
         left: 20px;
         top: 20px;
     }
     @media ${device.tablet}{
-        height: 70px;
-        width: 70px;
+        height: 80px;
+        width: 80px;
         left: 20px;
         top: 20px;
     }
-    @media ${device.mobileL}{
-        height: 50px;
-        width: 50px;
-        left: 20px;
-        top: 40px;
+    @media ${device.mobile}{
+        height: 60px;
+        width: 60px;
+        left: 10%;
+        top: 8%;
     }
 `;
 
@@ -181,10 +165,6 @@ export const IconHome = styled(FiHome)`
         height: 40px;
         width: 40px;
     }
-    @media ${device.laptopL}{
-        height: 40px;
-        width: 40px;
-    }
     @media ${device.laptop}{
         height: 40px;
         width: 40px;
@@ -193,7 +173,7 @@ export const IconHome = styled(FiHome)`
         height: 40px;
         width: 40px;
     }
-    @media ${device.mobileL}{
+    @media ${device.mobile}{
     height: 25px;
     width: 25px;
     }

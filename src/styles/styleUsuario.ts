@@ -24,31 +24,28 @@ export const Caixa = styled.div`
     border: 2px solid ${(props) => props.theme.cores.rosinhas[50]};
     border-radius: .375rem;
     box-sizing: border-box;
+    text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 10px;
+    gap: 5%;
     background-color: ${(props) => props.theme.cores.psicodelicas[900]};
     @media ${device.desktop}{
-        height: 60vh;
-        width: 40vw;
-    }
-    @media ${device.laptopL}{
-        height: 60vh;
-        width: 40vw;
+        height: 70%;
+        width: 50%;
     }
     @media ${device.laptop}{
-        height: 60vh;
-        width: 40vw;
+        height: 70%;
+        width: 50%;
     }
     @media ${device.tablet}{
-        height: 60vh;
-        width: 40vw;
+        height: 80%;
+        width: 80%;
     }
-    @media ${device.mobileL}{
-        height: 90vh;
-        width: 90vw;
+    @media ${device.mobile}{
+        height: 90%;
+        width: 90%;
     }
 `;
 export const Texto = styled.h1`
@@ -69,24 +66,21 @@ export const Botao = styled(Button)`
         background-color:${(props) => props.theme.cores.psicodelicas[900]}; 
     }
     @media ${device.desktop}{
-        height: 10vh;
-        width: 30vw;
-    }
-    @media ${device.laptopL}{
-        height: 10vh;
-        width: 30vw;
+        height: 15%;
+        width: 80%;
     }
     @media ${device.laptop}{
-        height: 10vh;
-        width: 30vw;
+        height: 15%;
+        width: 80%;
     }
     @media ${device.tablet}{
-        height: 10vh;
-        width: 30vw;
+        height: 10%;
+        width: 90%;
     }
-    @media ${device.mobileL}{
-        height: 10vh;
-        width: 60vw;
+    @media ${device.mobile}{
+        height: 10%;
+        width: 90%;
+        cursor: pointer;
     }
 `;
 export const BotaoMenu = styled(PopoverDisclosure)`
@@ -102,35 +96,44 @@ export const BotaoMenu = styled(PopoverDisclosure)`
         background-color:${(props) => props.theme.cores.psicodelicas[900]}; 
     }
     @media ${device.desktop}{
-        height: 10vh;
-        width: 30vw;
-    }
-    @media ${device.laptopL}{
-        height: 10vh;
-        width: 30vw;
+        height: 15%;
+        width: 80%;
     }
     @media ${device.laptop}{
-        height: 10vh;
-        width: 30vw;
+        height: 15%;
+        width: 80%;
     }
     @media ${device.tablet}{
-        height: 10vh;
-        width: 30vw;
+        height: 10%;
+        width: 90%;
     }
-    @media ${device.mobileL}{
-        height: 10vh;
-        width: 60vw;
+    @media ${device.mobile}{
+        height: 10%;
+        width: 90%;
     }
 `;
 
 export const Menuzito = styled(Popover)`
-    border: 1px solid ${(props) => props.theme.cores.rosinhas[50]};
+    border: 2px solid ${(props) => props.theme.cores.rosinhas[50]};
+    border-radius: .375rem;
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 30vw;
-    background-color: ${(props) => props.theme.cores.psicodelicas[800]};
+    background-color: ${(props) => props.theme.cores.psicodelicas[700]};
+    @media ${device.desktop}{
+        width: 40vw;
+    }
+    @media ${device.laptop}{
+        width: 40vw;
+    }
+    @media ${device.tablet}{
+        width: 70vw;
+    }
+    @media ${device.mobile}{
+        width: 75vw;
+    }
 `;
 export const ItemMenu = styled(Button)`
     border: 1px solid ${(props) => props.theme.cores.rosinhas[50]};
@@ -146,24 +149,20 @@ export const ItemMenu = styled(Button)`
         background-color:${(props) => props.theme.cores.psicodelicas[900]}; 
     }
     @media ${device.desktop}{
-        height: 10vh;
-        width: 25vw;
-    }
-    @media ${device.laptopL}{
-        height: 10vh;
-        width: 30vw;
+        height: 15%;
+        width: 90%;
     }
     @media ${device.laptop}{
-        height: 10vh;
-        width: 30vw;
+        height: 15%;
+        width: 90%;
     }
     @media ${device.tablet}{
-        height: 10vh;
-        width: 30vw;
+        height: 10%;
+        width: 90%;
     }
-    @media ${device.mobileL}{
-        height: 10vh;
-        width: 60vw;
+    @media ${device.mobile}{
+        height: 10%;
+        width: 90%;
     }
 `;
 export const BotaoIcon = styled(PopoverDisclosure)`
@@ -178,34 +177,28 @@ export const BotaoIcon = styled(PopoverDisclosure)`
         background-color:${(props) => props.theme.cores.psicodelicas[900]};
     }
     @media ${device.desktop}{
-        height: 70px;
-        width: 70px;
+        height: 80px;
+        width: 80px;
         left: 20px;
         top: 20px;
     }
-    @media ${device.laptopL}{
-        height: 70px;
-        width: 70px;
-        left: 20px;
-        top: 20px; 
-    }
     @media ${device.laptop}{
-        height: 70px;
-        width: 70px;
+        height: 80px;
+        width: 80px;
         left: 20px;
         top: 20px;
     }
     @media ${device.tablet}{
-        height: 70px;
-        width: 70px;
+        height: 80px;
+        width: 80px;
         left: 20px;
         top: 20px;
     }
-    @media ${device.mobileL}{
-        height: 50px;
-        width: 50px;
-        left: 20px;
-        top: 40px;
+    @media ${device.mobile}{
+        height: 60px;
+        width: 60px;
+        left: 10%;
+        top: 8%;
     }
 `;
 
@@ -215,10 +208,6 @@ export const IconUser = styled(FiUser)`
         height: 40px;
         width: 40px;
     }
-    @media ${device.laptopL}{
-        height: 40px;
-        width: 40px;
-    }
     @media ${device.laptop}{
         height: 40px;
         width: 40px;
@@ -227,7 +216,7 @@ export const IconUser = styled(FiUser)`
         height: 40px;
         width: 40px;
     }
-    @media ${device.mobileL}{
+    @media ${device.mobile}{
     height: 25px;
     width: 25px;
     }
@@ -240,22 +229,23 @@ export const CaixaOculta = styled(Popover)`
     gap: 10px;
     background-color: ${(props) => props.theme.cores.psicodelicas[900]};
     @media ${device.desktop}{
-        height: 20vh;
-        width: 20vw;
+        height: 40vh;
+        width: 40vw;
 
     }
-    @media ${device.laptopL}{
-        
-    }
     @media ${device.laptop}{
-        
+        height: 40vh;
+        width: 40vw;
     }
     @media ${device.tablet}{
-        
+        height: 50vh;
+        width: 50vw;
+        background-color: ${(props) => props.theme.cores.psicodelicas[800]};
     }
-    @media ${device.mobileL}{
-        height: 90vh;
-        width: 90vw;
+    @media ${device.mobile}{
+        height: 30vh;
+        width: 30vw;
+        background-color: ${(props) => props.theme.cores.psicodelicas[800]};
     }
 `;
 export const Flechinha = styled(PopoverArrow)``;
@@ -271,17 +261,13 @@ export const BotaoOculto = styled(Button)`
     text-decoration: none;
     font-size: 1.5rem;
     color: ${(props) => props.theme.cores.rosinhas[50]};
-    background-color:${(props) => props.theme.cores.psicodelicas[800]};
+    background-color:${(props) => props.theme.cores.psicodelicas[700]};
     :hover{
         background-color:${(props) => props.theme.cores.psicodelicas[900]}; 
     }
     @media ${device.desktop}{
         height: 30%;
         width: 60%;
-    }
-    @media ${device.laptopL}{
-        height: 10vh;
-        width: 30vw;
     }
     @media ${device.laptop}{
         height: 10vh;
@@ -291,8 +277,8 @@ export const BotaoOculto = styled(Button)`
         height: 10vh;
         width: 30vw;
     }
-    @media ${device.mobileL}{
-        height: 10vh;
-        width: 60vw;
+    @media ${device.mobile}{
+        height: 5vh;
+        width: 20vw;
     }
 `;

@@ -16,7 +16,7 @@ export default function Home() {
             </CaixaBotao>
             <CaixaBotao>
               <Texto>Cadastre</Texto>
-              <Botao href="singin">SingIn</Botao>
+              <Botao href="/singin">SingIn</Botao>
             </CaixaBotao>
           </Caixa>
         </Fundo>

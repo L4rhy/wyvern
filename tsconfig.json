@@ -19,7 +19,7 @@
          "@/*": ["./src/*"]
       }
    },
-   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/api/supabese.js"],
+   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/api/supabese.js", "src/pages/api/regras.ts"],
    "exclude": ["node_modules"],
    "files": ["src/styles/theme/style.d.ts"]
 }

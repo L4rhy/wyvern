@@ -1,11 +1,12 @@
-import { supabase } from "./api/supabase.js";
+import { supabase } from "./api/supabase";
 import Head from "next/head";
-import { useRouter } from "next/router";
-import { useState } from "react";
-import {useDispatch, useSelector} from "react-redux"
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux"
+import { useRouter } from "next/router.js";
 import {RootState} from "../stack"
 import { Fundo, Mapa, BotaoUser, BotaoChat, BotaoFicha, BotaoMagia, BotaoEspada, BotaoDado,
-     IconUser, IconFicha, IconChat, IconMagia, IconEspada, IconDado, Caixa, Flechinha
+     IconUser, IconFicha, IconChat, IconMagia, IconEspada, IconDado, Caixa, Flechinha, 
+     ContainerMapa, BotaoChatMobile, BotaoDadoMobile, BotaoEspadaMobile, BotaoFichaMobile, BotaoMagiaMobile, BotaoUserMobile
  } from "@/styles/styleMesa";
 import { usePopoverState } from "ariakit";
 import Usuario from "./components/usuario"
@@ -14,10 +15,54 @@ import Chat from "./components/chat"
 import Magia from "./components/magia"
 import Ataque from "./components/ataque"
 import Dados from "./components/dados"
+import { useMediaQuery } from 'react-responsive'
+
 
 export default function Mesa(){
-    const router = useRouter();
+    const isMobile = useMediaQuery({ query: '(max-width: 1224px)' })
+    const [campanhaAtual, setCampanhaAtual] = useState<any>({
+        id:0,
+        npcs: [{}],
+        mapas: {},
+        nomeCampanha: "",
+        mapaAtual: "",
+        personagens: [""],
+        tokensPersonagens: {},
+        tokensNpc: {}
+    })
     const stock = useSelector((state:RootState)=>state.stock)
+    const nomeCampanha = stock.campanhaUsuario
+    const router = useRouter()
+    useEffect(()=>{
+        const pegaCampanha = async () =>{
+            const { data: campanhas } = await supabase.from("campanhas").select("*")
+            if(campanhas){
+                campanhas.forEach((value)=>{
+                    if(value.nomeCampanha===nomeCampanha)
+                    setCampanhaAtual(value);
+                })
+            }
+        }
+        pegaCampanha()
+    }, [nomeCampanha])
+    useEffect(()=>{
+        const subscription = supabase
+        .channel('public:campanhas')
+        .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'campanhas' }, payload => {
+            setCampanhaAtual(payload.new)
+        })
+        .subscribe()
+
+        return () =>{
+            supabase.removeChannel(subscription)
+        }
+    }, [])
+    useEffect(()=>{
+        if(!stock.logged){
+            router.push("/login")
+        }
+    },[stock, router])
+
     const stateUser = usePopoverState({placement:"right-start"})
     const stateFicha = usePopoverState({placement:"right-start"})
     const stateChat = usePopoverState({placement:"right-start"})
@@ -30,63 +75,82 @@ export default function Mesa(){
                 <title>Jogando - {stock.campanhaUsuario}</title>
             </Head>
             <Fundo>
-                <BotaoUser state={stateUser}>
-                    <IconUser/>
-                </BotaoUser>
-                    <Caixa state={stateUser}>
-                        <Flechinha/>
-                        <Usuario/>
-                    </Caixa>
-                <BotaoFicha state={stateFicha}>
-                    <IconFicha/>
-                </BotaoFicha>
-                    <Caixa state={stateFicha}>
-                        <Flechinha/>
-                        <Ficha/>
-                    </Caixa>
-                <BotaoChat state={stateChat}>
-                    <IconChat/>
-                </BotaoChat>
-                    <Caixa state={stateChat}>
-                        <Flechinha/>
-                        <Chat/>
-                    </Caixa>
-                <BotaoMagia state={stateMagia}>
-                    <IconMagia/>
-                </BotaoMagia>
-                    <Caixa state={stateMagia}>
-                        <Flechinha/>
-                        <Magia/>
-                    </Caixa>
-                <BotaoEspada state={stateEspada}>
-                    <IconEspada/>
-                </BotaoEspada>
-                    <Caixa state={stateEspada}>
-                        <Flechinha/>
-                        <Ataque/>
-                    </Caixa>
-                <BotaoDado state={stateDado}>
-                    <IconDado/>
-                </BotaoDado>
-                    <Caixa state={stateDado}>
-                        <Flechinha/>
-                        <Dados/>
-                    </Caixa>
-                <Mapa>
-                </Mapa>
+                {!isMobile
+                ?
+                <>
+                    <BotaoUser state={stateUser}>
+                        <IconUser/>
+                    </BotaoUser>
+                        <Caixa state={stateUser}>
+                            <Flechinha/>
+                            <Usuario/>
+                        </Caixa>
+                    <BotaoFicha state={stateFicha}>
+                        <IconFicha/>
+                    </BotaoFicha>
+                        <Caixa state={stateFicha}>
+                            <Flechinha/>
+                            <Ficha/>
+                        </Caixa>
+                    <BotaoChat state={stateChat}>
+                        <IconChat/>
+                    </BotaoChat>
+                        <Caixa state={stateChat}>
+                            <Flechinha/>
+                            <Chat/>
+                        </Caixa>
+                    <BotaoMagia state={stateMagia}>
+                        <IconMagia/>
+                    </BotaoMagia>
+                        <Caixa state={stateMagia}>
+                            <Flechinha/>
+                            <Magia/>
+                        </Caixa>
+                    <BotaoEspada state={stateEspada}>
+                        <IconEspada/>
+                    </BotaoEspada>
+                        <Caixa state={stateEspada}>
+                            <Flechinha/>
+                            <Ataque/>
+                        </Caixa>
+                    <BotaoDado state={stateDado}>
+                        <IconDado/>
+                    </BotaoDado>
+                        <Caixa state={stateDado}>
+                            <Flechinha/>
+                            <Dados/>
+                        </Caixa>
+                </>
+                :
+                <>
+                    {alert("Está paginá precisa ser vista na orientação paisagem")}
+                    <BotaoUserMobile onClick={()=>router.push("/usuarioMobile")}>
+                        <IconUser/>
+                    </BotaoUserMobile>
+                    <BotaoFichaMobile onClick={()=>router.push("/fichaMobile")}>
+                        <IconFicha/>
+                    </BotaoFichaMobile>
+                    <BotaoChatMobile onClick={()=>router.push("/chatMobile")}>
+                        <IconChat/>
+                    </BotaoChatMobile>
+                    <BotaoMagiaMobile onClick={()=>router.push("/magiaMobile")}>
+                        <IconMagia/>
+                    </BotaoMagiaMobile>
+                    <BotaoEspadaMobile onClick={()=>router.push("/ataqueMobile")}>
+                        <IconEspada/>
+                    </BotaoEspadaMobile>
+                    <BotaoDadoMobile onClick={()=>router.push("/dadosMobile")}>
+                        <IconDado/>
+                    </BotaoDadoMobile>
+                </>
+                }
+                <ContainerMapa>
+                    <Mapa defaultValue={campanhaAtual.mapaAtual}>
+                        
+                    </Mapa>
+                </ContainerMapa>
             </Fundo>
         </>
     )
 }
-export async function getStaticProps() {
-    const { data: usuarios } = await supabase.from("usuarios").select("*")
-    const { data: campanhas } = await supabase.from("campanhas").select("*")
-    const { data: personagens } = await supabase.from("personagens").select("*")
-    return {
-        props: {
-            usuarios,
-            campanhas,
-            personagens
-        }
-    }
-  }
+

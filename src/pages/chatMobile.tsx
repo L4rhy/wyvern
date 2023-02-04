@@ -1,4 +1,7 @@
 import {
+   Fundo,
+   BotaoVolta,
+   IconVolta,
    Caixa,
    CaixaMensagens,
    CaixaEnvio,
@@ -12,10 +15,11 @@ import {
 } from "@/styles/components/styleChat";
 import { useFormState } from "ariakit/form";
 import { useSelector } from "react-redux";
-import { RootState } from "../../stack/";
+import { RootState } from "../stack";
 import { useState, useEffect } from "react";
-import { supabase } from "../api/supabase";
-
+import { supabase } from "./api/supabase";
+import { useRouter } from "next/router";
+import Head from "next/head";
 export const enviaMensagem = async (usuario: string, novaMensagem: string) => {
    const mensagens = await supabase
       .from("chatCampanhaVilaEsquecida")
@@ -23,6 +27,7 @@ export const enviaMensagem = async (usuario: string, novaMensagem: string) => {
 };
 export default function Chat() {
    const form = useFormState({ defaultValues: { texto: "" } });
+   const router = useRouter()
    const stock = useSelector((state: RootState) => state.stock);
    const [novaMensagem, setNovaMensagem] = useState("");
    const [listaMensagens, setListaMensagens] = useState<any>([
@@ -78,22 +83,35 @@ export default function Chat() {
          supabase.removeChannel(subscribe);
       };
    }, []);
+   const VoltaMesa = () =>{
+      router.push("/mesa")
+   }
    return (
-      <Caixa>
-         <CaixaMensagens>
-            <ListaMensagens>
-               {listaMensagens?.map(ListaMensagem)}
-            </ListaMensagens>
-         </CaixaMensagens>
-         <CaixaEnvio state={form}>
-            <Input
-               name={form.names.texto}
-               onChange={(value) => HandleNovaMensagem(value)}
-            ></Input>
-            <BotaoIcon>
-               <IconEnviar />
-            </BotaoIcon>
-         </CaixaEnvio>
-      </Caixa>
+      <>
+         <Head>
+            <title>Chat</title>
+         </Head>
+      <Fundo>
+            <BotaoVolta onClick={()=>VoltaMesa}>
+                <IconVolta/>
+            </BotaoVolta>
+         <Caixa>
+            <CaixaMensagens>
+               <ListaMensagens>
+                  {listaMensagens?.map(ListaMensagem)}
+               </ListaMensagens>
+            </CaixaMensagens>
+            <CaixaEnvio state={form}>
+               <Input
+                  name={form.names.texto}
+                  onChange={(value) => HandleNovaMensagem(value)}
+               ></Input>
+               <BotaoIcon>
+                  <IconEnviar />
+               </BotaoIcon>
+            </CaixaEnvio>
+         </Caixa>
+      </Fundo>
+   </>
    );
 }

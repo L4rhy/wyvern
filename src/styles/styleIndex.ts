@@ -23,24 +23,21 @@ export const Caixa = styled.div`
     gap: 10px;
     background-color: ${(props) => props.theme.cores.psicodelicas[900]};
     @media ${device.desktop}{
-        height: 60vh;
-        width: 40vw;
-    }
-    @media ${device.laptopL}{
-        height: 60vh;
-        width: 40vw;
+        height: 60%;
+        width: 40%;
     }
     @media ${device.laptop}{
-        height: 60vh;
-        width: 40vw;
+        height: 60%;
+        width: 40%;
     }
     @media ${device.tablet}{
-        height: 60vh;
-        width: 40vw;
+        height: 80%;
+        width: 80%;
     }
-    @media ${device.mobileL}{
-        height: 90vh;
-        width: 90vw;
+    @media ${device.mobile}{
+        height: 90%;
+        width: 90%;
+        flex-direction: column;
     }
 `;
 export const CaixaBotao = styled.div`
@@ -54,24 +51,20 @@ export const CaixaBotao = styled.div`
     gap: 2rem;
     background-color: ${(props) => props.theme.cores.psicodelicas[700]};
     @media ${device.desktop}{
-        height: 58vh;
-        width: 19vw;
-    }
-    @media ${device.laptopL}{
-        height: 25vh;
-        width: 20vw;
+        height: 95%;
+        width: 47.5%;
     }
     @media ${device.laptop}{
-        height: 25vh;
-        width: 20vw;
+        height: 95%;
+        width: 47.5%;
     }
     @media ${device.tablet}{
-        height: 60vh;
-        width: 40vw;
+        height: 95%;
+        width: 47.5%;
     }
-    @media ${device.mobileL}{
-        height: 40vh;
-        width: 78vw;
+    @media ${device.mobile}{
+        height: 48%;
+        width: 95%;
         
     }
 `;
@@ -82,6 +75,7 @@ export const Texto = styled.h1`
     color: ${(props) => props.theme.cores.rosinhas[50]};
 `;
 export const Botao = styled.a`
+    padding: 5%;
     border: 2px solid ${(props) => props.theme.cores.rosinhas[50]};
     border-radius: .375rem;
     box-sizing: border-box;
@@ -94,24 +88,20 @@ export const Botao = styled.a`
         background-color:${(props) => props.theme.cores.psicodelicas[900]}; 
     }
     @media ${device.desktop}{
-    height: 10vh;
-    width: 16vw;
-    }
-    @media ${device.laptopL}{
-    height: 10vh;
-    width: 16vw;
+        height: 20%;
+        width: 95%;
     }
     @media ${device.laptop}{
-    height: 10vh;
-    width: 16vw;
+        height: 20%;
+        width: 95%;
     }
     @media ${device.tablet}{
-        height: 10vh;
-        width: 20vw;
+        height: 12.5%;
+        width: 90%;
     }
-    @media ${device.mobileL}{
-        height: 10vh;
-        width: 76vw;
+    @media ${device.mobile}{
+        height: 15%;
+        width: 95%;
         font-size: 2rem;
     }
 `;

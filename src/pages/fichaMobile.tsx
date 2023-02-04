@@ -1,4 +1,7 @@
 import {
+   Fundo,
+   BotaoVolta,
+   IconVolta,
    Caixa,
    NomeNivel,
    Nome,
@@ -65,14 +68,18 @@ import {
    StatusPersonagem,
 } from "@/styles/components/styleFicha";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../stack/";
+import { RootState } from "../stack";
 import { useEffect, useState } from "react";
-import { supabase } from "../api/supabase";
-import { enviaMensagem } from "./chat";
-import { atualizaBonus } from "../../stack/stock"
+import { supabase } from "./api/supabase";
+import { enviaMensagem } from "./chatMobile";
+import { atualizaBonus } from "../stack/stock";
+import { useRouter } from "next/router";
+import Head from "next/head";
+
 export default function Ficha() {
    const stock = useSelector((state: RootState) => state.stock);
-   const dispatch = useDispatch()
+   const router = useRouter()
+   const dispatch = useDispatch();
    const usuario = stock.usuario.nomeUsuario;
    const [personagem, setPersonagem] = useState<any>();
    const [bonusForca, setBonusForca] = useState(0);
@@ -495,14 +502,27 @@ export default function Ficha() {
       };
       getPersonagem();
       CriaBonus();
-      dispatch(atualizaBonus({
-         forca:bonusForca,
-         destreza:bonusDestreza,
-         precisao:bonusPrecisao,
-         constituicao: bonusConstituicao,
-         inteligencia:bonusInteligencia,
-         carisma:bonusCarisma}))
-   }, [stock, CriaBonus, dispatch, bonusForca, bonusDestreza, bonusPrecisao, bonusConstituicao, bonusInteligencia, bonusCarisma]);
+      dispatch(
+         atualizaBonus({
+            forca: bonusForca,
+            destreza: bonusDestreza,
+            precisao: bonusPrecisao,
+            constituicao: bonusConstituicao,
+            inteligencia: bonusInteligencia,
+            carisma: bonusCarisma,
+         })
+      );
+   }, [
+      stock,
+      CriaBonus,
+      dispatch,
+      bonusForca,
+      bonusDestreza,
+      bonusPrecisao,
+      bonusConstituicao,
+      bonusInteligencia,
+      bonusCarisma,
+   ]);
    useEffect(() => {
       const subscribe = supabase
          .channel(`public:Personagens`)
@@ -517,7 +537,7 @@ export default function Ficha() {
                setPersonagem(payload.new);
             }
          )
-         .subscribe()
+         .subscribe();
       return () => {
          supabase.removeChannel(subscribe);
       };
@@ -760,9 +780,9 @@ export default function Ficha() {
          </>
       );
    };
-   const CriaHabilidades = (value:any) => {
+   const CriaHabilidades = (value: any) => {
       return (
-         <Habilidade >
+         <Habilidade>
             <TituloHabilidade>
                <HabilidadeNome>{value.nome}</HabilidadeNome>
                <BotaoIcon
@@ -771,14 +791,14 @@ export default function Ficha() {
                      enviaMensagem(usuario, texto);
                   }}
                >
-                  <Icon/>
+                  <Icon />
                </BotaoIcon>
             </TituloHabilidade>
             <HabilidadeDescricao>{value.descricao}</HabilidadeDescricao>
          </Habilidade>
       );
    };
-   const CriaMagias = (value:any) => {
+   const CriaMagias = (value: any) => {
       return (
          <Magia>
             <TituloMagia>
@@ -789,14 +809,14 @@ export default function Ficha() {
                      enviaMensagem(usuario, texto);
                   }}
                >
-                  <Icon/>
+                  <Icon />
                </BotaoIcon>
             </TituloMagia>
             <DescricaoMagia>{value.descricao}</DescricaoMagia>
          </Magia>
       );
    };
-   const CriaArmaduras = (value:any) => {
+   const CriaArmaduras = (value: any) => {
       return (
          <Iten>
             <NomeIten>{value.nome}</NomeIten>
@@ -804,7 +824,7 @@ export default function Ficha() {
          </Iten>
       );
    };
-   const CriaArmas = (value:any) => {
+   const CriaArmas = (value: any) => {
       return (
          <Iten>
             <NomeIten>{value.nome}</NomeIten>
@@ -812,7 +832,7 @@ export default function Ficha() {
          </Iten>
       );
    };
-   const CriaUtilidades = (value:any, index:number) => {
+   const CriaUtilidades = (value: any, index: number) => {
       return (
          <Iten>
             <NomeIten>{value.nome}</NomeIten>
@@ -820,171 +840,191 @@ export default function Ficha() {
          </Iten>
       );
    };
+   const VoltaMesa = () =>{
+      router.push("/mesa")
+   }
    return (
-      <Caixa>
-         <NomeNivel>
-            <Nome>Nome: {personagem?.nome}</Nome>
-            <Nivel>Nivel: {personagem?.nivel}</Nivel>
-            <StatusPersonagem>{personagem?.statusPersonagem}</StatusPersonagem>
-         </NomeNivel>
-         <EspecieClasse>
-            <Especie>Espécie: {personagem?.especie}</Especie>
-            <Classe>Classe: {personagem?.classe}</Classe>
-            <Aspecto>Aspecto: {personagem?.aspectoAfinidade}</Aspecto>
-         </EspecieClasse>
-         <AtributosStatus>
-            <Atributos>
-               <Atributo>
-                  Força: {personagem?.forca} ({bonusForca})
-               </Atributo>
-               <Atributo>
-                  Destreza: {personagem?.destreza} ({bonusDestreza})
-               </Atributo>
-               <Atributo>
-                  Precisão: {personagem?.precisao} ({bonusPrecisao})
-               </Atributo>
-               <Atributo>
-                  Constituiçao: {personagem?.constituicao} ({bonusConstituicao})
-               </Atributo>
-               <Atributo>
-                  Inteligência: {personagem?.inteligencia} ({bonusInteligencia})
-               </Atributo>
-               <Atributo>
-                  Carisma: {personagem?.carisma} ({bonusCarisma})
-               </Atributo>
-            </Atributos>
-            <StatusMoedas>
-               <Status>
-                  <Armaduras>
-                     <ArmaduraTotal>
-                        Armadura <br />
-                        Total: <br />
-                        {personagem?.armaduraTotal}
-                     </ArmaduraTotal>
-                     <ArmaduraAtual>
-                        Armadura <br />
-                        Atual: <br />
-                        {personagem?.armaduraAtual}
-                     </ArmaduraAtual>
-                  </Armaduras>
-                  <Vidas>
-                     <VidaTotal>
-                        Vida <br />
-                        Total: <br />
-                        {personagem?.vidaTotal}
-                     </VidaTotal>
-                     <VidaAtual>
-                        Vida <br />
-                        Atual: <br />
-                        {personagem?.vidaAtual}
-                     </VidaAtual>
-                  </Vidas>
-                  <Manas>
-                     <ManaTotal>
-                        Mana <br />
-                        Total: <br />
-                        {personagem?.manaTotal}
-                     </ManaTotal>
-                     <ManaAtual>
-                        Mana <br />
-                        Atual: <br />
-                        {personagem?.manaAtual}
-                     </ManaAtual>
-                  </Manas>
-               </Status>
-               <CaixaMoedas>
-                  <Moedas>Moedas: {personagem?.moedas}</Moedas>
-               </CaixaMoedas>
-            </StatusMoedas>
-         </AtributosStatus>
-         <CaixaProeficiencia>
-            <TituloProeficiencia>
-               Proeficiencias de {personagem?.nome}
-            </TituloProeficiencia>
-            <CaixasProeficiencias>
-               <CaixaProeficiencias1>
-                  {CriaProeficiencias1()}
-               </CaixaProeficiencias1>
-               <CaixaProeficiencias2>
-                  {CriaProeficiencias2()}
-               </CaixaProeficiencias2>
-            </CaixasProeficiencias>
-            <CaixaAnimais>
-               <ProeficienciaAnimais>
-                  Lidar Com Animais:{" "}
-                  {personagem?.proeficiencias.lidarComAnimais[0] ? (
-                     <P>(x)</P>
-                  ) : (
-                     <P>( )</P>
-                  )}{" "}
-                  {personagem?.proeficiencias.lidarComAnimais[1] ? (
-                     <P>(x)</P>
-                  ) : (
-                     <P>( )</P>
-                  )}
-               </ProeficienciaAnimais>
-            </CaixaAnimais>
-         </CaixaProeficiencia>
-         <CaixaLinguas>
-            <Linguas>
-               Dwarv: {personagem?.linguas.dwarv ? <P>(x)</P> : <P>( )</P>}
-               <br />
-               Orc: {personagem?.linguas.orc ? <P>(x)</P> : <P>( )</P>}
-               <br />
-               Élfico: {personagem?.linguas.elfico ? <P>(x)</P> : <P>( )</P>}
-               <br />
-            </Linguas>
-            <Linguas>
-               Faerico: {personagem?.linguas.faerico ? <P>(x)</P> : <P>( )</P>}
-               <br />
-               Silvestre:{" "}
-               {personagem?.linguas.silvestre ? <P>(x)</P> : <P>( )</P>}
-               <br />
-               Daedra: {personagem?.linguas.daedra ? <P>(x)</P> : <P>( )</P>}
-               <br />
-            </Linguas>
-            <Linguas>
-               Celestial:{" "}
-               {personagem?.linguas.celestial ? <P>(x)</P> : <P>( )</P>}
-               <br />
-               Comum: {personagem?.linguas.comum ? <P>(x)</P> : <P>( )</P>}
-               <br />
-               Ramush: {personagem?.linguas.ramush ? <P>(x)</P> : <P>( )</P>}
-               <br />
-            </Linguas>
-         </CaixaLinguas>
-         <CaixaHabilidades>
-            <TituloHabilidades>
-               Habilidades de {personagem?.nome}
-            </TituloHabilidades>
-            <Habilidades>
-               {personagem?.habilidades.map(CriaHabilidades)}
-            </Habilidades>
-         </CaixaHabilidades>
-         <CaixaMagias>
-            <TituloMagias>Magias de {personagem?.nome}</TituloMagias>
-            <Magias>{personagem?.magias.map(CriaMagias)}</Magias>
-         </CaixaMagias>
-         <CaixaItens>
-            <TituloIten>Armaduras de {personagem?.nome}</TituloIten>
-            <Itens>{personagem?.armaduras.map(CriaArmaduras)}</Itens>
-         </CaixaItens>
-         <CaixaItens>
-            <TituloIten>Armas de {personagem?.nome}</TituloIten>
-            <Itens>{personagem?.armas.map(CriaArmas)}</Itens>
-         </CaixaItens>
-         <CaixaItens>
-            <TituloIten>Utilidades de {personagem?.nome}</TituloIten>
-            <Itens>{personagem?.utilidades.map(CriaUtilidades)}</Itens>
-         </CaixaItens>
-         <CaixaHistoria>
-            <TituloHistoria>Historia de {personagem?.nome}</TituloHistoria>
-            <Historia>{personagem?.historiaPersonagem}</Historia>
-         </CaixaHistoria>
-         <CaixaAparencia>
-            <TituloAparencia>Aparencia de {personagem?.nome}</TituloAparencia>
-            <Aparencia>{personagem?.aparenciaPersonagem}</Aparencia>
-         </CaixaAparencia>
-      </Caixa>
+      <>
+         <Head>
+            <title>Ficha</title>
+         </Head>
+         <Fundo>
+            <BotaoVolta onClick={()=>VoltaMesa}>
+                  <IconVolta/>
+            </BotaoVolta>
+            <Caixa>
+               <NomeNivel>
+                  <Nome>Nome: {personagem?.nome}</Nome>
+                  <Nivel>Nivel: {personagem?.nivel}</Nivel>
+                  <StatusPersonagem>
+                     {personagem?.statusPersonagem}
+                  </StatusPersonagem>
+               </NomeNivel>
+               <EspecieClasse>
+                  <Especie>Espécie: {personagem?.especie}</Especie>
+                  <Classe>Classe: {personagem?.classe}</Classe>
+                  <Aspecto>Aspecto: {personagem?.aspectoAfinidade}</Aspecto>
+               </EspecieClasse>
+               <AtributosStatus>
+                  <Atributos>
+                     <Atributo>
+                        Força: {personagem?.forca} ({bonusForca})
+                     </Atributo>
+                     <Atributo>
+                        Destreza: {personagem?.destreza} ({bonusDestreza})
+                     </Atributo>
+                     <Atributo>
+                        Precisão: {personagem?.precisao} ({bonusPrecisao})
+                     </Atributo>
+                     <Atributo>
+                        Constituiçao: {personagem?.constituicao} (
+                        {bonusConstituicao})
+                     </Atributo>
+                     <Atributo>
+                        Inteligência: {personagem?.inteligencia} (
+                        {bonusInteligencia})
+                     </Atributo>
+                     <Atributo>
+                        Carisma: {personagem?.carisma} ({bonusCarisma})
+                     </Atributo>
+                  </Atributos>
+                  <StatusMoedas>
+                     <Status>
+                        <Armaduras>
+                           <ArmaduraTotal>
+                              Armadura <br />
+                              Total: <br />
+                              {personagem?.armaduraTotal}
+                           </ArmaduraTotal>
+                           <ArmaduraAtual>
+                              Armadura <br />
+                              Atual: <br />
+                              {personagem?.armaduraAtual}
+                           </ArmaduraAtual>
+                        </Armaduras>
+                        <Vidas>
+                           <VidaTotal>
+                              Vida <br />
+                              Total: <br />
+                              {personagem?.vidaTotal}
+                           </VidaTotal>
+                           <VidaAtual>
+                              Vida <br />
+                              Atual: <br />
+                              {personagem?.vidaAtual}
+                           </VidaAtual>
+                        </Vidas>
+                        <Manas>
+                           <ManaTotal>
+                              Mana <br />
+                              Total: <br />
+                              {personagem?.manaTotal}
+                           </ManaTotal>
+                           <ManaAtual>
+                              Mana <br />
+                              Atual: <br />
+                              {personagem?.manaAtual}
+                           </ManaAtual>
+                        </Manas>
+                     </Status>
+                     <CaixaMoedas>
+                        <Moedas>Moedas: {personagem?.moedas}</Moedas>
+                     </CaixaMoedas>
+                  </StatusMoedas>
+               </AtributosStatus>
+               <CaixaProeficiencia>
+                  <TituloProeficiencia>
+                     Proeficiencias de {personagem?.nome}
+                  </TituloProeficiencia>
+                  <CaixasProeficiencias>
+                     <CaixaProeficiencias1>
+                        {CriaProeficiencias1()}
+                     </CaixaProeficiencias1>
+                     <CaixaProeficiencias2>
+                        {CriaProeficiencias2()}
+                     </CaixaProeficiencias2>
+                  </CaixasProeficiencias>
+                  <CaixaAnimais>
+                     <ProeficienciaAnimais>
+                        Lidar Com Animais:{" "}
+                        {personagem?.proeficiencias.lidarComAnimais[0] ? (
+                           <P>(x)</P>
+                        ) : (
+                           <P>( )</P>
+                        )}{" "}
+                        {personagem?.proeficiencias.lidarComAnimais[1] ? (
+                           <P>(x)</P>
+                        ) : (
+                           <P>( )</P>
+                        )}
+                     </ProeficienciaAnimais>
+                  </CaixaAnimais>
+               </CaixaProeficiencia>
+               <CaixaLinguas>
+                  <Linguas>
+                     Dwarv: {personagem?.linguas.dwarv ? <P>(x)</P> : <P>( )</P>}
+                     <br />
+                     Orc: {personagem?.linguas.orc ? <P>(x)</P> : <P>( )</P>}
+                     <br />
+                     Élfico: {personagem?.linguas.elfico ? <P>(x)</P> : <P>( )</P>}
+                     <br />
+                  </Linguas>
+                  <Linguas>
+                     Faerico:{" "}
+                     {personagem?.linguas.faerico ? <P>(x)</P> : <P>( )</P>}
+                     <br />
+                     Silvestre:{" "}
+                     {personagem?.linguas.silvestre ? <P>(x)</P> : <P>( )</P>}
+                     <br />
+                     Daedra: {personagem?.linguas.daedra ? <P>(x)</P> : <P>( )</P>}
+                     <br />
+                  </Linguas>
+                  <Linguas>
+                     Celestial:{" "}
+                     {personagem?.linguas.celestial ? <P>(x)</P> : <P>( )</P>}
+                     <br />
+                     Comum: {personagem?.linguas.comum ? <P>(x)</P> : <P>( )</P>}
+                     <br />
+                     Ramush: {personagem?.linguas.ramush ? <P>(x)</P> : <P>( )</P>}
+                     <br />
+                  </Linguas>
+               </CaixaLinguas>
+               <CaixaHabilidades>
+                  <TituloHabilidades>
+                     Habilidades de {personagem?.nome}
+                  </TituloHabilidades>
+                  <Habilidades>
+                     {personagem?.habilidades.map(CriaHabilidades)}
+                  </Habilidades>
+               </CaixaHabilidades>
+               <CaixaMagias>
+                  <TituloMagias>Magias de {personagem?.nome}</TituloMagias>
+                  <Magias>{personagem?.magias.map(CriaMagias)}</Magias>
+               </CaixaMagias>
+               <CaixaItens>
+                  <TituloIten>Armaduras de {personagem?.nome}</TituloIten>
+                  <Itens>{personagem?.armaduras.map(CriaArmaduras)}</Itens>
+               </CaixaItens>
+               <CaixaItens>
+                  <TituloIten>Armas de {personagem?.nome}</TituloIten>
+                  <Itens>{personagem?.armas.map(CriaArmas)}</Itens>
+               </CaixaItens>
+               <CaixaItens>
+                  <TituloIten>Utilidades de {personagem?.nome}</TituloIten>
+                  <Itens>{personagem?.utilidades.map(CriaUtilidades)}</Itens>
+               </CaixaItens>
+               <CaixaHistoria>
+                  <TituloHistoria>Historia de {personagem?.nome}</TituloHistoria>
+                  <Historia>{personagem?.historiaPersonagem}</Historia>
+               </CaixaHistoria>
+               <CaixaAparencia>
+                  <TituloAparencia>
+                     Aparencia de {personagem?.nome}
+                  </TituloAparencia>
+                  <Aparencia>{personagem?.aparenciaPersonagem}</Aparencia>
+               </CaixaAparencia>
+            </Caixa>
+         </Fundo>
+      </>
    );
 }

@@ -488,12 +488,19 @@ export default function Ficha() {
    };
    useEffect(() => {
       const getPersonagem = async () => {
-         const { data: Personagem } = await supabase
+         const { data: Personagens } = await supabase
             .from("Personagens")
             .select("*")
-            .eq("nome", stock.personagemUsuario)
+            
+            if(Personagens){
+               Personagens.forEach((value)=>{
+                  if(value.nome===stock.personagemUsuario){
+                     setPersonagem(Personagens)
+                  }
+               })
+            }
          
-            setPersonagem(Personagem)
+            
       };
       getPersonagem();
       CriaBonus();

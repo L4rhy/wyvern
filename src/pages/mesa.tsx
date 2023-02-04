@@ -20,27 +20,24 @@ import { useMediaQuery } from 'react-responsive'
 
 export default function Mesa(){
     const isMobile = useMediaQuery({ query: '(max-width: 1224px)' })
-    const [campanhaAtual, setCampanhaAtual] = useState<any>({
-        id:0,
-        npcs: [{}],
-        mapas: {},
-        nomeCampanha: "",
-        mapaAtual: "",
-        personagens: [""],
-        tokensPersonagens: {},
-        tokensNpc: {}
-    })
+    const [campanhaAtual, setCampanhaAtual] = useState<any>()
     const stock = useSelector((state:RootState)=>state.stock)
     const nomeCampanha = stock.campanhaUsuario
     const router = useRouter()
+    
     useEffect(()=>{
         const pegaCampanha = async () =>{
-            const { data: campanha } = await supabase
+            const { data: campanhas } = await supabase
             .from("campanhas")
             .select("*")
-            .eq("nomeCampanha", nomeCampanha)
             
-            setCampanhaAtual(campanha)
+            if(campanhas){
+                campanhas.forEach((value)=>{
+                    if(value.nomeCampanha===nomeCampanha){
+                        setCampanhaAtual(value)
+                    }
+                })
+            }
         }
         pegaCampanha()
     }, [nomeCampanha])

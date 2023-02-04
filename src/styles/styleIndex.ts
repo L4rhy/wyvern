@@ -73,6 +73,9 @@ export const Texto = styled.h1`
     text-decoration: none;
     font-size: 2rem;
     color: ${(props) => props.theme.cores.rosinhas[50]};
+    @media ${device.mobile}{
+        font-size: 3rem;
+    }
 `;
 export const Botao = styled.a`
     padding: 5%;
@@ -100,7 +103,7 @@ export const Botao = styled.a`
         width: 90%;
     }
     @media ${device.mobile}{
-        height: 15%;
+        height: 25%;
         width: 95%;
         font-size: 2rem;
     }

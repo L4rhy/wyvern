@@ -102,7 +102,7 @@ export const Aspecto = styled.p`
     background-color: ${(props) => props.theme.cores.psicodelicas[700]};
 `;
 export const AtributosStatus = styled.div`
-    height: 50%;
+    height: auto;
     width: 99%;
     display: flex;
     margin-top: .5em;

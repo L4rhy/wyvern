@@ -22,7 +22,7 @@ export default function MesaNarradora(){
     const stateDado = usePopoverState({placement:"left-start"})
     const stateNarradora = usePopoverState({placement:"left-start"})
 
-    const [campanhaAtual, setCampanhaAtual] = useState<any>()
+    const [campanhaAtual, setCampanhaAtual] = useState<any>([])
     const nomeCampanha = stock.campanhaUsuario
 
 

@@ -193,7 +193,7 @@ function DescobreSobrevivencia(personagem:personagem){
    }
    return bonus
 }
-function DescobreBonus(atributo:number){
+export function DescobreBonus(atributo:number){
    var bonus = 0
    if (atributo >= 0) {
       bonus = -9

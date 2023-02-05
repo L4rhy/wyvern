@@ -70,11 +70,13 @@ import { useEffect, useState } from "react";
 import { supabase } from "../api/supabase";
 import { enviaMensagem } from "./chat";
 import { atualizaBonus } from "../../stack/stock"
+import { DescobreBonus } from "../api/regras"
+
 export default function Ficha() {
    const stock = useSelector((state: RootState) => state.stock);
    const dispatch = useDispatch()
    const usuario = stock.usuario.nomeUsuario;
-   const [personagem, setPersonagem] = useState<any>();
+   const [personagem, setPersonagem] = useState<any>([]);
    const [bonusForca, setBonusForca] = useState(0);
    const [bonusDestreza, setBonusDestreza] = useState(0);
    const [bonusPrecisao, setBonusPrecisao] = useState(0);
@@ -82,422 +84,12 @@ export default function Ficha() {
    const [bonusInteligencia, setBonusInteligencia] = useState(0);
    const [bonusCarisma, setBonusCarisma] = useState(0);
    const CriaBonus = () => {
-      //forca
-      if (personagem?.forca !== undefined && personagem.forca >= 0) {
-         setBonusForca(-9);
-      }
-      if (personagem?.forca !== undefined && personagem.forca <= 20) {
-         setBonusForca(10);
-      }
-      switch (personagem?.forca) {
-         case 1:
-            setBonusForca(-9);
-            break;
-         case 2:
-            setBonusForca(-8);
-            break;
-         case 3:
-            setBonusForca(-7);
-            break;
-         case 4:
-            setBonusForca(-6);
-            break;
-         case 5:
-            setBonusForca(-5);
-            break;
-         case 6:
-            setBonusForca(-4);
-            break;
-         case 7:
-            setBonusForca(-3);
-            break;
-         case 8:
-            setBonusForca(-2);
-            break;
-         case 9:
-            setBonusForca(-1);
-            break;
-         case 10:
-            setBonusForca(0);
-            break;
-         case 11:
-            setBonusForca(1);
-            break;
-         case 12:
-            setBonusForca(2);
-            break;
-         case 13:
-            setBonusForca(3);
-            break;
-         case 14:
-            setBonusForca(4);
-            break;
-         case 15:
-            setBonusForca(5);
-            break;
-         case 16:
-            setBonusForca(6);
-            break;
-         case 17:
-            setBonusForca(7);
-            break;
-         case 18:
-            setBonusForca(8);
-            break;
-         case 19:
-            setBonusForca(9);
-            break;
-      }
-      //destreza
-      if (personagem?.destreza !== undefined && personagem.forca >= 0) {
-         setBonusDestreza(-9);
-      }
-      if (personagem?.destreza !== undefined && personagem.forca <= 20) {
-         setBonusDestreza(10);
-      }
-      switch (personagem?.destreza) {
-         case 1:
-            setBonusDestreza(-9);
-            break;
-         case 2:
-            setBonusDestreza(-8);
-            break;
-         case 3:
-            setBonusDestreza(-7);
-            break;
-         case 4:
-            setBonusDestreza(-6);
-            break;
-         case 5:
-            setBonusDestreza(-5);
-            break;
-         case 6:
-            setBonusDestreza(-4);
-            break;
-         case 7:
-            setBonusDestreza(-3);
-            break;
-         case 8:
-            setBonusDestreza(-2);
-            break;
-         case 9:
-            setBonusDestreza(-1);
-            break;
-         case 10:
-            setBonusDestreza(0);
-            break;
-         case 11:
-            setBonusDestreza(1);
-            break;
-         case 12:
-            setBonusDestreza(2);
-            break;
-         case 13:
-            setBonusDestreza(3);
-            break;
-         case 14:
-            setBonusDestreza(4);
-            break;
-         case 15:
-            setBonusDestreza(5);
-            break;
-         case 16:
-            setBonusDestreza(6);
-            break;
-         case 17:
-            setBonusDestreza(7);
-            break;
-         case 18:
-            setBonusDestreza(8);
-            break;
-         case 19:
-            setBonusDestreza(9);
-            break;
-      }
-      //precisao
-      if (personagem?.precisao !== undefined && personagem.forca >= 0) {
-         setBonusPrecisao(-9);
-      }
-      if (personagem?.precisao !== undefined && personagem.forca <= 20) {
-         setBonusPrecisao(10);
-      }
-      switch (personagem?.precisao) {
-         case 1:
-            setBonusPrecisao(-9);
-            break;
-         case 2:
-            setBonusPrecisao(-8);
-            break;
-         case 3:
-            setBonusPrecisao(-7);
-            break;
-         case 4:
-            setBonusPrecisao(-6);
-            break;
-         case 5:
-            setBonusPrecisao(-5);
-            break;
-         case 6:
-            setBonusPrecisao(-4);
-            break;
-         case 7:
-            setBonusPrecisao(-3);
-            break;
-         case 8:
-            setBonusPrecisao(-2);
-            break;
-         case 9:
-            setBonusPrecisao(-1);
-            break;
-         case 10:
-            setBonusPrecisao(0);
-            break;
-         case 11:
-            setBonusPrecisao(1);
-            break;
-         case 12:
-            setBonusPrecisao(2);
-            break;
-         case 13:
-            setBonusPrecisao(3);
-            break;
-         case 14:
-            setBonusPrecisao(4);
-            break;
-         case 15:
-            setBonusPrecisao(5);
-            break;
-         case 16:
-            setBonusPrecisao(6);
-            break;
-         case 17:
-            setBonusPrecisao(7);
-            break;
-         case 18:
-            setBonusPrecisao(8);
-            break;
-         case 19:
-            setBonusPrecisao(9);
-            break;
-      }
-      //constituicao
-      if (personagem?.constituicao !== undefined && personagem.forca >= 0) {
-         setBonusConstituicao(-9);
-      }
-      if (personagem?.constituicao !== undefined && personagem.forca <= 20) {
-         setBonusConstituicao(10);
-      }
-      switch (personagem?.constituicao) {
-         case 1:
-            setBonusConstituicao(-9);
-            break;
-         case 2:
-            setBonusConstituicao(-8);
-            break;
-         case 3:
-            setBonusConstituicao(-7);
-            break;
-         case 4:
-            setBonusConstituicao(-6);
-            break;
-         case 5:
-            setBonusConstituicao(-5);
-            break;
-         case 6:
-            setBonusConstituicao(-4);
-            break;
-         case 7:
-            setBonusConstituicao(-3);
-            break;
-         case 8:
-            setBonusConstituicao(-2);
-            break;
-         case 9:
-            setBonusConstituicao(-1);
-            break;
-         case 10:
-            setBonusConstituicao(0);
-            break;
-         case 11:
-            setBonusConstituicao(1);
-            break;
-         case 12:
-            setBonusConstituicao(2);
-            break;
-         case 13:
-            setBonusConstituicao(3);
-            break;
-         case 14:
-            setBonusConstituicao(4);
-            break;
-         case 15:
-            setBonusConstituicao(5);
-            break;
-         case 16:
-            setBonusConstituicao(6);
-            break;
-         case 17:
-            setBonusConstituicao(7);
-            break;
-         case 18:
-            setBonusConstituicao(8);
-            break;
-         case 19:
-            setBonusConstituicao(9);
-            break;
-      }
-      //inteligencia
-      if (personagem?.inteligencia !== undefined && personagem.forca >= 0) {
-         setBonusInteligencia(-9);
-      }
-      if (personagem?.inteligencia !== undefined && personagem.forca <= 20) {
-         setBonusInteligencia(10);
-      }
-      switch (personagem?.inteligencia) {
-         case 1:
-            setBonusInteligencia(-9);
-            break;
-         case 2:
-            setBonusInteligencia(-8);
-            break;
-         case 3:
-            setBonusInteligencia(-7);
-            break;
-         case 4:
-            setBonusInteligencia(-6);
-            break;
-         case 5:
-            setBonusInteligencia(-5);
-            break;
-         case 6:
-            setBonusInteligencia(-4);
-            break;
-         case 7:
-            setBonusInteligencia(-3);
-            break;
-         case 8:
-            setBonusInteligencia(-2);
-            break;
-         case 9:
-            setBonusInteligencia(-1);
-            break;
-         case 10:
-            setBonusInteligencia(0);
-            break;
-         case 11:
-            setBonusInteligencia(1);
-            break;
-         case 12:
-            setBonusInteligencia(2);
-            break;
-         case 13:
-            setBonusInteligencia(3);
-            break;
-         case 14:
-            setBonusInteligencia(4);
-            break;
-         case 15:
-            setBonusInteligencia(5);
-            break;
-         case 16:
-            setBonusInteligencia(6);
-            break;
-         case 17:
-            setBonusInteligencia(7);
-            break;
-         case 18:
-            setBonusInteligencia(8);
-            break;
-         case 19:
-            setBonusInteligencia(9);
-            break;
-      }
-      //carisma
-      if (personagem?.carisma !== undefined && personagem.forca >= 0) {
-         setBonusCarisma(-9);
-      }
-      if (personagem?.carisma !== undefined && personagem.forca <= 20) {
-         setBonusCarisma(10);
-      }
-      switch (personagem?.carisma) {
-         case 1:
-            setBonusCarisma(-9);
-            break;
-         case 2:
-            setBonusCarisma(-8);
-            break;
-         case 3:
-            setBonusCarisma(-7);
-            break;
-         case 4:
-            setBonusCarisma(-6);
-            break;
-         case 5:
-            setBonusCarisma(-5);
-            break;
-         case 6:
-            setBonusCarisma(-4);
-            break;
-         case 7:
-            setBonusCarisma(-3);
-            break;
-         case 8:
-            setBonusCarisma(-2);
-            break;
-         case 9:
-            setBonusCarisma(-1);
-            break;
-         case 10:
-            setBonusCarisma(0);
-            break;
-         case 11:
-            setBonusCarisma(1);
-            break;
-         case 12:
-            setBonusCarisma(2);
-            break;
-         case 13:
-            setBonusCarisma(3);
-            break;
-         case 14:
-            setBonusCarisma(4);
-            break;
-         case 15:
-            setBonusCarisma(5);
-            break;
-         case 16:
-            setBonusCarisma(6);
-            break;
-         case 17:
-            setBonusCarisma(7);
-            break;
-         case 18:
-            setBonusCarisma(8);
-            break;
-         case 19:
-            setBonusCarisma(9);
-            break;
-      }
-   };
-   useEffect(() => {
-      const getPersonagem = async () => {
-         const { data: Personagens } = await supabase
-            .from("Personagens")
-            .select("*")
-            
-            if(Personagens){
-               Personagens.forEach((value)=>{
-                  if(value.nome===stock.personagemUsuario){
-                     setPersonagem(Personagens)
-                     console.log(personagem)
-                  }
-               })
-            }
-         
-            
-      };
-      getPersonagem();
-      CriaBonus();
+      setBonusForca(DescobreBonus(personagem?.forca))
+      setBonusDestreza(DescobreBonus(personagem?.destreza))
+      setBonusPrecisao(DescobreBonus(personagem?.precisao))
+      setBonusConstituicao(DescobreBonus(personagem?.constituicao))
+      setBonusInteligencia(DescobreBonus(personagem?.inteligencia))
+      setBonusCarisma(DescobreBonus(personagem?.carisma))
       dispatch(atualizaBonus({
          forca:bonusForca,
          destreza:bonusDestreza,
@@ -505,7 +97,19 @@ export default function Ficha() {
          constituicao: bonusConstituicao,
          inteligencia:bonusInteligencia,
          carisma:bonusCarisma}))
-   }, [stock, CriaBonus, dispatch, bonusForca, bonusDestreza, bonusPrecisao, bonusConstituicao, bonusInteligencia, bonusCarisma]);
+   };
+   useEffect(() => {
+      const getPersonagem = async () => {
+         const { data: Personagem, error } = await supabase
+            .from("Personagens")
+            .select("*")
+            .eq("nome", stock.personagemUsuario)
+
+            setPersonagem(Personagem)
+      };
+      getPersonagem();
+      CriaBonus();
+   }, [stock, personagem, CriaBonus]);
    useEffect(() => {
       const subscribe = supabase
          .channel(`public:Personagens`)
@@ -531,12 +135,12 @@ export default function Ficha() {
          <>
             <Proeficiencia>
                Acrobacia:{" "}
-               {personagem?.proeficiencias.acrobacia[0] ? (
+               {personagem[0]?.proeficiencias.acrobacia[0] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
                )}{" "}
-               {personagem?.proeficiencias.acrobacia[1] ? (
+               {personagem[0]?.proeficiencias.acrobacia[1] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
@@ -544,12 +148,12 @@ export default function Ficha() {
             </Proeficiencia>
             <Proeficiencia>
                Arcanismo:{" "}
-               {personagem?.proeficiencias.arcanismo[0] ? (
+               {personagem[0]?.proeficiencias.arcanismo[0] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
                )}{" "}
-               {personagem?.proeficiencias.arcanismo[1] ? (
+               {personagem[0]?.proeficiencias.arcanismo[1] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
@@ -557,12 +161,12 @@ export default function Ficha() {
             </Proeficiencia>
             <Proeficiencia>
                Atletismo:{" "}
-               {personagem?.proeficiencias.atletismo[0] ? (
+               {personagem[0]?.proeficiencias.atletismo[0] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
                )}{" "}
-               {personagem?.proeficiencias.atletismo[1] ? (
+               {personagem[0]?.proeficiencias.atletismo[1] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
@@ -570,17 +174,17 @@ export default function Ficha() {
             </Proeficiencia>
             <Proeficiencia>
                Atuação:{" "}
-               {personagem?.proeficiencias.atuacao[0] ? <P>(x)</P> : <P>( )</P>}{" "}
-               {personagem?.proeficiencias.atuacao[1] ? <P>(x)</P> : <P>( )</P>}
+               {personagem[0]?.proeficiencias.atuacao[0] ? <P>(x)</P> : <P>( )</P>}{" "}
+               {personagem[0]?.proeficiencias.atuacao[1] ? <P>(x)</P> : <P>( )</P>}
             </Proeficiencia>
             <Proeficiencia>
                Construção:{" "}
-               {personagem?.proeficiencias.construcao[0] ? (
+               {personagem[0]?.proeficiencias.construcao[0] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
                )}{" "}
-               {personagem?.proeficiencias.construcao[1] ? (
+               {personagem[0]?.proeficiencias.construcao[1] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
@@ -588,12 +192,12 @@ export default function Ficha() {
             </Proeficiencia>
             <Proeficiencia>
                Enganação:{" "}
-               {personagem?.proeficiencias.enganacao[0] ? (
+               {personagem[0]?.proeficiencias.enganacao[0] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
                )}{" "}
-               {personagem?.proeficiencias.enganacao[1] ? (
+               {personagem[0]?.proeficiencias.enganacao[1] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
@@ -601,12 +205,12 @@ export default function Ficha() {
             </Proeficiencia>
             <Proeficiencia>
                Furtividade:{" "}
-               {personagem?.proeficiencias.furtividade[0] ? (
+               {personagem[0]?.proeficiencias.furtividade[0] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
                )}{" "}
-               {personagem?.proeficiencias.furtividade[1] ? (
+               {personagem[0]?.proeficiencias.furtividade[1] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
@@ -614,12 +218,12 @@ export default function Ficha() {
             </Proeficiencia>
             <Proeficiencia>
                História:{" "}
-               {personagem?.proeficiencias.historia[0] ? (
+               {personagem[0]?.proeficiencias.historia[0] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
                )}{" "}
-               {personagem?.proeficiencias.historia[1] ? (
+               {personagem[0]?.proeficiencias.historia[1] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
@@ -627,12 +231,12 @@ export default function Ficha() {
             </Proeficiencia>
             <Proeficiencia>
                Ilusionismo:{" "}
-               {personagem?.proeficiencias.ilusionismo[0] ? (
+               {personagem[0]?.proeficiencias.ilusionismo[0] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
                )}{" "}
-               {personagem?.proeficiencias.ilusionismo[1] ? (
+               {personagem[0]?.proeficiencias.ilusionismo[1] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
@@ -646,12 +250,12 @@ export default function Ficha() {
          <>
             <Proeficiencia>
                Intimidação:{" "}
-               {personagem?.proeficiencias.intimidacao[0] ? (
+               {personagem[0]?.proeficiencias.intimidacao[0] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
                )}{" "}
-               {personagem?.proeficiencias.intimidacao[1] ? (
+               {personagem[0]?.proeficiencias.intimidacao[1] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
@@ -659,12 +263,12 @@ export default function Ficha() {
             </Proeficiencia>
             <Proeficiencia>
                Intuição:{" "}
-               {personagem?.proeficiencias.intuicao[0] ? (
+               {personagem[0]?.proeficiencias.intuicao[0] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
                )}{" "}
-               {personagem?.proeficiencias.intuicao[1] ? (
+               {personagem[0]?.proeficiencias.intuicao[1] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
@@ -672,12 +276,12 @@ export default function Ficha() {
             </Proeficiencia>
             <Proeficiencia>
                Investigação:{" "}
-               {personagem?.proeficiencias.investigacao[0] ? (
+               {personagem[0]?.proeficiencias.investigacao[0] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
                )}{" "}
-               {personagem?.proeficiencias.investigacao[1] ? (
+               {personagem[0]?.proeficiencias.investigacao[1] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
@@ -685,12 +289,12 @@ export default function Ficha() {
             </Proeficiencia>
             <Proeficiencia>
                Medicina:{" "}
-               {personagem?.proeficiencias.medicina[0] ? (
+               {personagem[0]?.proeficiencias.medicina[0] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
                )}{" "}
-               {personagem?.proeficiencias.medicina[1] ? (
+               {personagem[0]?.proeficiencias.medicina[1] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
@@ -698,12 +302,12 @@ export default function Ficha() {
             </Proeficiencia>
             <Proeficiencia>
                Natureza:{" "}
-               {personagem?.proeficiencias.natureza[0] ? (
+               {personagem[0]?.proeficiencias.natureza[0] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
                )}{" "}
-               {personagem?.proeficiencias.natureza[1] ? (
+               {personagem[0]?.proeficiencias.natureza[1] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
@@ -711,12 +315,12 @@ export default function Ficha() {
             </Proeficiencia>
             <Proeficiencia>
                Percepção:{" "}
-               {personagem?.proeficiencias.percepcao[0] ? (
+               {personagem[0]?.proeficiencias.percepcao[0] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
                )}{" "}
-               {personagem?.proeficiencias.percepcao[1] ? (
+               {personagem[0]?.proeficiencias.percepcao[1] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
@@ -724,12 +328,12 @@ export default function Ficha() {
             </Proeficiencia>
             <Proeficiencia>
                Persuasão:{" "}
-               {personagem?.proeficiencias.persuasao[0] ? (
+               {personagem[0]?.proeficiencias.persuasao[0] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
                )}{" "}
-               {personagem?.proeficiencias.persuasao[1] ? (
+               {personagem[0]?.proeficiencias.persuasao[1] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
@@ -737,12 +341,12 @@ export default function Ficha() {
             </Proeficiencia>
             <Proeficiencia>
                Religião:{" "}
-               {personagem?.proeficiencias.religiao[0] ? (
+               {personagem[0]?.proeficiencias.religiao[0] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
                )}{" "}
-               {personagem?.proeficiencias.religiao[1] ? (
+               {personagem[0]?.proeficiencias.religiao[1] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
@@ -750,12 +354,12 @@ export default function Ficha() {
             </Proeficiencia>
             <Proeficiencia>
                Sobrevivencia:{" "}
-               {personagem?.proeficiencias.sobrevivencia[0] ? (
+               {personagem[0]?.proeficiencias.sobrevivencia[0] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
                )}{" "}
-               {personagem?.proeficiencias.sobrevivencia[1] ? (
+               {personagem[0]?.proeficiencias.sobrevivencia[1] ? (
                   <P>(x)</P>
                ) : (
                   <P>( )</P>
@@ -827,34 +431,34 @@ export default function Ficha() {
    return (
       <Caixa>
          <NomeNivel>
-            <Nome>Nome: {personagem?.nome}</Nome>
-            <Nivel>Nivel: {personagem?.nivel}</Nivel>
-            <StatusPersonagem>{personagem?.statusPersonagem}</StatusPersonagem>
+            <Nome>Nome: {personagem[0]?.nome}</Nome>
+            <Nivel>Nivel: {personagem[0]?.nivel}</Nivel>
+            <StatusPersonagem>{personagem[0]?.statusPersonagem}</StatusPersonagem>
          </NomeNivel>
          <EspecieClasse>
-            <Especie>Espécie: {personagem?.especie}</Especie>
-            <Classe>Classe: {personagem?.classe}</Classe>
-            <Aspecto>Aspecto: {personagem?.aspectoAfinidade}</Aspecto>
+            <Especie>Espécie: {personagem[0]?.especie}</Especie>
+            <Classe>Classe: {personagem[0]?.classe}</Classe>
+            <Aspecto>Aspecto: {personagem[0]?.aspectoAfinidade}</Aspecto>
          </EspecieClasse>
          <AtributosStatus>
             <Atributos>
                <Atributo>
-                  Força: {personagem?.forca} ({bonusForca})
+                  Força: {personagem[0]?.forca} ({bonusForca})
                </Atributo>
                <Atributo>
-                  Destreza: {personagem?.destreza} ({bonusDestreza})
+                  Destreza: {personagem[0]?.destreza} ({bonusDestreza})
                </Atributo>
                <Atributo>
-                  Precisão: {personagem?.precisao} ({bonusPrecisao})
+                  Precisão: {personagem[0]?.precisao} ({bonusPrecisao})
                </Atributo>
                <Atributo>
-                  Constituiçao: {personagem?.constituicao} ({bonusConstituicao})
+                  Constituiçao: {personagem[0]?.constituicao} ({bonusConstituicao})
                </Atributo>
                <Atributo>
-                  Inteligência: {personagem?.inteligencia} ({bonusInteligencia})
+                  Inteligência: {personagem[0]?.inteligencia} ({bonusInteligencia})
                </Atributo>
                <Atributo>
-                  Carisma: {personagem?.carisma} ({bonusCarisma})
+                  Carisma: {personagem[0]?.carisma} ({bonusCarisma})
                </Atributo>
             </Atributos>
             <StatusMoedas>
@@ -863,47 +467,47 @@ export default function Ficha() {
                      <ArmaduraTotal>
                         Armadura <br />
                         Total: <br />
-                        {personagem?.armaduraTotal}
+                        {personagem[0]?.armaduraTotal}
                      </ArmaduraTotal>
                      <ArmaduraAtual>
                         Armadura <br />
                         Atual: <br />
-                        {personagem?.armaduraAtual}
+                        {personagem[0]?.armaduraAtual}
                      </ArmaduraAtual>
                   </Armaduras>
                   <Vidas>
                      <VidaTotal>
                         Vida <br />
                         Total: <br />
-                        {personagem?.vidaTotal}
+                        {personagem[0]?.vidaTotal}
                      </VidaTotal>
                      <VidaAtual>
                         Vida <br />
                         Atual: <br />
-                        {personagem?.vidaAtual}
+                        {personagem[0]?.vidaAtual}
                      </VidaAtual>
                   </Vidas>
                   <Manas>
                      <ManaTotal>
                         Mana <br />
                         Total: <br />
-                        {personagem?.manaTotal}
+                        {personagem[0]?.manaTotal}
                      </ManaTotal>
                      <ManaAtual>
                         Mana <br />
                         Atual: <br />
-                        {personagem?.manaAtual}
+                        {personagem[0]?.manaAtual}
                      </ManaAtual>
                   </Manas>
                </Status>
                <CaixaMoedas>
-                  <Moedas>Moedas: {personagem?.moedas}</Moedas>
+                  <Moedas>Moedas: {personagem[0]?.moedas}</Moedas>
                </CaixaMoedas>
             </StatusMoedas>
          </AtributosStatus>
          <CaixaProeficiencia>
             <TituloProeficiencia>
-               Proeficiencias de {personagem?.nome}
+               Proeficiencias de {personagem[0]?.nome}
             </TituloProeficiencia>
             <CaixasProeficiencias>
                <CaixaProeficiencias1>
@@ -916,12 +520,12 @@ export default function Ficha() {
             <CaixaAnimais>
                <ProeficienciaAnimais>
                   Lidar Com Animais:{" "}
-                  {personagem?.proeficiencias.lidarComAnimais[0] ? (
+                  {personagem[0]?.proeficiencias.lidarComAnimais[0] ? (
                      <P>(x)</P>
                   ) : (
                      <P>( )</P>
                   )}{" "}
-                  {personagem?.proeficiencias.lidarComAnimais[1] ? (
+                  {personagem[0]?.proeficiencias.lidarComAnimais[1] ? (
                      <P>(x)</P>
                   ) : (
                      <P>( )</P>
@@ -931,63 +535,63 @@ export default function Ficha() {
          </CaixaProeficiencia>
          <CaixaLinguas>
             <Linguas>
-               Dwarv: {personagem?.linguas.dwarv ? <P>(x)</P> : <P>( )</P>}
+               Dwarv: {personagem[0]?.linguas.dwarv ? <P>(x)</P> : <P>( )</P>}
                <br />
-               Orc: {personagem?.linguas.orc ? <P>(x)</P> : <P>( )</P>}
+               Orc: {personagem[0]?.linguas.orc ? <P>(x)</P> : <P>( )</P>}
                <br />
-               Élfico: {personagem?.linguas.elfico ? <P>(x)</P> : <P>( )</P>}
+               Élfico: {personagem[0]?.linguas.elfico ? <P>(x)</P> : <P>( )</P>}
                <br />
             </Linguas>
             <Linguas>
-               Faerico: {personagem?.linguas.faerico ? <P>(x)</P> : <P>( )</P>}
+               Faerico: {personagem[0]?.linguas.faerico ? <P>(x)</P> : <P>( )</P>}
                <br />
                Silvestre:{" "}
-               {personagem?.linguas.silvestre ? <P>(x)</P> : <P>( )</P>}
+               {personagem[0]?.linguas.silvestre ? <P>(x)</P> : <P>( )</P>}
                <br />
-               Daedra: {personagem?.linguas.daedra ? <P>(x)</P> : <P>( )</P>}
+               Daedra: {personagem[0]?.linguas.daedra ? <P>(x)</P> : <P>( )</P>}
                <br />
             </Linguas>
             <Linguas>
                Celestial:{" "}
-               {personagem?.linguas.celestial ? <P>(x)</P> : <P>( )</P>}
+               {personagem[0]?.linguas.celestial ? <P>(x)</P> : <P>( )</P>}
                <br />
-               Comum: {personagem?.linguas.comum ? <P>(x)</P> : <P>( )</P>}
+               Comum: {personagem[0]?.linguas.comum ? <P>(x)</P> : <P>( )</P>}
                <br />
-               Ramush: {personagem?.linguas.ramush ? <P>(x)</P> : <P>( )</P>}
+               Ramush: {personagem[0]?.linguas.ramush ? <P>(x)</P> : <P>( )</P>}
                <br />
             </Linguas>
          </CaixaLinguas>
          <CaixaHabilidades>
             <TituloHabilidades>
-               Habilidades de {personagem?.nome}
+               Habilidades de {personagem[0]?.nome}
             </TituloHabilidades>
             <Habilidades>
-               {personagem?.habilidades.map(CriaHabilidades)}
+               {personagem[0]?.habilidades.map(CriaHabilidades)}
             </Habilidades>
          </CaixaHabilidades>
          <CaixaMagias>
-            <TituloMagias>Magias de {personagem?.nome}</TituloMagias>
-            <Magias>{personagem?.magias.map(CriaMagias)}</Magias>
+            <TituloMagias>Magias de {personagem[0]?.nome}</TituloMagias>
+            <Magias>{personagem[0]?.magias.map(CriaMagias)}</Magias>
          </CaixaMagias>
          <CaixaItens>
-            <TituloIten>Armaduras de {personagem?.nome}</TituloIten>
-            <Itens>{personagem?.armaduras.map(CriaArmaduras)}</Itens>
+            <TituloIten>Armaduras de {personagem[0]?.nome}</TituloIten>
+            <Itens>{personagem[0]?.armaduras.map(CriaArmaduras)}</Itens>
          </CaixaItens>
          <CaixaItens>
-            <TituloIten>Armas de {personagem?.nome}</TituloIten>
-            <Itens>{personagem?.armas.map(CriaArmas)}</Itens>
+            <TituloIten>Armas de {personagem[0]?.nome}</TituloIten>
+            <Itens>{personagem[0]?.armas.map(CriaArmas)}</Itens>
          </CaixaItens>
          <CaixaItens>
-            <TituloIten>Utilidades de {personagem?.nome}</TituloIten>
-            <Itens>{personagem?.utilidades.map(CriaUtilidades)}</Itens>
+            <TituloIten>Utilidades de {personagem[0]?.nome}</TituloIten>
+            <Itens>{personagem[0]?.utilidades.map(CriaUtilidades)}</Itens>
          </CaixaItens>
          <CaixaHistoria>
-            <TituloHistoria>Historia de {personagem?.nome}</TituloHistoria>
-            <Historia>{personagem?.historiaPersonagem}</Historia>
+            <TituloHistoria>Historia de {personagem[0]?.nome}</TituloHistoria>
+            <Historia>{personagem[0]?.historiaPersonagem}</Historia>
          </CaixaHistoria>
          <CaixaAparencia>
-            <TituloAparencia>Aparencia de {personagem?.nome}</TituloAparencia>
-            <Aparencia>{personagem?.aparenciaPersonagem}</Aparencia>
+            <TituloAparencia>Aparencia de {personagem[0]?.nome}</TituloAparencia>
+            <Aparencia>{personagem[0]?.aparenciaPersonagem}</Aparencia>
          </CaixaAparencia>
       </Caixa>
    );

@@ -31,7 +31,7 @@ import Head from "next/head";
 export default function Ataque() {
    const stock = useSelector((state: RootState) => state.stock);
    const router = useRouter()
-   const [personagem, setPersonagem] = useState<any>();
+   const [personagem, setPersonagem] = useState<any>([]);
    const [npcs, setNpcs] = useState<any>([]);
    const [pcs, setPcs] = useState<any>([]);
    const [inimigo, setInimigo] = useState<any>();
@@ -40,20 +40,20 @@ export default function Ataque() {
          const { data: personagens } = await supabase
             .from("Personagens")
             .select("*")
+            .eq("nome", stock.personagemUsuario)
+
+         setPersonagem(personagens)
+         
+      };
+      const getPcs = async () => {
+         const { data: personagens } = await supabase
+            .from("Personagens")
+            .select("*")
             .eq("campanha", stock.campanhaUsuario)
             .eq("tipo", "PC");
 
-         if (personagens) {
-            setPcs(personagens);
-         }
-
-         if (personagens) {
-            personagens.forEach((value) => {
-               if (value.nome === stock.personagemUsuario) {
-                  setPersonagem(value);
-               }
-            });
-         }
+         setPcs(personagens)
+         
       };
       const getNpcs = async () => {
          const { data: personagens } = await supabase
@@ -63,19 +63,11 @@ export default function Ataque() {
             .eq("tipo", "NPC")
             .eq("ativo", [true]);
 
-         if (personagens) {
-            setNpcs(personagens);
-         }
-
-         if (personagens) {
-            personagens.forEach((value) => {
-               if (value.nome === stock.personagemUsuario) {
-                  setPersonagem(value);
-               }
-            });
-         }
+         setNpcs(personagens)
+         
       };
       getPersonagem();
+      getPcs()
       getNpcs();
    }, [stock]);
    const EscolheInimigo = (value: any) => {
@@ -100,7 +92,7 @@ export default function Ataque() {
                {pcs?.map(CriaBotaoInimigo)}
             </BotaoAtaque>
             <BotaoIcon
-               onClick={() => AtaqueComArma(stock, personagem, inimigo, value)}
+               onClick={() => AtaqueComArma(stock, personagem[0], inimigo, value)}
             >
                <IconAtaque />
             </BotaoIcon>
@@ -111,7 +103,7 @@ export default function Ataque() {
       return (
          <Texto>
             {value.nome}
-            <BotaoIcon onClick={() => LevantaEscudo(stock, personagem, value)}>
+            <BotaoIcon onClick={() => LevantaEscudo(stock, personagem[0], value)}>
                <IconDefesa />
             </BotaoIcon>
          </Texto>
@@ -129,70 +121,68 @@ export default function Ataque() {
          <Caixa>
             <Titulo>Ataques desarmados</Titulo>
             <Texto>
-               Soco
-               <BotaoAtaque>
-                  <BotaoInimigo>Escolha um inimigo</BotaoInimigo>
-                  {npcs?.map(CriaBotaoInimigo)}
-                  <BotaoInimigo>--AMIGOS--</BotaoInimigo>
-                  {pcs?.map(CriaBotaoInimigo)}
-               </BotaoAtaque>
-               <BotaoIcon onClick={() => Soco(stock, personagem, inimigo)}>
-                  <IconAtaque />
-               </BotaoIcon>
+                Soco 
+                <BotaoAtaque>
+                    <BotaoInimigo>Escolha um inimigo</BotaoInimigo>
+                    {npcs?.map(CriaBotaoInimigo)}
+                    <BotaoInimigo>--AMIGOS--</BotaoInimigo>
+                    {pcs?.map(CriaBotaoInimigo)}
+                </BotaoAtaque>
+                <BotaoIcon onClick={()=>Soco(stock,personagem[0],inimigo)}>
+                    <IconAtaque/>
+                </BotaoIcon>
             </Texto>
             <Texto>
-               Chute
-               <BotaoAtaque>
-                  <BotaoInimigo>Escolha um inimigo</BotaoInimigo>
-                  {npcs?.map(CriaBotaoInimigo)}
-                  <BotaoInimigo>--AMIGOS--</BotaoInimigo>
-                  {pcs?.map(CriaBotaoInimigo)}
-               </BotaoAtaque>
-               <BotaoIcon onClick={() => Chute(stock, personagem, inimigo)}>
-                  <IconAtaque />
-               </BotaoIcon>
+                Chute 
+                <BotaoAtaque>
+                    <BotaoInimigo>Escolha um inimigo</BotaoInimigo>
+                    {npcs?.map(CriaBotaoInimigo)}
+                    <BotaoInimigo>--AMIGOS--</BotaoInimigo>
+                    {pcs?.map(CriaBotaoInimigo)}
+                </BotaoAtaque>
+                <BotaoIcon onClick={()=>Chute(stock,personagem[0],inimigo)}>
+                    <IconAtaque/>
+                </BotaoIcon>
             </Texto>
             <Texto>
-               Desarmar
-               <BotaoAtaque>
-                  <BotaoInimigo>Escolha um inimigo</BotaoInimigo>
-                  {npcs?.map(CriaBotaoInimigo)}
-                  <BotaoInimigo>--AMIGOS--</BotaoInimigo>
-                  {pcs?.map(CriaBotaoInimigo)}
-               </BotaoAtaque>
-               <BotaoIcon onClick={() => Desarmar(stock, personagem, inimigo)}>
-                  <IconAtaque />
-               </BotaoIcon>
+                Desarmar 
+                <BotaoAtaque>
+                    <BotaoInimigo>Escolha um inimigo</BotaoInimigo>
+                    {npcs?.map(CriaBotaoInimigo)}
+                    <BotaoInimigo>--AMIGOS--</BotaoInimigo>
+                    {pcs?.map(CriaBotaoInimigo)}
+                </BotaoAtaque>
+                <BotaoIcon onClick={()=>Desarmar(stock,personagem[0],inimigo)}>
+                    <IconAtaque/>
+                </BotaoIcon>
             </Texto>
             <Texto>
-               Imobilizar
-               <BotaoAtaque>
-                  <BotaoInimigo>Escolha um inimigo</BotaoInimigo>
-                  {npcs?.map(CriaBotaoInimigo)}
-                  <BotaoInimigo>--AMIGOS--</BotaoInimigo>
-                  {pcs?.map(CriaBotaoInimigo)}
-               </BotaoAtaque>
-               <BotaoIcon
-                  onClick={() => Imobilizar(stock, personagem, inimigo)}
-               >
-                  <IconAtaque />
-               </BotaoIcon>
+                Imobilizar 
+                <BotaoAtaque>
+                    <BotaoInimigo>Escolha um inimigo</BotaoInimigo>
+                    {npcs?.map(CriaBotaoInimigo)}
+                    <BotaoInimigo>--AMIGOS--</BotaoInimigo>
+                    {pcs?.map(CriaBotaoInimigo)}
+                </BotaoAtaque>
+                <BotaoIcon onClick={()=>Imobilizar(stock,personagem[0],inimigo)}>
+                    <IconAtaque/>
+                </BotaoIcon>
             </Texto>
             <Texto>
-               Atordoar
-               <BotaoAtaque>
-                  <BotaoInimigo>Escolha um inimigo</BotaoInimigo>
-                  {npcs?.map(CriaBotaoInimigo)}
-                  <BotaoInimigo>--AMIGOS--</BotaoInimigo>
-                  {pcs?.map(CriaBotaoInimigo)}
-               </BotaoAtaque>
-               <BotaoIcon onClick={() => Atordoar(stock, personagem, inimigo)}>
-                  <IconAtaque />
-               </BotaoIcon>
+                Atordoar 
+                <BotaoAtaque>
+                    <BotaoInimigo>Escolha um inimigo</BotaoInimigo>
+                    {npcs?.map(CriaBotaoInimigo)}
+                    <BotaoInimigo>--AMIGOS--</BotaoInimigo>
+                    {pcs?.map(CriaBotaoInimigo)}
+                </BotaoAtaque>
+                <BotaoIcon onClick={()=>Atordoar(stock,personagem[0],inimigo)}>
+                    <IconAtaque/>
+                </BotaoIcon>
             </Texto>
-            <Titulo>Armas de {personagem?.nome}</Titulo>
-            {personagem?.armas.map(CriaArmas)}
-         </Caixa>
+            <Titulo>Armas de {personagem[0]?.nome}</Titulo>
+            {personagem[0]?.armas.map(CriaArmas)}
+        </Caixa>
       </Fundo>
    </>
    );

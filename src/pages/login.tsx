@@ -27,11 +27,9 @@ export default function Login({usuarios}:Usuario) {
    //atualizacao variaveis
    const handleUsuario = (e: React.ChangeEvent<HTMLInputElement>) => {
       setNomeUsuario(e.target.value)
-      console.log(e)
    };
    const handleSenha = (e: React.ChangeEvent<HTMLInputElement>) => {
       setSenha(e.target.value)
-      console.log(e)
    };
    //botao form submission
    const verificaUser = (e:any) =>{
@@ -42,7 +40,6 @@ export default function Login({usuarios}:Usuario) {
 
          }
          if (value.nomeUsuario === nomeUsuario && value.senha === senha) {
-            console.log("passou por aqui")
             dispatch(atualizaUsuario(value));
             dispatch(login());
             router.push(`/usuario`);

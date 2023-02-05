@@ -16,28 +16,24 @@ import Magia from "./components/magia"
 import Ataque from "./components/ataque"
 import Dados from "./components/dados"
 import { useMediaQuery } from 'react-responsive'
+import { set } from "immer/dist/internal";
 
 
 export default function Mesa(){
-    const isMobile = useMediaQuery({ query: '(max-width: 1224px)' })
-    const [campanhaAtual, setCampanhaAtual] = useState<any>()
+    const isMobile = useMediaQuery({ query: '(max-width: 1000px)' })
+    const [campanhaAtual, setCampanhaAtual] = useState<any>([])
     const stock = useSelector((state:RootState)=>state.stock)
     const nomeCampanha = stock.campanhaUsuario
     const router = useRouter()
     
     useEffect(()=>{
         const pegaCampanha = async () =>{
-            const { data: campanhas } = await supabase
+            const { data: campanha } = await supabase
             .from("campanhas")
             .select("*")
-            
-            if(campanhas){
-                campanhas.forEach((value)=>{
-                    if(value.nomeCampanha===nomeCampanha){
-                        setCampanhaAtual(value)
-                    }
-                })
-            }
+            .eq("nomeCampanha", nomeCampanha)
+
+            setCampanhaAtual(campanha)
         }
         pegaCampanha()
     }, [nomeCampanha])
@@ -145,7 +141,7 @@ export default function Mesa(){
                 </>
                 }
                 <ContainerMapa>
-                    <Mapa defaultValue={campanhaAtual?.mapaAtual}>
+                    <Mapa defaultValue={campanhaAtual[0]?.mapaAtual}>
                         
                     </Mapa>
                 </ContainerMapa>

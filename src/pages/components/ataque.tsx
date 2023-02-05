@@ -8,55 +8,45 @@ import { arma, armadura } from "types/supabase";
 
 export default function Ataque(){
     const stock = useSelector((state: RootState) => state.stock)
-    const [personagem, setPersonagem] = useState<any>()
+    const [personagem, setPersonagem] = useState<any>([])
     const [npcs, setNpcs] = useState<any>([])
     const [pcs, setPcs] = useState<any>([])
     const [inimigo, setInimigo] = useState<any>()
-    useEffect(()=>{
+    useEffect(() => {
         const getPersonagem = async () => {
-            const { data: personagens } = await supabase
-               .from("Personagens")
-               .select("*")
-               .eq("campanha", stock.campanhaUsuario)
-               .eq("tipo", "PC")
-            
-            if(personagens){
-                setPcs(personagens)
-            }
-
-            if(personagens){
-                personagens.forEach((value)=>{
-                    if(value.nome===stock.personagemUsuario){
-                        setPersonagem(value)
-                    }
-                }) 
-            }
-            
+           const { data: personagens } = await supabase
+              .from("Personagens")
+              .select("*")
+              .eq("nome", stock.personagemUsuario)
+  
+           setPersonagem(personagens)
+           
+        };
+        const getPcs = async () => {
+           const { data: personagens } = await supabase
+              .from("Personagens")
+              .select("*")
+              .eq("campanha", stock.campanhaUsuario)
+              .eq("tipo", "PC");
+  
+           setPcs(personagens)
+           
         };
         const getNpcs = async () => {
-            const { data: personagens } = await supabase
-               .from("Personagens")
-               .select("*")
-               .eq("campanha", stock.campanhaUsuario)
-               .eq("tipo", "NPC")
-               .eq("ativo",[true])
-            
-            if(personagens){
-                setNpcs(personagens)
-            }
-
-            if(personagens){
-                personagens.forEach((value)=>{
-                    if(value.nome===stock.personagemUsuario){
-                        setPersonagem(value)
-                    }
-                }) 
-            }
-            
+           const { data: personagens } = await supabase
+              .from("Personagens")
+              .select("*")
+              .eq("campanha", stock.campanhaUsuario)
+              .eq("tipo", "NPC")
+              .eq("ativo", [true]);
+  
+           setNpcs(personagens)
+           
         };
-        getPersonagem()
-        getNpcs()
-    },[stock])
+        getPersonagem();
+        getPcs()
+        getNpcs();
+     }, [stock]);
     const EscolheInimigo = (value: any) => {
         setInimigo(value)
         alert("alvo Escolhido"+value.nome)
@@ -74,7 +64,7 @@ export default function Ataque(){
                 <BotaoInimigo>--AMIGOS--</BotaoInimigo>
                 {pcs?.map(CriaBotaoInimigo)}
             </BotaoAtaque>
-            <BotaoIcon onClick={()=>AtaqueComArma(stock,personagem,inimigo,value)}>
+            <BotaoIcon onClick={()=>AtaqueComArma(stock,personagem[0],inimigo,value)}>
                 <IconAtaque/>
             </BotaoIcon>
         </Texto>
@@ -84,7 +74,7 @@ export default function Ataque(){
         return(
         <Texto>
             {value.nome}
-            <BotaoIcon onClick={()=>LevantaEscudo(stock,personagem,value)}>
+            <BotaoIcon onClick={()=>LevantaEscudo(stock,personagem[0],value)}>
                 <IconDefesa/>
             </BotaoIcon>
         </Texto>
@@ -101,7 +91,7 @@ export default function Ataque(){
                     <BotaoInimigo>--AMIGOS--</BotaoInimigo>
                     {pcs?.map(CriaBotaoInimigo)}
                 </BotaoAtaque>
-                <BotaoIcon onClick={()=>Soco(stock,personagem,inimigo)}>
+                <BotaoIcon onClick={()=>Soco(stock,personagem[0],inimigo)}>
                     <IconAtaque/>
                 </BotaoIcon>
             </Texto>
@@ -113,7 +103,7 @@ export default function Ataque(){
                     <BotaoInimigo>--AMIGOS--</BotaoInimigo>
                     {pcs?.map(CriaBotaoInimigo)}
                 </BotaoAtaque>
-                <BotaoIcon onClick={()=>Chute(stock,personagem,inimigo)}>
+                <BotaoIcon onClick={()=>Chute(stock,personagem[0],inimigo)}>
                     <IconAtaque/>
                 </BotaoIcon>
             </Texto>
@@ -125,7 +115,7 @@ export default function Ataque(){
                     <BotaoInimigo>--AMIGOS--</BotaoInimigo>
                     {pcs?.map(CriaBotaoInimigo)}
                 </BotaoAtaque>
-                <BotaoIcon onClick={()=>Desarmar(stock,personagem,inimigo)}>
+                <BotaoIcon onClick={()=>Desarmar(stock,personagem[0],inimigo)}>
                     <IconAtaque/>
                 </BotaoIcon>
             </Texto>
@@ -137,7 +127,7 @@ export default function Ataque(){
                     <BotaoInimigo>--AMIGOS--</BotaoInimigo>
                     {pcs?.map(CriaBotaoInimigo)}
                 </BotaoAtaque>
-                <BotaoIcon onClick={()=>Imobilizar(stock,personagem,inimigo)}>
+                <BotaoIcon onClick={()=>Imobilizar(stock,personagem[0],inimigo)}>
                     <IconAtaque/>
                 </BotaoIcon>
             </Texto>
@@ -149,12 +139,12 @@ export default function Ataque(){
                     <BotaoInimigo>--AMIGOS--</BotaoInimigo>
                     {pcs?.map(CriaBotaoInimigo)}
                 </BotaoAtaque>
-                <BotaoIcon onClick={()=>Atordoar(stock,personagem,inimigo)}>
+                <BotaoIcon onClick={()=>Atordoar(stock,personagem[0],inimigo)}>
                     <IconAtaque/>
                 </BotaoIcon>
             </Texto>
-            <Titulo>Armas de {personagem?.nome}</Titulo>
-            {personagem?.armas.map(CriaArmas)}
+            <Titulo>Armas de {personagem[0]?.nome}</Titulo>
+            {personagem[0]?.armas.map(CriaArmas)}
         </Caixa>
     )
 }

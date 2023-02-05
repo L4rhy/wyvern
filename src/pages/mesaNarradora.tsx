@@ -28,17 +28,12 @@ export default function MesaNarradora(){
 
     useEffect(()=>{
         const pegaCampanha = async () =>{
-            const { data: campanhas } = await supabase
+            const { data: campanha } = await supabase
             .from("campanhas")
             .select("*")
-            
-            if(campanhas){
-                campanhas.forEach((value)=>{
-                    if(value.nomeCampanha===nomeCampanha){
-                        setCampanhaAtual(value)
-                    }
-                })
-            }
+            .eq("nomeCampanha", nomeCampanha)
+
+            setCampanhaAtual(campanha)
         }
         pegaCampanha()
     }, [nomeCampanha])
@@ -119,7 +114,7 @@ export default function MesaNarradora(){
                         <Flechinha/>
                     </Caixa>
                 <ContainerMapa>
-                    <Mapa defaultValue={campanhaAtual?.mapaAtual}>
+                    <Mapa defaultValue={campanhaAtual[0]?.mapaAtual}>
                         
                     </Mapa>
                 </ContainerMapa>

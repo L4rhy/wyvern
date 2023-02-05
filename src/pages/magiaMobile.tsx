@@ -18,11 +18,11 @@ import { supabase } from "./api/supabase";
 import { habilidade, magia } from "types/supabase";
 import { useRouter } from "next/router";
 import Head from "next/head";
-
+import { UsaHabilidade, UsaMagia } from "./api/regras"
 export default function Magia() {
    const router = useRouter()
    const stock = useSelector((state: RootState) => state.stock);
-   const [personagem, setPersonagem] = useState<any>();
+   const [personagem, setPersonagem] = useState<any>([]);
    const [npcs, setNpcs] = useState<any>([]);
    const [pcs, setPcs] = useState<any>([]);
    const [inimigo, setInimigo] = useState<any>();
@@ -31,20 +31,20 @@ export default function Magia() {
          const { data: personagens } = await supabase
             .from("Personagens")
             .select("*")
+            .eq("nome", stock.personagemUsuario)
+
+         setPersonagem(personagens)
+         
+      };
+      const getPcs = async () => {
+         const { data: personagens } = await supabase
+            .from("Personagens")
+            .select("*")
             .eq("campanha", stock.campanhaUsuario)
             .eq("tipo", "PC");
 
-         if (personagens) {
-            setPcs(personagens);
-         }
-
-         if (personagens) {
-            personagens.forEach((value) => {
-               if (value.nome === stock.personagemUsuario) {
-                  setPersonagem(value);
-               }
-            });
-         }
+         setPcs(personagens)
+         
       };
       const getNpcs = async () => {
          const { data: personagens } = await supabase
@@ -54,19 +54,11 @@ export default function Magia() {
             .eq("tipo", "NPC")
             .eq("ativo", [true]);
 
-         if (personagens) {
-            setNpcs(personagens);
-         }
-
-         if (personagens) {
-            personagens.forEach((value) => {
-               if (value.nome === stock.personagemUsuario) {
-                  setPersonagem(value);
-               }
-            });
-         }
+         setNpcs(personagens)
+         
       };
       getPersonagem();
+      getPcs()
       getNpcs();
    }, [stock]);
    const EscolheInimigo = (value: any) => {
@@ -80,38 +72,38 @@ export default function Magia() {
          </BotaoInimigo>
       );
    };
-   const CriaHabilidades = (value: habilidade) => {
-      return (
-         <Texto>
-            {value.nome}
-            <BotaoEscolheInimigo>
-               <BotaoInimigo>Escolha um inimigo</BotaoInimigo>
-               {npcs?.map(CriaBotaoInimigo)}
-               <BotaoInimigo>--AMIGOS--</BotaoInimigo>
-               {pcs?.map(CriaBotaoInimigo)}
-            </BotaoEscolheInimigo>
-            <BotaoIcon>
-               <IconHabilidade />
-            </BotaoIcon>
-         </Texto>
-      );
-   };
-   const CriaMagias = (value: magia) => {
-      return (
-         <Texto>
-            {value.nome}
-            <BotaoEscolheInimigo>
-               <BotaoInimigo>Escolha um inimigo</BotaoInimigo>
-               {npcs?.map(CriaBotaoInimigo)}
-               <BotaoInimigo>--AMIGOS--</BotaoInimigo>
-               {pcs?.map(CriaBotaoInimigo)}
-            </BotaoEscolheInimigo>
-            <BotaoIcon>
-               <IconMagia />
-            </BotaoIcon>
-         </Texto>
-      );
-   };
+   const CriaHabilidades = (value:habilidade) =>{
+      return(
+          <Texto>
+              {value.nome}
+              <BotaoEscolheInimigo>
+                  <BotaoInimigo>Escolha um inimigo</BotaoInimigo>
+                  {npcs?.map(CriaBotaoInimigo)}
+                  <BotaoInimigo>--AMIGOS--</BotaoInimigo>
+                  {pcs?.map(CriaBotaoInimigo)}
+              </BotaoEscolheInimigo>
+              <BotaoIcon onClick={()=>UsaHabilidade(stock,personagem[0],inimigo,value)}>
+                  <IconHabilidade/>
+              </BotaoIcon>
+          </Texto>
+      )
+   }
+   const CriaMagias = (value:magia) =>{
+      return(
+          <Texto>
+              {value.nome}
+              <BotaoEscolheInimigo>
+                  <BotaoInimigo>Escolha um inimigo</BotaoInimigo>
+                  {npcs?.map(CriaBotaoInimigo)}
+                  <BotaoInimigo>--AMIGOS--</BotaoInimigo>
+                  {pcs?.map(CriaBotaoInimigo)}
+              </BotaoEscolheInimigo>
+              <BotaoIcon onClick={()=>UsaMagia(stock,personagem[0],inimigo,value)}>
+                  <IconMagia/>
+              </BotaoIcon>
+          </Texto>
+      )
+   }
    return (
       <>
          <Head>
@@ -122,11 +114,11 @@ export default function Magia() {
                 <IconVolta/>
          </BotaoVolta>
          <Caixa>
-            <Titulo>Habilidades de {personagem?.nome}</Titulo>
-            {personagem?.habilidades.map(CriaHabilidades)}
-            <Titulo>Magias de {personagem?.nome}</Titulo>
-            {personagem?.magias.map(CriaMagias)}
-         </Caixa>
+            <Titulo>Habilidades de {personagem[0]?.nome}</Titulo>
+            {personagem[0]?.habilidades.map(CriaHabilidades)}
+            <Titulo>Magias de {personagem[0]?.nome}</Titulo>
+            {personagem[0]?.magias.map(CriaMagias)}
+        </Caixa>
       </Fundo>
       </>
    );

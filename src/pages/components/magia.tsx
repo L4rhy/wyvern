@@ -4,57 +4,49 @@ import { RootState } from "../../stack/";
 import { useEffect, useState } from "react";
 import { supabase } from "../api/supabase";
 import { habilidade, magia } from "types/supabase";
+import { UsaHabilidade, UsaMagia} from "../api/regras"
+
 export default function Magia(){
     const stock = useSelector((state: RootState) => state.stock)
-    const [personagem, setPersonagem] = useState<any>()
+    const [personagem, setPersonagem] = useState<any>([])
     const [npcs, setNpcs] = useState<any>([])
     const [pcs, setPcs] = useState<any>([])
     const [inimigo, setInimigo] = useState<any>()
-    useEffect(()=>{
+    useEffect(() => {
         const getPersonagem = async () => {
-            const { data: personagens } = await supabase
-               .from("Personagens")
-               .select("*")
-               .eq("campanha", stock.campanhaUsuario)
-               .eq("tipo", "PC")
-            
-            if(personagens){
-                setPcs(personagens)
-            }
-
-            if(personagens){
-                personagens.forEach((value)=>{
-                    if(value.nome===stock.personagemUsuario){
-                        setPersonagem(value)
-                    }
-                }) 
-            }
-            
+           const { data: personagens } = await supabase
+              .from("Personagens")
+              .select("*")
+              .eq("nome", stock.personagemUsuario)
+  
+           setPersonagem(personagens)
+           
+        };
+        const getPcs = async () => {
+           const { data: personagens } = await supabase
+              .from("Personagens")
+              .select("*")
+              .eq("campanha", stock.campanhaUsuario)
+              .eq("tipo", "PC");
+  
+           setPcs(personagens)
+           
         };
         const getNpcs = async () => {
-            const { data: personagens } = await supabase
-               .from("Personagens")
-               .select("*")
-               .eq("campanha", stock.campanhaUsuario)
-               .eq("tipo", "NPC")
-               .eq("ativo",[true])
-            
-            if(personagens){
-                setNpcs(personagens)
-            }
-
-            if(personagens){
-                personagens.forEach((value)=>{
-                    if(value.nome===stock.personagemUsuario){
-                        setPersonagem(value)
-                    }
-                }) 
-            }
-            
+           const { data: personagens } = await supabase
+              .from("Personagens")
+              .select("*")
+              .eq("campanha", stock.campanhaUsuario)
+              .eq("tipo", "NPC")
+              .eq("ativo", [true]);
+  
+           setNpcs(personagens)
+           
         };
-        getPersonagem()
-        getNpcs()
-    },[stock])
+        getPersonagem();
+        getPcs()
+        getNpcs();
+     }, [stock]);
     const EscolheInimigo = (value: any) => {
         setInimigo(value)
         alert("alvo Escolhido"+value.nome)
@@ -72,7 +64,7 @@ export default function Magia(){
                     <BotaoInimigo>--AMIGOS--</BotaoInimigo>
                     {pcs?.map(CriaBotaoInimigo)}
                 </BotaoEscolheInimigo>
-                <BotaoIcon>
+                <BotaoIcon onClick={()=>UsaHabilidade(stock,personagem[0],inimigo,value)}>
                     <IconHabilidade/>
                 </BotaoIcon>
             </Texto>
@@ -88,7 +80,7 @@ export default function Magia(){
                     <BotaoInimigo>--AMIGOS--</BotaoInimigo>
                     {pcs?.map(CriaBotaoInimigo)}
                 </BotaoEscolheInimigo>
-                <BotaoIcon>
+                <BotaoIcon onClick={()=>UsaMagia(stock,personagem[0],inimigo,value)}>
                     <IconMagia/>
                 </BotaoIcon>
             </Texto>
@@ -96,10 +88,10 @@ export default function Magia(){
     }
     return(
         <Caixa>
-            <Titulo>Habilidades de {personagem?.nome}</Titulo>
-            {personagem?.habilidades.map(CriaHabilidades)}
-            <Titulo>Magias de {personagem?.nome}</Titulo>
-            {personagem?.magias.map(CriaMagias)}
+            <Titulo>Habilidades de {personagem[0]?.nome}</Titulo>
+            {personagem[0]?.habilidades.map(CriaHabilidades)}
+            <Titulo>Magias de {personagem[0]?.nome}</Titulo>
+            {personagem[0]?.magias.map(CriaMagias)}
         </Caixa>
     )
 }

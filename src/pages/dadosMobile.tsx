@@ -57,7 +57,7 @@ import Head from "next/head";
 export default function Dados() {
    const stock = useSelector((state: RootState) => state.stock);
    const router = useRouter()
-   const [personagem, setPersonagem] = useState<any>();
+   const [personagem, setPersonagem] = useState<any>([]);
    const [npcs, setNpcs] = useState<any>([]);
    const [pcs, setPcs] = useState<any>([]);
    const [inimigo, setInimigo] = useState<any>();
@@ -67,20 +67,20 @@ export default function Dados() {
          const { data: personagens } = await supabase
             .from("Personagens")
             .select("*")
+            .eq("nome", stock.personagemUsuario)
+
+         setPersonagem(personagens)
+         
+      };
+      const getPcs = async () => {
+         const { data: personagens } = await supabase
+            .from("Personagens")
+            .select("*")
             .eq("campanha", stock.campanhaUsuario)
             .eq("tipo", "PC");
 
-         if (personagens) {
-            setPcs(personagens);
-         }
-
-         if (personagens) {
-            personagens.forEach((value) => {
-               if (value.nome === stock.personagemUsuario) {
-                  setPersonagem(value);
-               }
-            });
-         }
+         setPcs(personagens)
+         
       };
       const getNpcs = async () => {
          const { data: personagens } = await supabase
@@ -90,19 +90,11 @@ export default function Dados() {
             .eq("tipo", "NPC")
             .eq("ativo", [true]);
 
-         if (personagens) {
-            setNpcs(personagens);
-         }
-
-         if (personagens) {
-            personagens.forEach((value) => {
-               if (value.nome === stock.personagemUsuario) {
-                  setPersonagem(value);
-               }
-            });
-         }
+         setNpcs(personagens)
+         
       };
       getPersonagem();
+      getPcs()
       getNpcs();
    }, [stock]);
    const CriaBotaoInimigo = (value: any) => {
@@ -125,13 +117,13 @@ export default function Dados() {
             <Caixinha>
                <Texto>
                   Iniciativa
-                  <BotaoIcon onClick={() => Iniciativa(stock, personagem.nome)}>
+                  <BotaoIcon onClick={() => Iniciativa(stock, personagem[0].nome)}>
                      <Icon />
                   </BotaoIcon>
                </Texto>
                <Texto>
                   Sorte
-                  <BotaoIcon onClick={() => Sorte(stock, personagem.nome)}>
+                  <BotaoIcon onClick={() => Sorte(stock, personagem[0].nome)}>
                      <Icon />
                   </BotaoIcon>
                </Texto>
@@ -143,11 +135,11 @@ export default function Dados() {
                   <CaixaOculta state={state}>
                      <Flechinha />
                      Inimigos
-                     {npcs.map(CriaBotaoInimigo)}
+                     {npcs?.map(CriaBotaoInimigo)}
                      Amigos
-                     {pcs.map(CriaBotaoInimigo)}
+                     {pcs?.map(CriaBotaoInimigo)}
                      <BotaoIcon
-                        onClick={() => Oportunidade(stock, personagem, inimigo)}
+                        onClick={() => Oportunidade(stock, personagem[0], inimigo)}
                      >
                         <Icon />
                      </BotaoIcon>
@@ -157,19 +149,19 @@ export default function Dados() {
             <Caixinha>
                <Texto>
                   D20
-                  <BotaoIcon onClick={() => D20(stock, personagem.nome)}>
+                  <BotaoIcon onClick={() => D20(stock, personagem[0].nome)}>
                      <Icon />
                   </BotaoIcon>
                </Texto>
                <Texto>
                   D10
-                  <BotaoIcon onClick={() => D10(stock, personagem.nome)}>
+                  <BotaoIcon onClick={() => D10(stock, personagem[0].nome)}>
                      <Icon />
                   </BotaoIcon>
                </Texto>
                <Texto>
                   D2
-                  <BotaoIcon onClick={() => D2(stock, personagem.nome)}>
+                  <BotaoIcon onClick={() => D2(stock, personagem[0].nome)}>
                      <Icon />
                   </BotaoIcon>
                </Texto>
@@ -182,7 +174,7 @@ export default function Dados() {
                         onClick={() =>
                            RolaAtributo(
                               stock,
-                              personagem,
+                              personagem[0],
                               stock.bonus.forca,
                               "força"
                            )
@@ -197,7 +189,7 @@ export default function Dados() {
                         onClick={() =>
                            RolaAtributo(
                               stock,
-                              personagem,
+                              personagem[0],
                               stock.bonus.destreza,
                               "destreza"
                            )
@@ -212,7 +204,7 @@ export default function Dados() {
                         onClick={() =>
                            RolaAtributo(
                               stock,
-                              personagem,
+                              personagem[0],
                               stock.bonus.precisao,
                               "precisão"
                            )
@@ -229,7 +221,7 @@ export default function Dados() {
                         onClick={() =>
                            RolaAtributo(
                               stock,
-                              personagem,
+                              personagem[0],
                               stock.bonus.constituicao,
                               "constituição"
                            )
@@ -244,7 +236,7 @@ export default function Dados() {
                         onClick={() =>
                            RolaAtributo(
                               stock,
-                              personagem,
+                              personagem[0],
                               stock.bonus.inteligencia,
                               "inteligencia"
                            )
@@ -259,7 +251,7 @@ export default function Dados() {
                         onClick={() =>
                            RolaAtributo(
                               stock,
-                              personagem,
+                              personagem[0],
                               stock.bonus.carisma,
                               "carisma"
                            )
@@ -275,7 +267,7 @@ export default function Dados() {
                   <Textinho>
                      Acrobacia
                      <BotaoIconzinho
-                        onClick={() => Acrobacia(stock, personagem)}
+                        onClick={() => Acrobacia(stock, personagem[0])}
                      >
                         <Iconzinho />
                      </BotaoIconzinho>
@@ -283,7 +275,7 @@ export default function Dados() {
                   <Textinho>
                      Arcanismo
                      <BotaoIconzinho
-                        onClick={() => Arcanismo(stock, personagem)}
+                        onClick={() => Arcanismo(stock, personagem[0])}
                      >
                         <Iconzinho />
                      </BotaoIconzinho>
@@ -291,21 +283,21 @@ export default function Dados() {
                   <Textinho>
                      Atletismo
                      <BotaoIconzinho
-                        onClick={() => Atletismo(stock, personagem)}
+                        onClick={() => Atletismo(stock, personagem[0])}
                      >
                         <Iconzinho />
                      </BotaoIconzinho>
                   </Textinho>
                   <Textinho>
                      Atuação
-                     <BotaoIconzinho onClick={() => Atuacao(stock, personagem)}>
+                     <BotaoIconzinho onClick={() => Atuacao(stock, personagem[0])}>
                         <Iconzinho />
                      </BotaoIconzinho>
                   </Textinho>
                   <Textinho>
                      Construção
                      <BotaoIconzinho
-                        onClick={() => Construcao(stock, personagem)}
+                        onClick={() => Construcao(stock, personagem[0])}
                      >
                         <Iconzinho />
                      </BotaoIconzinho>
@@ -313,7 +305,7 @@ export default function Dados() {
                   <Textinho>
                      Enganação
                      <BotaoIconzinho
-                        onClick={() => Enganacao(stock, personagem)}
+                        onClick={() => Enganacao(stock, personagem[0])}
                      >
                         <Iconzinho />
                      </BotaoIconzinho>
@@ -321,7 +313,7 @@ export default function Dados() {
                   <Textinho>
                      Furtividade
                      <BotaoIconzinho
-                        onClick={() => Furtividade(stock, personagem)}
+                        onClick={() => Furtividade(stock, personagem[0])}
                      >
                         <Iconzinho />
                      </BotaoIconzinho>
@@ -329,7 +321,7 @@ export default function Dados() {
                   <Textinho>
                      História
                      <BotaoIconzinho
-                        onClick={() => Historia(stock, personagem)}
+                        onClick={() => Historia(stock, personagem[0])}
                      >
                         <Iconzinho />
                      </BotaoIconzinho>
@@ -337,7 +329,7 @@ export default function Dados() {
                   <Textinho>
                      Ilusionismo
                      <BotaoIconzinho
-                        onClick={() => Ilusionismo(stock, personagem)}
+                        onClick={() => Ilusionismo(stock, personagem[0])}
                      >
                         <Iconzinho />
                      </BotaoIconzinho>
@@ -345,7 +337,7 @@ export default function Dados() {
                   <Textinho>
                      Intimidação
                      <BotaoIconzinho
-                        onClick={() => Intimidacao(stock, personagem)}
+                        onClick={() => Intimidacao(stock, personagem[0])}
                      >
                         <Iconzinho />
                      </BotaoIconzinho>
@@ -355,7 +347,7 @@ export default function Dados() {
                   <Textinho>
                      Intuição
                      <BotaoIconzinho
-                        onClick={() => Intuicao(stock, personagem)}
+                        onClick={() => Intuicao(stock, personagem[0])}
                      >
                         <Iconzinho />
                      </BotaoIconzinho>
@@ -363,7 +355,7 @@ export default function Dados() {
                   <Textinho>
                      Investigação
                      <BotaoIconzinho
-                        onClick={() => Investigacao(stock, personagem)}
+                        onClick={() => Investigacao(stock, personagem[0])}
                      >
                         <Iconzinho />
                      </BotaoIconzinho>
@@ -373,7 +365,7 @@ export default function Dados() {
                      <br />
                      Animais
                      <BotaoIconzinho
-                        onClick={() => LidarComAnimais(stock, personagem)}
+                        onClick={() => LidarComAnimais(stock, personagem[0])}
                      >
                         <Iconzinho />
                      </BotaoIconzinho>
@@ -381,7 +373,7 @@ export default function Dados() {
                   <Textinho>
                      Medicina
                      <BotaoIconzinho
-                        onClick={() => Medicina(stock, personagem)}
+                        onClick={() => Medicina(stock, personagem[0])}
                      >
                         <Iconzinho />
                      </BotaoIconzinho>
@@ -389,7 +381,7 @@ export default function Dados() {
                   <Textinho>
                      Natureza
                      <BotaoIconzinho
-                        onClick={() => Natureza(stock, personagem)}
+                        onClick={() => Natureza(stock, personagem[0])}
                      >
                         <Iconzinho />
                      </BotaoIconzinho>
@@ -397,7 +389,7 @@ export default function Dados() {
                   <Textinho>
                      Percepção
                      <BotaoIconzinho
-                        onClick={() => Percepcao(stock, personagem)}
+                        onClick={() => Percepcao(stock, personagem[0])}
                      >
                         <Iconzinho />
                      </BotaoIconzinho>
@@ -405,7 +397,7 @@ export default function Dados() {
                   <Textinho>
                      Persuasão
                      <BotaoIconzinho
-                        onClick={() => Persuasao(stock, personagem)}
+                        onClick={() => Persuasao(stock, personagem[0])}
                      >
                         <Iconzinho />
                      </BotaoIconzinho>
@@ -413,7 +405,7 @@ export default function Dados() {
                   <Textinho>
                      Religião
                      <BotaoIconzinho
-                        onClick={() => Religiao(stock, personagem)}
+                        onClick={() => Religiao(stock, personagem[0])}
                      >
                         <Iconzinho />
                      </BotaoIconzinho>
@@ -421,7 +413,7 @@ export default function Dados() {
                   <Textinho>
                      Sobrevivencia
                      <BotaoIconzinho
-                        onClick={() => Sobrevivencia(stock, personagem)}
+                        onClick={() => Sobrevivencia(stock, personagem[0])}
                      >
                         <Iconzinho />
                      </BotaoIconzinho>

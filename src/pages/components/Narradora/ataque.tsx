@@ -145,88 +145,86 @@ export default function Ataques(){
     const CriaAtaques = (value:personagem ) =>{
         return(
         <CaixaNpc>
-            <>
-                <Titulo>Ataques fisicos de {value.nome}</Titulo>
-                <Texto>
-                    Soco 
-                    <BotaoAtaque >
-                        <BotaoInimigo>--INIMIGOS--</BotaoInimigo>
-                        {inimigos?.map(CriaBotaoInimigo)}
-                        <BotaoInimigo>--AMIGOS--</BotaoInimigo>
-                        {pcs?.map(CriaBotaoInimigo)}
-                        {aliados?.map(CriaBotaoInimigo)}
-                    </BotaoAtaque>
-                    <BotaoIcon onClick={()=>Soco(stock,value,alvo)}>
-                        <IconAtaque/>
-                    </BotaoIcon>
-                </Texto>
-                <Texto>
-                    Chute 
-                    <BotaoAtaque >
-                        <BotaoInimigo>--INIMIGOS--</BotaoInimigo>
-                        {inimigos?.map(CriaBotaoInimigo)}
-                        <BotaoInimigo>--AMIGOS--</BotaoInimigo>
-                        {pcs?.map(CriaBotaoInimigo)}
-                        {aliados?.map(CriaBotaoInimigo)}
-                    </BotaoAtaque>
-                    <BotaoIcon onClick={()=>Chute(stock,value,alvo)}>
-                        <IconAtaque/>
-                    </BotaoIcon>
-                </Texto>
-                <Texto>
-                    Desarmar 
-                    <BotaoAtaque >
-                        <BotaoInimigo>--INIMIGOS--</BotaoInimigo>
-                        {inimigos?.map(CriaBotaoInimigo)}
-                        <BotaoInimigo>--AMIGOS--</BotaoInimigo>
-                        {pcs?.map(CriaBotaoInimigo)}
-                        {aliados?.map(CriaBotaoInimigo)}
-                    </BotaoAtaque>
-                    <BotaoIcon onClick={()=>Desarmar(stock,value,alvo)}>
-                        <IconAtaque/>
-                    </BotaoIcon>
-                </Texto>
-                <Texto>
-                    Imobilizar 
-                    <BotaoAtaque >
-                        <BotaoInimigo>--INIMIGOS--</BotaoInimigo>
-                        {inimigos?.map(CriaBotaoInimigo)}
-                        <BotaoInimigo>--AMIGOS--</BotaoInimigo>
-                        {pcs?.map(CriaBotaoInimigo)}
-                        {aliados?.map(CriaBotaoInimigo)}
-                    </BotaoAtaque>
-                    <BotaoIcon onClick={()=>Imobilizar(stock,value,alvo)}>
-                        <IconAtaque/>
-                    </BotaoIcon>
-                </Texto>
-                <Texto>
-                    Atordoar 
-                    <BotaoAtaque >
-                        <BotaoInimigo>--INIMIGOS--</BotaoInimigo>
-                        {inimigos?.map(CriaBotaoInimigo)}
-                        <BotaoInimigo>--AMIGOS--</BotaoInimigo>
-                        {pcs?.map(CriaBotaoInimigo)}
-                        {aliados?.map(CriaBotaoInimigo)}
-                    </BotaoAtaque>
-                    <BotaoIcon onClick={()=>Atordoar(stock,value,alvo)}>
-                        <IconAtaque/>
-                    </BotaoIcon>
-                </Texto>
-                <Titulo>
-                    Armas de {value?.nome}
-                </Titulo>
-                {value?.armas?.map(CriaArmas)}
-                <Titulo>
-                    Utilidades de {value?.nome}
-                </Titulo>
-                {value?.utilidades?.map(CriaUtilidades)}
-            </>
+            <Titulo>Ataques fisicos de {value.nome}</Titulo>
+            <Texto>
+                Soco 
+                <BotaoAtaque >
+                    <BotaoInimigo>--INIMIGOS--</BotaoInimigo>
+                    {inimigos?.map(CriaBotaoInimigo)}
+                    <BotaoInimigo>--AMIGOS--</BotaoInimigo>
+                    {pcs?.map(CriaBotaoInimigo)}
+                    {aliados?.map(CriaBotaoInimigo)}
+                </BotaoAtaque>
+                <BotaoIcon onClick={()=>Soco(stock,value,alvo)}>
+                    <IconAtaque/>
+                </BotaoIcon>
+            </Texto>
+            <Texto>
+                Chute 
+                <BotaoAtaque >
+                    <BotaoInimigo>--INIMIGOS--</BotaoInimigo>
+                    {inimigos?.map(CriaBotaoInimigo)}
+                    <BotaoInimigo>--AMIGOS--</BotaoInimigo>
+                    {pcs?.map(CriaBotaoInimigo)}
+                    {aliados?.map(CriaBotaoInimigo)}
+                </BotaoAtaque>
+                <BotaoIcon onClick={()=>Chute(stock,value,alvo)}>
+                    <IconAtaque/>
+                </BotaoIcon>
+            </Texto>
+            <Texto>
+                Desarmar 
+                <BotaoAtaque >
+                    <BotaoInimigo>--INIMIGOS--</BotaoInimigo>
+                    {inimigos?.map(CriaBotaoInimigo)}
+                    <BotaoInimigo>--AMIGOS--</BotaoInimigo>
+                    {pcs?.map(CriaBotaoInimigo)}
+                    {aliados?.map(CriaBotaoInimigo)}
+                </BotaoAtaque>
+                <BotaoIcon onClick={()=>Desarmar(stock,value,alvo)}>
+                    <IconAtaque/>
+                </BotaoIcon>
+            </Texto>
+            <Texto>
+                Imobilizar 
+                <BotaoAtaque >
+                    <BotaoInimigo>--INIMIGOS--</BotaoInimigo>
+                    {inimigos?.map(CriaBotaoInimigo)}
+                    <BotaoInimigo>--AMIGOS--</BotaoInimigo>
+                    {pcs?.map(CriaBotaoInimigo)}
+                    {aliados?.map(CriaBotaoInimigo)}
+                </BotaoAtaque>
+                <BotaoIcon onClick={()=>Imobilizar(stock,value,alvo)}>
+                    <IconAtaque/>
+                </BotaoIcon>
+            </Texto>
+            <Texto>
+                Atordoar 
+                <BotaoAtaque >
+                    <BotaoInimigo>--INIMIGOS--</BotaoInimigo>
+                    {inimigos?.map(CriaBotaoInimigo)}
+                    <BotaoInimigo>--AMIGOS--</BotaoInimigo>
+                    {pcs?.map(CriaBotaoInimigo)}
+                    {aliados?.map(CriaBotaoInimigo)}
+                </BotaoAtaque>
+                <BotaoIcon onClick={()=>Atordoar(stock,value,alvo)}>
+                    <IconAtaque/>
+                </BotaoIcon>
+            </Texto>
+            <Titulo>
+                Armas de {value?.nome}
+            </Titulo>
+            {value?.armas?.map(CriaArmas)}
+            <Titulo>
+                Utilidades de {value?.nome}
+            </Titulo>
+            {value?.utilidades?.map(CriaUtilidades)}
         </CaixaNpc>)
     }
     return(
         <Caixa>
             <BotaoRefresh 
-            onClick={()=>Refresh}>
+            onClick={()=>Refresh()}>
                 <IconRefresh/>
             </BotaoRefresh>
             <Titulo>Aliados</Titulo>

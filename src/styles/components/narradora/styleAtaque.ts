@@ -75,11 +75,11 @@ export const IconRefresh = styled(FiRotateCcw)`
     color: ${(props) => props.theme.cores.rosinhas[50]};
 `;
 export const BotaoRefresh = styled.button`
-    height: 40px;
-    width: 40px;
+    width: 98%;
     margin: 1%;
+    padding: 1%;
     border-radius: 100%;
-    background-color: ${(props) => props.theme.cores.psicodelicas[800]};
+    background-color: ${(props) => props.theme.cores.psicodelicas[600]};
     border: 2px solid ${(props) => props.theme.cores.rosinhas[50]};
     :hover{
         background-color: ${(props) => props.theme.cores.psicodelicas[900]};

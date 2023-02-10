@@ -1,11 +1,6 @@
-import {
-    Popover,
-    PopoverArrow,
-    PopoverDisclosure
-} from "ariakit/popover";
 import styled from "styled-components";
 import { GiDiceTwentyFacesTwenty, GiSwordWound } from "react-icons/gi";
-import { FiArrowLeft } from "react-icons/fi";
+import { FiRotateCcw } from "react-icons/fi";
 
 export const Caixa = styled.div`    
     height: 98%;
@@ -81,35 +76,23 @@ export const IconAtaque = styled(GiSwordWound)`
     width: 40px;
     color: ${(props) => props.theme.cores.rosinhas[50]};
 `;
-export const BotaoAtaque = styled(PopoverDisclosure)`
-    height: 50px;
-    width: 50px;
-    border-radius: 100%;
+export const BotaoAlvo = styled.select`
+    height: 50%;
+    width: 30%;
     background-color: ${(props) => props.theme.cores.psicodelicas[800]};
     border: 2px solid ${(props) => props.theme.cores.rosinhas[50]};
-
+    border-radius: .375rem;
+    color: ${(props) => props.theme.cores.rosinhas[50]}; 
     :hover{
         background-color: ${(props) => props.theme.cores.psicodelicas[900]};
     }
 `;
-export const Flechinha = styled(PopoverArrow)``;
-export const CaixaOculta = styled(Popover)`
-    height: auto;
-    width: 15vw;
-    background-color:${(props) => props.theme.cores.psicodelicas[800]};
-    border-radius: .375rem;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction:column;
-    align-items: center;
-    justify-content: center;
-`;
-export const BotaoInimigo = styled.button`
-    width: 98%;
+export const Alvo = styled.option`
+    width: 96%;
     height: auto;
     margin: .5em;
-    padding: .5%;
-    font-size: .7rem;
+    padding: 1%;
+    font-size: 1rem;
     color: ${(props) => props.theme.cores.rosinhas[50]};
     background-color: ${(props) => props.theme.cores.psicodelicas[600]};
     border: 2px solid ${(props) => props.theme.cores.rosinhas[50]};
@@ -158,7 +141,7 @@ export const Textinho = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
-    gap: 50px;
+    gap: 30px;
 `;
 export const BotaoIconzinho = styled.button`
     height: 30px;
@@ -176,37 +159,19 @@ export const Iconzinho = styled(GiDiceTwentyFacesTwenty)`
     width: 20px;
     color: ${(props) => props.theme.cores.rosinhas[50]};
 `;
-export const Fundo = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    width: 100vw;
-    background: radial-gradient(
-        circle,
-        ${(props) => props.theme.cores.psicodelicas[400]},
-        ${(props) => props.theme.cores.psicodelicas[700]});
-`;
-export const BotaoVolta = styled.button`
-    cursor: pointer;
-    height: 50px;
-    width: 50px;
-    left: 5px;
-    top: 5px;
-    border: none;
-    border-radius: 100%;
-    position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid ${(props) => props.theme.cores.rosinhas[50]};
-    background-color:${(props) => props.theme.cores.psicodelicas[800]};
-    :hover{
-        background-color:${(props) => props.theme.cores.psicodelicas[900]};
-    }
-`;
-export const IconVolta = styled(FiArrowLeft)`
+export const IconRefresh = styled(FiRotateCcw)`
     height: 40px;
-    width: 30px;
+    width: 40px;
     color: ${(props) => props.theme.cores.rosinhas[50]};
+`;
+export const BotaoRefresh = styled.button`
+    width: 98%;
+    margin: 1%;
+    padding: 1%;
+    border-radius: .325em;
+    background-color: ${(props) => props.theme.cores.psicodelicas[600]};
+    border: 2px solid ${(props) => props.theme.cores.rosinhas[50]};
+    :hover{
+        background-color: ${(props) => props.theme.cores.psicodelicas[800]};
+    }
 `;

@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { GiMagicSwirl, GiHandBandage } from "react-icons/gi";
-import { device } from "../devices";
 import { FiArrowLeft } from "react-icons/fi";
 
 export const Caixa = styled.div`    

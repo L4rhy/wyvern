@@ -1,9 +1,9 @@
 import { stock } from './../../../types/types';
 import { supabase } from "./supabase";
 import { enviaMensagem } from "../components/chat";
-import { personagem, magia,habilidade, arma, armadura } from "../../../types/supabase"
+import { magia,habilidade, arma, armadura, utilidade } from "../../../types/supabase"
 
-function DescobreAcrobacia(personagem:personagem){
+function DescobreAcrobacia(personagem:any){
    var bonus = 0
    if(personagem.proeficiencias?.acrobacia[0]){
       bonus = 2
@@ -13,7 +13,7 @@ function DescobreAcrobacia(personagem:personagem){
    }
    return bonus
 }
-function DescobreAcanismo(personagem:personagem){
+function DescobreAcanismo(personagem:any){
    var bonus = 0
    if(personagem.proeficiencias?.arcanismo[0]){
       bonus = 2
@@ -23,7 +23,7 @@ function DescobreAcanismo(personagem:personagem){
    }
    return bonus
 }
-function DescobreAtletismo(personagem:personagem){
+function DescobreAtletismo(personagem:any){
    var bonus = 0
    if(personagem.proeficiencias?.atletismo[0]){
       bonus = 2
@@ -33,7 +33,7 @@ function DescobreAtletismo(personagem:personagem){
    }
    return bonus
 }
-function DescobreAtuacao(personagem:personagem){
+function DescobreAtuacao(personagem:any){
    var bonus = 0
    if(personagem.proeficiencias?.atuacao[0]){
       bonus = 2
@@ -43,7 +43,7 @@ function DescobreAtuacao(personagem:personagem){
    }
    return bonus
 }
-function DescobreConstrucao(personagem:personagem){
+function DescobreConstrucao(personagem:any){
    var bonus = 0 
    if(personagem.proeficiencias?.construcao[0]){
       bonus = 2
@@ -53,7 +53,7 @@ function DescobreConstrucao(personagem:personagem){
    }
    return bonus
 }
-function DescobreEnganacao(personagem:personagem){
+function DescobreEnganacao(personagem:any){
    var bonus = 0
    if(personagem.proeficiencias?.enganacao[0]){
       bonus = 2
@@ -63,7 +63,7 @@ function DescobreEnganacao(personagem:personagem){
    }
    return bonus
 }
-function DescobreFurtividade(personagem:personagem){
+function DescobreFurtividade(personagem:any){
    var bonus = 0
    if(personagem.proeficiencias?.furtividade[0]){
       bonus = 2
@@ -73,7 +73,7 @@ function DescobreFurtividade(personagem:personagem){
    }
    return bonus
 }
-function DescobreHistoria(personagem:personagem){
+function DescobreHistoria(personagem:any){
    var bonus = 0 
    if(personagem.proeficiencias?.historia[0]){
       bonus = 2 
@@ -83,7 +83,7 @@ function DescobreHistoria(personagem:personagem){
    }
    return bonus
 }
-function DescobreIlusionismo(personagem:personagem){
+function DescobreIlusionismo(personagem:any){
    var bonus = 0
    if(personagem.proeficiencias?.ilusionismo[0]){
       bonus = 2
@@ -93,7 +93,7 @@ function DescobreIlusionismo(personagem:personagem){
    }
    return bonus
 }
-function DescobreIntimidacao(personagem:personagem){
+function DescobreIntimidacao(personagem:any){
    var bonus = 0
    if(personagem.proeficiencias?.intimidacao[0]){
       bonus = 2
@@ -103,7 +103,7 @@ function DescobreIntimidacao(personagem:personagem){
    }
    return bonus
 }
-function DescobreIntuicao(personagem:personagem){
+function DescobreIntuicao(personagem:any){
    var bonus = 0
    if(personagem.proeficiencias?.intuicao[0]){
       bonus = 2
@@ -113,7 +113,7 @@ function DescobreIntuicao(personagem:personagem){
    }
    return bonus
 }
-function DescobreInvestigacao(personagem:personagem){
+function DescobreInvestigacao(personagem:any){
    var bonus = 0
    if(personagem.proeficiencias?.investigacao[0]){
       bonus = 2
@@ -123,7 +123,7 @@ function DescobreInvestigacao(personagem:personagem){
    }
    return bonus
 }
-function DescobreLidarComAnimais(personagem:personagem){
+function DescobreLidarComAnimais(personagem:any){
    var bonus = 0
    if(personagem.proeficiencias?.lidarComAnimais[0]){
       bonus = 2
@@ -133,7 +133,7 @@ function DescobreLidarComAnimais(personagem:personagem){
    }
    return bonus
 }
-function DescobreMedicina(personagem:personagem){
+function DescobreMedicina(personagem:any){
    var bonus = 0
    if(personagem.proeficiencias?.medicina[0]){
       bonus = 2
@@ -143,7 +143,7 @@ function DescobreMedicina(personagem:personagem){
    }
    return bonus
 }
-function DescobreNatureza(personagem:personagem){
+function DescobreNatureza(personagem:any){
    var bonus = 0
    if(personagem.proeficiencias?.natureza[0]){
       bonus = 2
@@ -153,7 +153,7 @@ function DescobreNatureza(personagem:personagem){
    }
    return bonus
 }
-function DescobrePercepcao(personagem:personagem){
+function DescobrePercepcao(personagem:any){
    var bonus = 0
    if(personagem.proeficiencias?.percepcao[0]){
       bonus = 2
@@ -163,7 +163,7 @@ function DescobrePercepcao(personagem:personagem){
    }
    return bonus
 }
-function DescobrePersuacao(personagem:personagem){
+function DescobrePersuacao(personagem:any){
    var bonus = 0
    if(personagem.proeficiencias?.persuasao[0]){
       bonus = 2
@@ -173,7 +173,7 @@ function DescobrePersuacao(personagem:personagem){
    }
    return bonus
 }
-function DescobreReligiao(personagem:personagem){
+function DescobreReligiao(personagem:any){
    var bonus = 0
    if(personagem.proeficiencias?.religiao[0]){
       bonus = 2
@@ -183,7 +183,7 @@ function DescobreReligiao(personagem:personagem){
    }
    return bonus
 }
-function DescobreSobrevivencia(personagem:personagem){
+function DescobreSobrevivencia(personagem:any){
    var bonus = 0
    if(personagem.proeficiencias?.sobrevivencia[0]){
       bonus =2
@@ -262,7 +262,7 @@ export function DescobreBonus(atributo:number){
    }
    return bonus
 }
-function DescobreBonusClasse(stock:stock,personagem:personagem){
+function DescobreBonusClasse(stock:stock,personagem:any){
    var bonus = 0
    if(personagem.classe==="Alquimista"||personagem.classe==="Arqueiro"||
    personagem.classe||"Assassino"||personagem.classe==="Artificer"||
@@ -307,16 +307,13 @@ function UpdateIniciativa(
    personagemNome: string
 ) {
    const update = async () => {
-      const { data, error } = await supabase
+      const { error } = await supabase
          .from("Personagens")
          .update({ iniciativa: iniciativa })
          .eq("nome", personagemNome)
          .select();
-      if (data) {
-         console.log("talvez deu");
-      }
+      
       if (error) {
-         console.log("nao deu");
          console.log(error);
       }
    };
@@ -398,7 +395,7 @@ export function D2(stock: stock, personagemNome: string) {
       enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);
    }
 }
-export function Oportunidade(stock: stock, personagem:personagem, inimigo:personagem){
+export function Oportunidade(stock: stock, personagem:any, inimigo:any){
    const dado = Rolagem(20);
    const bonusInimigo = DescobrePercepcao(inimigo)
    if(dado>1 && dado<20){
@@ -419,7 +416,7 @@ export function Oportunidade(stock: stock, personagem:personagem, inimigo:person
       enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario); 
    }
 }
-export function Acrobacia(stock:stock,personagem:personagem){
+export function Acrobacia(stock:stock,personagem:any){
    const dado = Rolagem(20)
    const bonus = DescobreAcrobacia(personagem)
    const total = dado+bonus
@@ -436,7 +433,7 @@ export function Acrobacia(stock:stock,personagem:personagem){
       enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);     
    }
 }
-export function Arcanismo(stock:stock,personagem:personagem){
+export function Arcanismo(stock:stock,personagem:any){
    const dado = Rolagem(20)
    const bonus = DescobreAcanismo(personagem)
    const total = dado+bonus
@@ -453,7 +450,7 @@ export function Arcanismo(stock:stock,personagem:personagem){
       enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);     
    }
 }
-export function Atletismo(stock:stock,personagem:personagem){
+export function Atletismo(stock:stock,personagem:any){
    const dado = Rolagem(20)
    const bonus = DescobreAtletismo(personagem)
    const total = dado+bonus
@@ -470,7 +467,7 @@ export function Atletismo(stock:stock,personagem:personagem){
       enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);     
    }
 }
-export function Atuacao(stock:stock,personagem:personagem){
+export function Atuacao(stock:stock,personagem:any){
    const dado = Rolagem(20)
    const bonus = DescobreAtuacao(personagem)
    const total = dado+bonus
@@ -487,7 +484,7 @@ export function Atuacao(stock:stock,personagem:personagem){
       enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);     
    }
 }
-export function Construcao(stock:stock,personagem:personagem){
+export function Construcao(stock:stock,personagem:any){
    const dado = Rolagem(20)
    const bonus = DescobreConstrucao(personagem)
    const total = dado+bonus
@@ -504,7 +501,7 @@ export function Construcao(stock:stock,personagem:personagem){
       enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);     
    }
 }
-export function Enganacao(stock:stock,personagem:personagem){
+export function Enganacao(stock:stock,personagem:any){
    const dado = Rolagem(20)
    const bonus = DescobreEnganacao(personagem)
    const total = dado+bonus
@@ -521,7 +518,7 @@ export function Enganacao(stock:stock,personagem:personagem){
       enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);     
    }
 }
-export function Furtividade(stock:stock,personagem:personagem){
+export function Furtividade(stock:stock,personagem:any){
    const dado = Rolagem(20)
    const bonus = DescobreFurtividade(personagem)
    const total = dado+bonus
@@ -538,7 +535,7 @@ export function Furtividade(stock:stock,personagem:personagem){
       enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);     
    }
 }
-export function Historia(stock:stock,personagem:personagem){
+export function Historia(stock:stock,personagem:any){
    const dado = Rolagem(20)
    const bonus = DescobreHistoria(personagem)
    const total = dado+bonus
@@ -555,7 +552,7 @@ export function Historia(stock:stock,personagem:personagem){
       enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);     
    }
 }
-export function Ilusionismo(stock:stock,personagem:personagem){
+export function Ilusionismo(stock:stock,personagem:any){
    const dado = Rolagem(20)
    const bonus = DescobreIlusionismo(personagem)
    const total = dado+bonus
@@ -572,7 +569,7 @@ export function Ilusionismo(stock:stock,personagem:personagem){
       enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);     
    }
 }
-export function Intimidacao(stock:stock,personagem:personagem){
+export function Intimidacao(stock:stock,personagem:any){
    const dado = Rolagem(20)
    const bonus = DescobreIntimidacao(personagem)
    const total = dado+bonus
@@ -589,7 +586,7 @@ export function Intimidacao(stock:stock,personagem:personagem){
       enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);     
    }
 }
-export function Intuicao(stock:stock,personagem:personagem){
+export function Intuicao(stock:stock,personagem:any){
    const dado = Rolagem(20)
    const bonus = DescobreIntuicao(personagem)
    const total = dado+bonus
@@ -606,7 +603,7 @@ export function Intuicao(stock:stock,personagem:personagem){
       enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);     
    }
 }
-export function Investigacao(stock:stock,personagem:personagem){
+export function Investigacao(stock:stock,personagem:any){
    const dado = Rolagem(20)
    const bonus = DescobreInvestigacao(personagem)
    const total = dado+bonus
@@ -623,7 +620,7 @@ export function Investigacao(stock:stock,personagem:personagem){
       enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);     
    }
 }
-export function LidarComAnimais(stock:stock,personagem:personagem){
+export function LidarComAnimais(stock:stock,personagem:any){
    const dado = Rolagem(20)
    const bonus = DescobreLidarComAnimais(personagem)
    const total = dado+bonus
@@ -640,7 +637,7 @@ export function LidarComAnimais(stock:stock,personagem:personagem){
       enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);     
    }
 }
-export function Medicina(stock:stock,personagem:personagem){
+export function Medicina(stock:stock,personagem:any){
    const dado = Rolagem(20)
    const bonus = DescobreMedicina(personagem)
    const total = dado+bonus
@@ -657,7 +654,7 @@ export function Medicina(stock:stock,personagem:personagem){
       enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);     
    }
 }
-export function Natureza(stock:stock,personagem:personagem){
+export function Natureza(stock:stock,personagem:any){
    const dado = Rolagem(20)
    const bonus = DescobreNatureza(personagem)
    const total = dado+bonus
@@ -674,7 +671,7 @@ export function Natureza(stock:stock,personagem:personagem){
       enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);     
    }
 }
-export function Percepcao(stock:stock,personagem:personagem){
+export function Percepcao(stock:stock,personagem:any){
    const dado = Rolagem(20)
    const bonus = DescobrePercepcao(personagem)
    const total = dado+bonus
@@ -691,7 +688,7 @@ export function Percepcao(stock:stock,personagem:personagem){
       enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);     
    }
 }
-export function Persuasao(stock:stock,personagem:personagem){
+export function Persuasao(stock:stock,personagem:any){
    const dado = Rolagem(20)
    const bonus = DescobrePersuacao(personagem)
    const total = dado+bonus
@@ -708,7 +705,7 @@ export function Persuasao(stock:stock,personagem:personagem){
       enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);     
    }
 }
-export function Religiao(stock:stock,personagem:personagem){
+export function Religiao(stock:stock,personagem:any){
    const dado = Rolagem(20)
    const bonus = DescobreReligiao(personagem)
    const total = dado+bonus
@@ -725,7 +722,7 @@ export function Religiao(stock:stock,personagem:personagem){
       enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);     
    }
 }
-export function Sobrevivencia(stock:stock,personagem:personagem){
+export function Sobrevivencia(stock:stock,personagem:any){
    const dado = Rolagem(20)
    const bonus = DescobreSobrevivencia(personagem)
    const total = dado+bonus
@@ -742,7 +739,7 @@ export function Sobrevivencia(stock:stock,personagem:personagem){
       enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);     
    }
 }
-export function RolaAtributo(stock:stock,personagem:personagem,bonus:number,tipo:string){
+export function RolaAtributo(stock:stock,personagem:any,bonus:number,tipo:string){
    const dado = Rolagem(20)
    const total = dado+bonus
    if(dado>1 && dado<20){
@@ -758,127 +755,217 @@ export function RolaAtributo(stock:stock,personagem:personagem,bonus:number,tipo
       enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);     
    }
 }
-function UpdateVida(personagem:personagem, dano:number){
+function UpdateVida(stock:stock,personagem:any, dano:number){
+   const armaduraInicial = personagem.armaduraAtual
    const vidaInicial = personagem.vidaAtual
-   const vidaFinal = vidaInicial-dano
-   const update = async () => {
-      const { data, error } = await supabase
+   if(armaduraInicial-dano<0){
+      const mensagem = "A armadura de: "+personagem.nome+", Quebrou"
+      enviaMensagem("sistema",mensagem, stock.campanhaUsuario)
+   }
+   if(armaduraInicial<=0){
+      const vidaFinal = vidaInicial-dano
+      if(vidaFinal<0){
+         const mensagem = "O: "+personagem.nome+", Morreu"
+         enviaMensagem("sistema",mensagem, stock.campanhaUsuario)
+      }
+      const update = async () => {
+      const { error } = await supabase
          .from("Personagens")
          .update({ vidaAtual: vidaFinal })
          .eq("nome", personagem.nome)
          .select();
-      if (data) {
-         console.log("deu");
-      }
+       
+         if (error) {
+            console.log(error);
+         }
+      };
+      update();
+   }else{
+      const armaduraFinal = armaduraInicial-dano
+      const update = async () => {
+      const { error } = await supabase
+         .from("Personagens")
+         .update({ armaduraAtual: armaduraFinal })
+         .eq("nome", personagem.nome)
+         .select();
+       
+         if (error) {
+            console.log(error);
+         }
+      };
+      update();
+   }
+   
+}
+function UpdateDanoHabilidade(personagem:any, dano:number){
+   const novoDano = personagem.danoHabilidade+dano
+   const update = async () => {
+      const { error } = await supabase
+         .from("Personagens")
+         .update({ danoHabilidade: novoDano })
+         .eq("nome", personagem.nome)
+         .select()
       if (error) {
-         console.log("nao deu");
          console.log(error);
       }
    };
    update();
 }
-function UpdateVidaCura(personagem:personagem, cura:number){
+function UpdateVidaCura(personagem:any, cura:number){
    const vidaInicial = personagem.vidaAtual
    const vidaFinal = vidaInicial+cura
    const update = async () => {
-      const { data, error } = await supabase
+      const { error } = await supabase
          .from("Personagens")
          .update({ vidaAtual: vidaFinal })
          .eq("nome", personagem.nome)
          .select();
-      if (data) {
-         console.log("deu");
-      }
+      
       if (error) {
-         console.log("nao deu");
          console.log(error);
       }
    };
    update();
 }
-function UpdateStatus(personagem:personagem, status:string){
+function UpdateMana(personagem:any, mana:number){
+   const novaMana = personagem.manaAtual+mana
    const update = async () => {
-      const { data, error } = await supabase
+      const { error } = await supabase
          .from("Personagens")
-         .update({ statusPersonagem: status })
+         .update({ manaAtual: novaMana })
          .eq("nome", personagem.nome)
          .select();
-      if (data) {
-         console.log("deu");
-      }
+      
       if (error) {
-         console.log("nao deu");
          console.log(error);
       }
    };
    update();
 }
-function UpdateDefesa(personagem:personagem, defesa:number){
+function UpdateManaN(personagem:any, mana:number){
+   const novaMana = personagem.manaAtual-mana
+   const update = async () => {
+      const { error } = await supabase
+         .from("Personagens")
+         .update({ manaAtual: novaMana })
+         .eq("nome", personagem.nome)
+         .select();
+      
+      if (error) {
+         console.log(error);
+      }
+   };
+   update();
+}
+function UpdateStatus(personagem:any, status:string){
+   const statusInicial = personagem.statusPersonagem
+   const statusFinal = statusInicial.unshift(status)
+   const update = async () => {
+      const { error } = await supabase
+         .from("Personagens")
+         .update({ statusPersonagem: statusFinal })
+         .eq("nome", personagem.nome)
+         .select();
+       
+      if (error) {
+         console.log(error);
+      }
+   };
+   update();
+}
+function UpdateDefesa(personagem:any, defesa:number){
    const novaProtecao = personagem.armaduraAtual+defesa
    const update = async () => {
-      const { data, error } = await supabase
+      const { error } = await supabase
          .from("Personagens")
          .update({ armaduraAtual: novaProtecao })
          .eq("nome", personagem.nome)
          .select();
-      if (data) {
-         console.log("deu");
-      }
+       
       if (error) {
-         console.log("nao deu");
          console.log(error);
       }
    };
    update();
 }
-export function Soco(stock:stock, personagem:personagem, inimigo: personagem){
+export function UpdateEquipaArmadura(personagem:any, armadura:armadura){
+   const proteçãoTotal = personagem.armaduraTotal+armadura.efeito.protecao
+   const update = async () => {
+      const { error } = await supabase
+         .from("Personagens")
+         .update({ armaduraTotal: proteçãoTotal })
+         .eq("nome", personagem.nome)
+         .select();
+       
+      if (error) {
+         console.log(error);
+      }
+   };
+   update();
+}
+export function UpdateDesEquipaArmadura(personagem:any, armadura:armadura){
+   const proteçãoTotal = personagem.armaduraTotal-armadura.efeito.protecao
+   const update = async () => {
+      const { error } = await supabase
+         .from("Personagens")
+         .update({ armaduraTotal: proteçãoTotal })
+         .eq("nome", personagem.nome)
+         .select();
+       
+      if (error) {
+         console.log(error);
+      }
+   };
+   update();
+}
+export function Soco(stock:stock, personagem:any, inimigo: any){
    const dado = Rolagem(20)
    const BDInimigo = DescobreBonus(inimigo?.destreza)
    if(dado>1 && dado<20){
       if(dado+stock.bonus.forca>10+BDInimigo){
          const mensagem = personagem.nome + " atacou com um soco " + dado+"+"+stock.bonus.forca;
          enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);
-         if(personagem.statusPersonagem==="normal"){
+         if(personagem.statusPersonagem[0]==="normal"){
             const dano = 5+stock.bonus.forca
-            UpdateVida(inimigo,dano)
+            UpdateVida(stock,inimigo,dano)
          }
-         if(personagem.statusPersonagem==="berserker1"){
+         if(personagem.statusPersonagem[0]==="berserker1"){
             const por = Rolagem(2)
             if(por===1){
                const dano = 5+stock.bonus.forca
-               UpdateVida(inimigo,dano)
+               UpdateVida(stock,inimigo,dano)
             }else{
                const dano = 2*(5+stock.bonus.forca)
-               UpdateVida(inimigo,dano)
+               UpdateVida(stock,inimigo,dano)
             }
          }
-         if(personagem.statusPersonagem==="berserker2"){
+         if(personagem.statusPersonagem[0]==="berserker2"){
             const dano = 2*(5+stock.bonus.forca)
-            UpdateVida(inimigo,dano)
+            UpdateVida(stock,inimigo,dano)
          }
-         if(personagem.statusPersonagem==="berserker3"){
+         if(personagem.statusPersonagem[0]==="berserker3"){
             const por = Rolagem(2)
             if(por===1){
                const dano = 3*(5+stock.bonus.forca)
-               UpdateVida(inimigo,dano)
+               UpdateVida(stock,inimigo,dano)
             }else{
                const dano = 2*(5+stock.bonus.forca)
-               UpdateVida(inimigo,dano)
+               UpdateVida(stock,inimigo,dano)
             }
          }
-         if(personagem.statusPersonagem==="berserker4"){
+         if(personagem.statusPersonagem[0]==="berserker4"){
             const por = Rolagem(2)
             if(por===1){
                const dano = 2*(5+stock.bonus.forca)
-               UpdateVida(inimigo,dano)
+               UpdateVida(stock,inimigo,dano)
             }else{
                const dano = 3*(5+stock.bonus.forca)
-               UpdateVida(inimigo,dano)
+               UpdateVida(stock,inimigo,dano)
             }
          }
-         if(personagem.statusPersonagem==="berserker5"){
+         if(personagem.statusPersonagem[0]==="berserker5"){
             const dano = 3*(5+stock.bonus.forca)
-            UpdateVida(inimigo,dano)
+            UpdateVida(stock,inimigo,dano)
          }
       }else{
          const mensagem = personagem.nome + " atacou com um soco, e errou " + dado+"+"+stock.bonus.forca;
@@ -888,47 +975,47 @@ export function Soco(stock:stock, personagem:personagem, inimigo: personagem){
    if(dado===20){
       const mensagem = personagem.nome + " atacou com um soco, ACERTO CRITICO " + dado+"+"+stock.bonus.forca;
       enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);
-      if(personagem.statusPersonagem==="normal"){
+      if(personagem.statusPersonagem[0]==="normal"){
          const dano = 2*(5+stock.bonus.forca)
-         UpdateVida(inimigo,dano)
+         UpdateVida(stock,inimigo,dano)
       }
-      if(personagem.statusPersonagem==="berserker1"){
+      if(personagem.statusPersonagem[0]==="berserker1"){
          const por = Rolagem(2)
          if(por===1){
             const dano = 2*(5+stock.bonus.forca)
-            UpdateVida(inimigo,dano)
+            UpdateVida(stock,inimigo,dano)
          }else{
             const dano = 4*(5+stock.bonus.forca)
-            UpdateVida(inimigo,dano)
+            UpdateVida(stock,inimigo,dano)
          }
       }
-      if(personagem.statusPersonagem==="berserker2"){
+      if(personagem.statusPersonagem[0]==="berserker2"){
          const dano = 4*(5+stock.bonus.forca)
-         UpdateVida(inimigo,dano)
+         UpdateVida(stock,inimigo,dano)
       }
-      if(personagem.statusPersonagem==="berserker3"){
+      if(personagem.statusPersonagem[0]==="berserker3"){
          const por = Rolagem(2)
          if(por===1){
             const dano = 6*(5+stock.bonus.forca)
-            UpdateVida(inimigo,dano)
+            UpdateVida(stock,inimigo,dano)
          }else{
             const dano = 4*(5+stock.bonus.forca)
-            UpdateVida(inimigo,dano)
+            UpdateVida(stock,inimigo,dano)
          }
       }
-      if(personagem.statusPersonagem==="berserker4"){
+      if(personagem.statusPersonagem[0]==="berserker4"){
          const por = Rolagem(2)
          if(por===1){
             const dano = 6*(5+stock.bonus.forca)
-            UpdateVida(inimigo,dano)
+            UpdateVida(stock,inimigo,dano)
          }else{
             const dano = 4*(5+stock.bonus.forca)
-            UpdateVida(inimigo,dano)
+            UpdateVida(stock,inimigo,dano)
          }
       }
-      if(personagem.statusPersonagem==="berserker5"){
+      if(personagem.statusPersonagem[0]==="berserker5"){
          const dano = 6*(5+stock.bonus.forca)
-         UpdateVida(inimigo,dano)
+         UpdateVida(stock,inimigo,dano)
       }
    }
    if(dado===1){
@@ -936,54 +1023,54 @@ export function Soco(stock:stock, personagem:personagem, inimigo: personagem){
       enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);     
    }
 }
-export function Chute(stock:stock, personagem:personagem, inimigo: personagem){
+export function Chute(stock:stock, personagem:any, inimigo: any){
    const dado = Rolagem(20)
    const BDInimigo = DescobreBonus(inimigo?.destreza)
    if(dado>1 && dado<20){
       if(dado+stock.bonus.forca>10+BDInimigo){
          const mensagem = personagem.nome + " atacou com um chute " + dado+"+"+stock.bonus.forca;
          enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);
-         if(personagem.statusPersonagem==="normal"){
+         if(personagem.statusPersonagem[0]==="normal"){
             const dano = 5+stock.bonus.forca
-            UpdateVida(inimigo,dano)
+            UpdateVida(stock,inimigo,dano)
          }
-         if(personagem.statusPersonagem==="berserker1"){
+         if(personagem.statusPersonagem[0]==="berserker1"){
             const por = Rolagem(2)
             if(por===1){
                const dano = 5+stock.bonus.forca
-               UpdateVida(inimigo,dano)
+               UpdateVida(stock,inimigo,dano)
             }else{
                const dano = 2*(5+stock.bonus.forca)
-               UpdateVida(inimigo,dano)
+               UpdateVida(stock,inimigo,dano)
             }
          }
-         if(personagem.statusPersonagem==="berserker2"){
+         if(personagem.statusPersonagem[0]==="berserker2"){
             const dano = 2*(5+stock.bonus.forca)
-            UpdateVida(inimigo,dano)
+            UpdateVida(stock,inimigo,dano)
          }
-         if(personagem.statusPersonagem==="berserker3"){
+         if(personagem.statusPersonagem[0]==="berserker3"){
             const por = Rolagem(2)
             if(por===1){
                const dano = 3*(5+stock.bonus.forca)
-               UpdateVida(inimigo,dano)
+               UpdateVida(stock,inimigo,dano)
             }else{
                const dano = 2*(5+stock.bonus.forca)
-               UpdateVida(inimigo,dano)
+               UpdateVida(stock,inimigo,dano)
             }
          }
-         if(personagem.statusPersonagem==="berserker4"){
+         if(personagem.statusPersonagem[0]==="berserker4"){
             const por = Rolagem(2)
             if(por===1){
                const dano = 2*(5+stock.bonus.forca)
-               UpdateVida(inimigo,dano)
+               UpdateVida(stock,inimigo,dano)
             }else{
                const dano = 3*(5+stock.bonus.forca)
-               UpdateVida(inimigo,dano)
+               UpdateVida(stock,inimigo,dano)
             }
          }
-         if(personagem.statusPersonagem==="berserker5"){
+         if(personagem.statusPersonagem[0]==="berserker5"){
             const dano = 3*(5+stock.bonus.forca)
-            UpdateVida(inimigo,dano)
+            UpdateVida(stock,inimigo,dano)
          }
       }else{
          const mensagem = personagem.nome + " atacou com um chute, e errou " + dado+"+"+stock.bonus.forca;
@@ -993,47 +1080,47 @@ export function Chute(stock:stock, personagem:personagem, inimigo: personagem){
    if(dado===20){
       const mensagem = personagem.nome + " atacou com um chute, ACERTO CRITICO " + dado+"+"+stock.bonus.forca;
       enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);
-      if(personagem.statusPersonagem==="normal"){
+      if(personagem.statusPersonagem[0]==="normal"){
          const dano = 2*(5+stock.bonus.forca)
-         UpdateVida(inimigo,dano)
+         UpdateVida(stock,inimigo,dano)
       }
-      if(personagem.statusPersonagem==="berserker1"){
+      if(personagem.statusPersonagem[0]==="berserker1"){
          const por = Rolagem(2)
          if(por===1){
             const dano = 2*(5+stock.bonus.forca)
-            UpdateVida(inimigo,dano)
+            UpdateVida(stock,inimigo,dano)
          }else{
             const dano = 4*(5+stock.bonus.forca)
-            UpdateVida(inimigo,dano)
+            UpdateVida(stock,inimigo,dano)
          }
       }
-      if(personagem.statusPersonagem==="berserker2"){
+      if(personagem.statusPersonagem[0]==="berserker2"){
          const dano = 4*(5+stock.bonus.forca)
-         UpdateVida(inimigo,dano)
+         UpdateVida(stock,inimigo,dano)
       }
-      if(personagem.statusPersonagem==="berserker3"){
+      if(personagem.statusPersonagem[0]==="berserker3"){
          const por = Rolagem(2)
          if(por===1){
             const dano = 6*(5+stock.bonus.forca)
-            UpdateVida(inimigo,dano)
+            UpdateVida(stock,inimigo,dano)
          }else{
             const dano = 4*(5+stock.bonus.forca)
-            UpdateVida(inimigo,dano)
+            UpdateVida(stock,inimigo,dano)
          }
       }
-      if(personagem.statusPersonagem==="berserker4"){
+      if(personagem.statusPersonagem[0]==="berserker4"){
          const por = Rolagem(2)
          if(por===1){
             const dano = 6*(5+stock.bonus.forca)
-            UpdateVida(inimigo,dano)
+            UpdateVida(stock,inimigo,dano)
          }else{
             const dano = 4*(5+stock.bonus.forca)
-            UpdateVida(inimigo,dano)
+            UpdateVida(stock,inimigo,dano)
          }
       }
-      if(personagem.statusPersonagem==="berserker5"){
+      if(personagem.statusPersonagem[0]==="berserker5"){
          const dano = 6*(5+stock.bonus.forca)
-         UpdateVida(inimigo,dano)
+         UpdateVida(stock,inimigo,dano)
       }
    }
    if(dado===1){
@@ -1041,7 +1128,7 @@ export function Chute(stock:stock, personagem:personagem, inimigo: personagem){
       enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);     
    }
 }
-export function Desarmar(stock:stock, personagem:personagem, inimigo: personagem){
+export function Desarmar(stock:stock, personagem:any, inimigo: any){
    const dado = Rolagem(20)
    const BDInimigo = DescobreBonus(inimigo?.destreza)
    if(dado>1 && dado<20){
@@ -1064,7 +1151,7 @@ export function Desarmar(stock:stock, personagem:personagem, inimigo: personagem
       enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);     
    }
 }
-export function Imobilizar(stock:stock, personagem:personagem, inimigo: personagem){
+export function Imobilizar(stock:stock, personagem:any, inimigo: any){
    const dado = Rolagem(20)
    const BFInimigo = DescobreBonus(inimigo?.forca)
    if(dado>1 && dado<20){
@@ -1087,7 +1174,7 @@ export function Imobilizar(stock:stock, personagem:personagem, inimigo: personag
       enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);     
    }
 }
-export function Atordoar(stock:stock, personagem:personagem, inimigo: personagem){
+export function Atordoar(stock:stock, personagem:any, inimigo: any){
    const dado = Rolagem(20)
    const BCInimigo = DescobreBonus(inimigo?.constituicao)
    if(dado>1 && dado<20){
@@ -1112,76 +1199,76 @@ export function Atordoar(stock:stock, personagem:personagem, inimigo: personagem
 }
 export function AtaqueComArma(
    stock:stock,
-   personagem:personagem, 
-   inimigo:personagem, 
+   personagem:any, 
+   inimigo:any, 
    arma:arma){
    const dado = Rolagem(20)
    const BDInimigo = DescobreBonus(inimigo?.destreza)
 
    if(!arma.aDistancia){
-      const danoArma = arma.dano
+      const danoArma = arma.dano+personagem.danoHabilidade
       const BCPersonagem = DescobreBonusClasse(stock,personagem)
       if(dado>1 && dado<20){
          if(dado+BCPersonagem>10+BDInimigo){
-            if(personagem.statusPersonagem==="normal"){
+            if(personagem.statusPersonagem[0]==="normal"){
                const dano = danoArma
                const mensagem = personagem.nome + " atacou com arma: "+arma?.nome+" "+ dado+", dano: "+dano;
                enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);
-               UpdateVida(inimigo,dano)
+               UpdateVida(stock,inimigo,dano)
             }
-            if(personagem.statusPersonagem==="berserker1"){
+            if(personagem.statusPersonagem[0]==="berserker1"){
                const por = Rolagem(2)
                if(por===1){
                   const dano = danoArma
                   const mensagem = personagem.nome + " atacou com arma: "+arma?.nome+" "+ dado+", dano: "+dano;
                   enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);
-                  UpdateVida(inimigo,dano)
+                  UpdateVida(stock,inimigo,dano)
                }else{
                   const dano = 2*danoArma
                   const mensagem = personagem.nome + " atacou com arma: "+arma?.nome+" "+ dado+", dano: "+dano;
                   enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);
-                  UpdateVida(inimigo,dano)
+                  UpdateVida(stock,inimigo,dano)
                }
             }
-            if(personagem.statusPersonagem==="berserker2"){
+            if(personagem.statusPersonagem[0]==="berserker2"){
                const dano = 2*danoArma
                const mensagem = personagem.nome + " atacou com arma: "+arma?.nome+" "+ dado+", dano: "+dano;
                enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);
-               UpdateVida(inimigo,dano)
+               UpdateVida(stock,inimigo,dano)
             }
-            if(personagem.statusPersonagem==="berserker3"){
+            if(personagem.statusPersonagem[0]==="berserker3"){
                const por = Rolagem(2)
                if(por===1){
                   const dano = 3*danoArma
                   const mensagem = personagem.nome + " atacou com arma: "+arma?.nome+" "+ dado+", dano: "+dano;
                   enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);
-                  UpdateVida(inimigo,dano)
+                  UpdateVida(stock,inimigo,dano)
                }else{
                   const dano = 2*danoArma
                   const mensagem = personagem.nome + " atacou com arma: "+arma?.nome+" "+ dado+", dano: "+dano;
                   enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);
-                  UpdateVida(inimigo,dano)
+                  UpdateVida(stock,inimigo,dano)
                }
             }
-            if(personagem.statusPersonagem==="berserker4"){
+            if(personagem.statusPersonagem[0]==="berserker4"){
                const por = Rolagem(2)
                if(por===1){
                   const dano = 2*danoArma
                   const mensagem = personagem.nome + " atacou com arma: "+arma?.nome+" "+ dado+", dano: "+dano;
                   enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);
-                  UpdateVida(inimigo,dano)
+                  UpdateVida(stock,inimigo,dano)
                }else{
                   const dano = 3*danoArma
                   const mensagem = personagem.nome + " atacou com arma: "+arma?.nome+" "+ dado+", dano: "+dano;
                   enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);
-                  UpdateVida(inimigo,dano)
+                  UpdateVida(stock,inimigo,dano)
                }
             }
-            if(personagem.statusPersonagem==="berserker5"){
+            if(personagem.statusPersonagem[0]==="berserker5"){
                const dano = 3*danoArma
                const mensagem = personagem.nome + " atacou com arma: "+arma?.nome+" "+ dado+", dano: "+dano;
                enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);
-               UpdateVida(inimigo,dano)
+               UpdateVida(stock,inimigo,dano)
             }
          }else{
             const mensagem = personagem.nome + " atacou com um soco, e errou " + dado;
@@ -1189,65 +1276,65 @@ export function AtaqueComArma(
          }
       }
       if(dado===20){
-         if(personagem.statusPersonagem==="normal"){
+         if(personagem.statusPersonagem[0]==="normal"){
             const dano = 2*danoArma
             const mensagem = personagem.nome + " ACERTO CRITICO com arma: "+arma?.nome+" "+ dado+", dano: "+dano;
             enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);
-            UpdateVida(inimigo,dano)
+            UpdateVida(stock,inimigo,dano)
          }
-         if(personagem.statusPersonagem==="berserker1"){
+         if(personagem.statusPersonagem[0]==="berserker1"){
             const por = Rolagem(2)
             if(por===1){
                const dano = 2*danoArma
                const mensagem = personagem.nome + " ACERTO CRITICO com arma: "+arma?.nome+" "+ dado+", dano: "+dano;
                enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);
-               UpdateVida(inimigo,dano)
+               UpdateVida(stock,inimigo,dano)
             }else{
                const dano = 4*danoArma
                const mensagem = personagem.nome + " ACERTO CRITICO com arma: "+arma?.nome+" "+ dado+", dano: "+dano;
                enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);
-               UpdateVida(inimigo,dano)
+               UpdateVida(stock,inimigo,dano)
             }
          }
-         if(personagem.statusPersonagem==="berserker2"){
+         if(personagem.statusPersonagem[0]==="berserker2"){
             const dano = 4*danoArma
             const mensagem = personagem.nome + " ACERTO CRITICO com arma: "+arma?.nome+" "+ dado+", dano: "+dano;
             enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);
-            UpdateVida(inimigo,dano)
+            UpdateVida(stock,inimigo,dano)
          }
-         if(personagem.statusPersonagem==="berserker3"){
+         if(personagem.statusPersonagem[0]==="berserker3"){
             const por = Rolagem(2)
             if(por===1){
                const dano = 6*danoArma
                const mensagem = personagem.nome + " ACERTO CRITICO com arma: "+arma?.nome+" "+ dado+", dano: "+dano;
                enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);
-               UpdateVida(inimigo,dano)
+               UpdateVida(stock,inimigo,dano)
             }else{
                const dano = 4*danoArma
                const mensagem = personagem.nome + " ACERTO CRITICO com arma: "+arma?.nome+" "+ dado+", dano: "+dano;
                enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);
-               UpdateVida(inimigo,dano)
+               UpdateVida(stock,inimigo,dano)
             }
          }
-         if(personagem.statusPersonagem==="berserker4"){
+         if(personagem.statusPersonagem[0]==="berserker4"){
             const por = Rolagem(2)
             if(por===1){
                const dano = 6*danoArma
                const mensagem = personagem.nome + " ACERTO CRITICO com arma: "+arma?.nome+" "+ dado+", dano: "+dano;
                enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);
-               UpdateVida(inimigo,dano)
+               UpdateVida(stock,inimigo,dano)
             }else{
                const dano = 4*danoArma
                const mensagem = personagem.nome + " ACERTO CRITICO com arma: "+arma?.nome+" "+ dado+", dano: "+dano;
                enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);
-               UpdateVida(inimigo,dano)
+               UpdateVida(stock,inimigo,dano)
             }
          }
-         if(personagem.statusPersonagem==="berserker5"){
+         if(personagem.statusPersonagem[0]==="berserker5"){
             const dano = 6*danoArma
             const mensagem = personagem.nome + " ACERTO CRITICO com arma: "+arma?.nome+" "+ dado+", dano: "+dano;
             enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);
-            UpdateVida(inimigo,dano)
+            UpdateVida(stock,inimigo,dano)
          }
       }
       if(dado===1){
@@ -1256,18 +1343,24 @@ export function AtaqueComArma(
       }
    }
    if(arma.aDistancia){
-      const flechas = <any>[]
-      const virotes = <any>[]
-      const balas = <any>[]
-      personagem.armas.forEach((value)=>{
+      const flechas:arma[] = []
+      const virotes:arma[] = []
+      const balas:arma[] = []
+      personagem.armas.forEach((value:any)=>{
          if(value.municaoArco){
-            flechas.push(value)
+            if(value.equipada){
+               flechas.push(value)
+            }
          }
          if(value.municaoBesta){
-            virotes.push(value)
+            if(value.equipada){
+               virotes.push(value)
+            }
          }
          if(value.municaoFogo){
-            balas.push(value)
+            if(value.equipada){
+               balas.push(value)
+            }
          }
       })
       if(arma.tipo==="arco"){
@@ -1277,14 +1370,14 @@ export function AtaqueComArma(
             const dano = arma.dano*flechas[0].dano
             const mensagem = personagem.nome + " atacou com arco: "+arma?.nome+" "+dado+", dano: "+dano;
             enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);
-            UpdateVida(inimigo,dano)
+            UpdateVida(stock,inimigo,dano)
             }
          }
          if(dado===20){
             const dano = 2*(arma.dano*flechas[0].dano)
             const mensagem = personagem.nome + " atacou com arco: "+arma?.nome+" "+dado+", dano: "+dano;
             enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);
-            UpdateVida(inimigo,dano)
+            UpdateVida(stock,inimigo,dano)
          }
          if(dado===1){
             const mensagem = personagem.nome + " ERRO CRITICO com arco: "+arma?.nome+" "+ dado
@@ -1298,14 +1391,14 @@ export function AtaqueComArma(
             const dano = arma.dano*virotes[0].dano
             const mensagem = personagem.nome + " atacou com arco: "+arma?.nome+" "+dado+", dano: "+dano;
             enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);
-            UpdateVida(inimigo,dano)
+            UpdateVida(stock,inimigo,dano)
             }
          }
          if(dado===20){
             const dano = 2*(arma.dano*virotes[0].dano)
             const mensagem = personagem.nome + " atacou com arco: "+arma?.nome+" "+dado+", dano: "+dano;
             enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);
-            UpdateVida(inimigo,dano)
+            UpdateVida(stock,inimigo,dano)
          }
          if(dado===1){
             const mensagem = personagem.nome + " ERRO CRITICO com arco: "+arma?.nome+" "+ dado
@@ -1319,14 +1412,14 @@ export function AtaqueComArma(
             const dano = arma.dano*balas[0].dano
             const mensagem = personagem.nome + " atacou com arco: "+arma?.nome+" "+dado+", dano: "+dano;
             enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);
-            UpdateVida(inimigo,dano)
+            UpdateVida(stock,inimigo,dano)
             }
          }
          if(dado===20){
             const dano = 2*(arma.dano*balas[0].dano)
             const mensagem = personagem.nome + " atacou com arco: "+arma?.nome+" "+dado+", dano: "+dano;
             enviaMensagem(stock.usuario.nomeUsuario, mensagem, stock.campanhaUsuario);
-            UpdateVida(inimigo,dano)
+            UpdateVida(stock,inimigo,dano)
          }
          if(dado===1){
             const mensagem = personagem.nome + " ERRO CRITICO com arco: "+arma?.nome+" "+ dado
@@ -1335,10 +1428,10 @@ export function AtaqueComArma(
       }
    }
 }
-export function LevantaEscudo(stock:stock,personagem:personagem,escudo:armadura){
+export function LevantaEscudo(stock:stock,personagem:any,escudo:armadura){
 
 }
-export function UsaHabilidade(stock:stock, personagem:personagem, alvo:personagem, habilidade:habilidade){
+export function UsaHabilidade(stock:stock, personagem:any, alvo:any, habilidade:habilidade){
    if(habilidade.efeito.narrativo){
       const mensagem = personagem.nome+" usou a habilidade: "+habilidade.nome
       enviaMensagem(stock.usuario.nomeUsuario,mensagem, stock.campanhaUsuario)
@@ -1359,7 +1452,7 @@ export function UsaHabilidade(stock:stock, personagem:personagem, alvo:personage
       enviaMensagem(stock.usuario.nomeUsuario,mensagem, stock.campanhaUsuario)
    }
    if(habilidade.efeito.dano>0){
-      UpdateVida(alvo,habilidade.efeito.dano)
+      UpdateDanoHabilidade(alvo,habilidade.efeito.dano)
       const mensagem = personagem.nome+" usou a habilidade: "+habilidade.nome
       enviaMensagem(stock.usuario.nomeUsuario,mensagem, stock.campanhaUsuario)
    }
@@ -1369,34 +1462,224 @@ export function UsaHabilidade(stock:stock, personagem:personagem, alvo:personage
       enviaMensagem(stock.usuario.nomeUsuario,mensagem, stock.campanhaUsuario)
    }
 }
-export function UsaMagia(stock:stock, personagem:personagem, alvo:personagem, magia:magia){
-   if(magia.efeito.narrativo){
-      const mensagem = personagem.nome+" usou a magia: "+magia.nome
+export function UsaMagia(stock:stock, personagem:any, alvo:any, magia:magia){
+   const dado = Rolagem(20)
+
+   if(dado<10&&dado>1){
+      const mensagem = personagem.nome+" falhou em usar a magia: "+magia.nome+" , tirou: "+dado 
       enviaMensagem(stock.usuario.nomeUsuario,mensagem, stock.campanhaUsuario)
    }
-   if(magia.efeito.defesa>0){
-      UpdateDefesa(alvo,magia.efeito.defesa)
-      const mensagem = personagem.nome+" usou a magia: "+magia.nome
-      enviaMensagem(stock.usuario.nomeUsuario,mensagem, stock.campanhaUsuario)  
+   if(dado>10&&dado<20){
+      UpdateManaN(personagem,magia.custo.mana)
+      if(magia.efeito.narrativo){
+         const mensagem = personagem.nome+" usou a magia: "+magia.nome+" , tirou: "+dado 
+         enviaMensagem(stock.usuario.nomeUsuario,mensagem, stock.campanhaUsuario)
+      }
+      if(magia.efeito.defesa>0){
+         UpdateDefesa(alvo,magia.efeito.defesa)
+         const mensagem = personagem.nome+" usou a magia: "+magia.nome+" , tirou: "+dado
+         enviaMensagem(stock.usuario.nomeUsuario,mensagem, stock.campanhaUsuario)  
+      }
+      if(magia.efeito.debuff!==""){
+         UpdateStatus(alvo,magia.efeito.debuff)
+         const mensagem = personagem.nome+" usou a magia: "+magia.nome+" , tirou: "+dado
+         enviaMensagem(stock.usuario.nomeUsuario,mensagem, stock.campanhaUsuario)
+      }
+      if(magia.efeito.buff!==""){
+         UpdateStatus(alvo,magia.efeito.buff)
+         const mensagem = personagem.nome+" usou a magia: "+magia.nome+" , tirou: "+dado
+         enviaMensagem(stock.usuario.nomeUsuario,mensagem, stock.campanhaUsuario)
+      }
+      if(magia.efeito.dano>0){
+         UpdateVida(stock,alvo,magia.efeito.dano)
+         const mensagem = personagem.nome+" usou a magia: "+magia.nome+" , tirou: "+dado
+         enviaMensagem(stock.usuario.nomeUsuario,mensagem, stock.campanhaUsuario)
+      }
+      if(magia.efeito.cura>0){
+         UpdateVidaCura(alvo,magia.efeito.cura)
+         const mensagem = personagem.nome+" usou a magia: "+magia.nome+" , tirou: "+dado
+         enviaMensagem(stock.usuario.nomeUsuario,mensagem, stock.campanhaUsuario)
+      } 
    }
-   if(magia.efeito.debuff!==""){
-      UpdateStatus(alvo,magia.efeito.debuff)
-      const mensagem = personagem.nome+" usou a magia: "+magia.nome
+   if(dado===20){
+      UpdateManaN(personagem,magia.custo.mana)
+      if(magia.efeito.narrativo){
+         const mensagem = personagem.nome+" ACERTO CRITICO ao usou a magia: "+magia.nome+" , tirou: "+dado 
+         enviaMensagem(stock.usuario.nomeUsuario,mensagem, stock.campanhaUsuario)
+      }
+      if(magia.efeito.defesa>0){
+         UpdateDefesa(alvo,magia.efeito.defesa)
+         const mensagem = personagem.nome+" ACERTO CRITICO ao usou a magia: "+magia.nome+" , tirou: "+dado
+         enviaMensagem(stock.usuario.nomeUsuario,mensagem, stock.campanhaUsuario)  
+      }
+      if(magia.efeito.debuff!==""){
+         UpdateStatus(alvo,magia.efeito.debuff)
+         const mensagem = personagem.nome+" ACERTO CRITICO ao usou a magia: "+magia.nome+" , tirou: "+dado
+         enviaMensagem(stock.usuario.nomeUsuario,mensagem, stock.campanhaUsuario)
+      }
+      if(magia.efeito.buff!==""){
+         UpdateStatus(alvo,magia.efeito.buff)
+         const mensagem = personagem.nome+" ACERTO CRITICO ao usou a magia: "+magia.nome+" , tirou: "+dado
+         enviaMensagem(stock.usuario.nomeUsuario,mensagem, stock.campanhaUsuario)
+      }
+      if(magia.efeito.dano>0){
+         UpdateVida(stock,alvo,magia.efeito.dano)
+         const mensagem = personagem.nome+" ACERTO CRITICO ao usou a magia: "+magia.nome+" , tirou: "+dado
+         enviaMensagem(stock.usuario.nomeUsuario,mensagem, stock.campanhaUsuario)
+      }
+      if(magia.efeito.cura>0){
+         UpdateVidaCura(alvo,magia.efeito.cura)
+         const mensagem = personagem.nome+" ACERTO CRITICO ao usou a magia: "+magia.nome+" , tirou: "+dado
+         enviaMensagem(stock.usuario.nomeUsuario,mensagem, stock.campanhaUsuario)
+      } 
+   }
+   if(dado===1){
+      if(magia.efeito.narrativo){
+         const mensagem = personagem.nome+" ACERTO CRITICO ao usou a magia: "+magia.nome+" , tirou: "+dado 
+         enviaMensagem(stock.usuario.nomeUsuario,mensagem, stock.campanhaUsuario)
+      }
+      if(magia.efeito.defesa>0){
+         const mensagem = personagem.nome+" ACERTO CRITICO ao usou a magia: "+magia.nome+" , tirou: "+dado
+         enviaMensagem(stock.usuario.nomeUsuario,mensagem, stock.campanhaUsuario)  
+      }
+      if(magia.efeito.debuff!==""){
+         const mensagem = personagem.nome+" ACERTO CRITICO ao usou a magia: "+magia.nome+" , tirou: "+dado
+         enviaMensagem(stock.usuario.nomeUsuario,mensagem, stock.campanhaUsuario)
+      }
+      if(magia.efeito.buff!==""){
+         const mensagem = personagem.nome+" ACERTO CRITICO ao usou a magia: "+magia.nome+" , tirou: "+dado
+         enviaMensagem(stock.usuario.nomeUsuario,mensagem, stock.campanhaUsuario)
+      }
+      if(magia.efeito.dano>0){
+         const mensagem = personagem.nome+" ACERTO CRITICO ao usou a magia: "+magia.nome+" , tirou: "+dado
+         enviaMensagem(stock.usuario.nomeUsuario,mensagem, stock.campanhaUsuario)
+      }
+      if(magia.efeito.cura>0){
+         const mensagem = personagem.nome+" ACERTO CRITICO ao usou a magia: "+magia.nome+" , tirou: "+dado
+         enviaMensagem(stock.usuario.nomeUsuario,mensagem, stock.campanhaUsuario)
+      }
+   }
+}
+export function usaUtilidade(stock:stock, personagem:any, alvo:any, utilidade:utilidade){
+   if(utilidade.cura>0){
+      UpdateVidaCura(alvo,utilidade.cura)
+      const mensagem = personagem.nome+" usou a utilidade: "+utilidade.nome 
       enviaMensagem(stock.usuario.nomeUsuario,mensagem, stock.campanhaUsuario)
    }
-   if(magia.efeito.buff!==""){
-      UpdateStatus(alvo,magia.efeito.buff)
-      const mensagem = personagem.nome+" usou a magia: "+magia.nome
+   if(utilidade.mana>0){
+      UpdateMana(alvo,utilidade.mana)
+      const mensagem = personagem.nome+" usou a utilidade: "+utilidade.nome 
       enviaMensagem(stock.usuario.nomeUsuario,mensagem, stock.campanhaUsuario)
    }
-   if(magia.efeito.dano>0){
-      UpdateVida(alvo,magia.efeito.dano)
-      const mensagem = personagem.nome+" usou a magia: "+magia.nome
-      enviaMensagem(stock.usuario.nomeUsuario,mensagem, stock.campanhaUsuario)
+}  
+export function Matar(stock:stock, alvo:any){
+   const mensagem = "O personagem: "+alvo.nome+", morreu"
+   enviaMensagem("sistema", mensagem,stock.campanhaUsuario)
+   const update = async () =>{
+      const {error} = await supabase
+      .from("Personagens")
+      .update({ vidaAtual: 0})
+      .select()
+
+      if(error){
+         console.log(error)
+      }
    }
-   if(magia.efeito.cura>0){
-      UpdateVidaCura(alvo,magia.efeito.cura)
-      const mensagem = personagem.nome+" usou a magia: "+magia.nome
-      enviaMensagem(stock.usuario.nomeUsuario,mensagem, stock.campanhaUsuario)
+   update()
+}
+export function DarDano(stock:stock, alvo:any, dano:number){
+   const novaVida = alvo.vidaAtual-dano
+   const mensagem = "O personagem: "+alvo.nome+", tomou: "+dano+" de dano"
+   enviaMensagem("sistema", mensagem,stock.campanhaUsuario)
+   const update = async () =>{
+      const {error} = await supabase
+      .from("Personagens")
+      .update({ vidaAtual: novaVida})
+      .select()
+
+      if(error){
+         console.log(error)
+      }
    }
+   update()
+}
+export function DarCura(stock:stock, alvo:any, cura:number){
+   const novaVida = alvo.vidaAtual+cura
+   const mensagem = "O personagem: "+alvo.nome+", recebeu: "+cura+" de cura"
+   enviaMensagem("sistema", mensagem,stock.campanhaUsuario)
+   const update = async () =>{
+      const {error} = await supabase
+      .from("Personagens")
+      .update({ vidaAtual: novaVida})
+      .select()
+
+      if(error){
+         console.log(error)
+      }
+   }
+   update()
+}
+export function DarMana(stock:stock, alvo:any, mana:number){
+   const novaMana = alvo.manaAtual+mana
+   const mensagem = "O personagem: "+alvo.nome+", recebeu: "+mana+" de mana"
+   enviaMensagem("sistema", mensagem,stock.campanhaUsuario)
+   const update = async () =>{
+      const {error} = await supabase
+      .from("Personagens")
+      .update({ manaAtual: novaMana})
+      .select()
+
+      if(error){
+         console.log(error)
+      }
+   }
+   update()
+}
+export function TirarMana(stock:stock, alvo:any, mana:number){
+   const novaMana = alvo.manaAtual-mana
+   const mensagem = "O personagem: "+alvo.nome+", perdeu: "+mana+" de mana"
+   enviaMensagem("sistema", mensagem,stock.campanhaUsuario)
+   const update = async () =>{
+      const {error} = await supabase
+      .from("Personagens")
+      .update({ manaAtual: novaMana})
+      .select()
+
+      if(error){
+         console.log(error)
+      }
+   }
+   update()
+}
+export function DarArmadura(stock:stock, alvo:any, armadura:number){
+   const novaArmadura = alvo.armaduraAtual+armadura
+   const mensagem = "O personagem: "+alvo.nome+", recebeu: "+armadura+" de armadura"
+   enviaMensagem("sistema", mensagem,stock.campanhaUsuario)
+   const update = async () =>{
+      const {error} = await supabase
+      .from("Personagens")
+      .update({ armaduraAtual: novaArmadura})
+      .select()
+
+      if(error){
+         console.log(error)
+      }
+   }
+   update()
+}
+export function TirarArmadura(stock:stock, alvo:any, armadura:number){
+   const novaArmadura = alvo.armaduraAtual-armadura
+   const mensagem = "O personagem: "+alvo.nome+", perdeu: "+armadura+" de armadura"
+   enviaMensagem("sistema", mensagem,stock.campanhaUsuario)
+   const update = async () =>{
+      const {error} = await supabase
+      .from("Personagens")
+      .update({ armaduraAtual: novaArmadura})
+      .select()
+
+      if(error){
+         console.log(error)
+      }
+   }
+   update()
 }

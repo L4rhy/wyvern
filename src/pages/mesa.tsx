@@ -24,6 +24,7 @@ export default function Mesa(){
     const [campanhaAtual, setCampanhaAtual] = useState<any>([])
     const stock = useSelector((state:RootState)=>state.stock)
     const nomeCampanha = stock.campanhaUsuario
+    const nomePersonagem = stock.personagemUsuario
     const router = useRouter()
     
     useEffect(()=>{
@@ -46,14 +47,15 @@ export default function Mesa(){
             table: 'campanhas',
             filter: `nomeCampanha=eq.${nomeCampanha}`
         }, payload => {
-            setCampanhaAtual(payload.new)
+            campanhaAtual.unshift(payload.new)
         })
         .subscribe()
 
         return () =>{
             supabase.removeChannel(subscription)
         }
-    }, [nomeCampanha])
+    }, [nomeCampanha, campanhaAtual])
+    
     useEffect(()=>{
         if(!stock.logged){
             router.push("/login")

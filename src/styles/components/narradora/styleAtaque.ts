@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { GiSwordWound, GiShield } from "react-icons/gi";
-import { FiArrowLeft, FiRotateCcw } from "react-icons/fi";
+import { FiRotateCcw } from "react-icons/fi";
 
-export const Caixa = styled.div`    
+export const Caixa = styled.div`
     height: 98%;
     width: 98%;
     border: 2px solid ${(props) => props.theme.cores.rosinhas[50]};
@@ -22,11 +22,15 @@ export const Caixa = styled.div`
         background-color: ${(props) => props.theme.cores.psicodelicas[900]};
         border-radius: 10px;
     }
-    @media (max-width: 1000px) {
-        height: 85%;
-        width: 85%;
-    }
 `;
+export const CaixaNpc = styled.div`
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+`;
+
 export const Titulo = styled.div`
     height: auto;
     width: 98%;
@@ -93,8 +97,9 @@ export const BotaoIcon = styled.button`
     }
 `;
 export const BotaoAtaque = styled.select`
-    height: 50%;
-    width: 40%;
+    width: 20%;
+    margin: 1%;
+    padding: 1%;
     background-color: ${(props) => props.theme.cores.psicodelicas[800]};
     border: 2px solid ${(props) => props.theme.cores.rosinhas[50]};
     border-radius: .375rem;
@@ -115,38 +120,4 @@ export const BotaoInimigo = styled.option`
     :hover{
         background-color: ${(props) => props.theme.cores.psicodelicas[700]};
     }
-`;
-export const Fundo = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    width: 100vw;
-    background: radial-gradient(
-        circle,
-        ${(props) => props.theme.cores.psicodelicas[400]},
-        ${(props) => props.theme.cores.psicodelicas[700]});
-`;
-export const BotaoVolta = styled.button`
-    cursor: pointer;
-    height: 50px;
-    width: 50px;
-    left: 5px;
-    top: 5px;
-    border: none;
-    border-radius: 100%;
-    position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid ${(props) => props.theme.cores.rosinhas[50]};
-    background-color:${(props) => props.theme.cores.psicodelicas[800]};
-    :hover{
-        background-color:${(props) => props.theme.cores.psicodelicas[900]};
-    }
-`;
-export const IconVolta = styled(FiArrowLeft)`
-    height: 40px;
-    width: 30px;
-    color: ${(props) => props.theme.cores.rosinhas[50]};
 `;

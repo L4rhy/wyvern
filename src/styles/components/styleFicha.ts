@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { FiArrowLeft, FiMessageCircle } from "react-icons/fi"
-import { device } from "../devices";
 
 export const Caixa = styled.div`    
     height: 98%;
@@ -31,14 +30,13 @@ export const NomeNivel = styled.div`
     height: 20%;
     width: 99%;
     display: flex;
-    margin-top: .5em;
-    margin-left: 1%;
+    margin: 1%;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 `;
 export const Nome = styled.p`
-    width: 50%;
+    width: 60%;
     padding: .5em;
     border: 2px solid ${(props) => props.theme.cores.rosinhas[50]};
     border-radius: .375rem;
@@ -47,7 +45,7 @@ export const Nome = styled.p`
     background-color: ${(props) => props.theme.cores.psicodelicas[700]};
 `;
 export const Nivel = styled.p`
-    width: 18%;
+    width: 38%;
     padding: .5em;
     border: 2px solid ${(props) => props.theme.cores.rosinhas[50]};
     border-radius: .375rem;
@@ -56,7 +54,8 @@ export const Nivel = styled.p`
     background-color: ${(props) => props.theme.cores.psicodelicas[700]};
 `;
 export const StatusPersonagem = styled.p`
-    width: 28%;
+    width: 98%;
+    margin: 1%;
     padding: .5em;
     border: 2px solid ${(props) => props.theme.cores.rosinhas[50]};
     border-radius: .375rem;
@@ -68,8 +67,7 @@ export const EspecieClasse = styled.div`
     height: 20%;
     width: 99%;
     display: flex;
-    margin-top: .5em;
-    margin-left: 1%;
+    margin: 1%;
     flex-direction: row;
     justify-content: space-around;
     align-self: center;
@@ -105,8 +103,7 @@ export const AtributosStatus = styled.div`
     height: auto;
     width: 99%;
     display: flex;
-    margin-top: .5em;
-    margin-left: 1%;
+    margin: 1%;
     flex-direction: row;
     justify-content: space-around;
 `;
@@ -210,7 +207,8 @@ export const CaixaMoedas = styled.div`
 `;
 export const CaixaProeficiencia = styled.div`
     width: 99%;
-    height: 60%;
+    height: auto;
+    margin: 1%;
     display: flex;
     flex-direction: column;
     @media (max-width: 1000px) {
@@ -219,10 +217,9 @@ export const CaixaProeficiencia = styled.div`
     }
 `;
 export const TituloProeficiencia = styled.p`
-    width: 99%;
+    width: 100%;
     height: 10%;
-    margin-left: 1%;
-    margin-top:1%;
+    padding: .5em;
     border: 2px solid ${(props) => props.theme.cores.rosinhas[50]};
     background-color: ${(props) => props.theme.cores.psicodelicas[700]};
     border-radius: .375rem;
@@ -232,25 +229,24 @@ export const TituloProeficiencia = styled.p`
 `;
 export const CaixasProeficiencias = styled.div`
     width: 100%;
-    height: 100%;
+    height: auto;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 `;
 export const CaixaProeficiencias1 = styled.div`
-    width: 50%;
-    height: 100%;
-    margin-left: 1%;
-    margin-top:1%;
+    width: 49.5%;
+    height: auto;
+    margin-top: 1%;
     border: 2px solid ${(props) => props.theme.cores.rosinhas[50]};
     background-color: ${(props) => props.theme.cores.psicodelicas[600]};
     border-radius: .375rem;
     box-sizing: border-box;
 `;
 export const CaixaProeficiencias2 = styled.div`
-    width: 50%;
-    height: 100%;
-    margin-left: 1%;
-    margin-top:1%;
+    width: 49.5%;
+    height: auto;
+    margin-top: 1%;
     border: 2px solid ${(props) => props.theme.cores.rosinhas[50]};
     background-color: ${(props) => props.theme.cores.psicodelicas[600]};
     border-radius: .375rem;
@@ -270,7 +266,7 @@ export const Proeficiencia = styled.p`
 `;
 export const ProeficienciaAnimais = styled.p`
     width: 98%;
-    height: 90%;
+    height: auto;
     margin: 1%;
     padding: .2em;
     border: 2px solid ${(props) => props.theme.cores.rosinhas[50]};
@@ -286,10 +282,9 @@ export const P = styled.p`
     display: inline-flex;
 `;
 export const CaixaAnimais = styled.div`
-    width: 99%;
-    height: 15%;
-    margin-left: 1%;
-    margin-top: .7em;
+    width: 100%;
+    height: auto;
+    margin-top: 1%;
     padding: .1em;
     border: 2px solid ${(props) => props.theme.cores.rosinhas[50]};
     background-color: ${(props) => props.theme.cores.psicodelicas[600]};
@@ -300,10 +295,9 @@ export const CaixaAnimais = styled.div`
     justify-content: center;
 `;
 export const CaixaLinguas = styled.div`
-    width: 98%;
-    height: 40%;
-    margin-left: 1%;
-    margin-top: 1em;
+    width: 99%;
+    height: auto;
+    margin: 1%;
     padding: .2em;
     border: 2px solid ${(props) => props.theme.cores.rosinhas[50]};
     background-color: ${(props) => props.theme.cores.psicodelicas[600]};
@@ -507,7 +501,7 @@ export const Iten = styled.div`
     border-radius: .375rem;
     box-sizing: border-box;
 `;
-export const NomeIten = styled.p`
+export const NomeIten = styled.div`
     width: 98%;
     height: auto;
     padding: .25em;
@@ -518,6 +512,9 @@ export const NomeIten = styled.p`
     background-color: ${(props) => props.theme.cores.psicodelicas[700]};
     border-radius: .375rem;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
 `;
 export const DescricaoIten = styled.p`
     width: 98%;
@@ -530,6 +527,30 @@ export const DescricaoIten = styled.p`
     background-color: ${(props) => props.theme.cores.psicodelicas[700]};
     border-radius: .375rem;
     box-sizing: border-box;
+`;
+export const BotaoEquipa = styled.button`
+    height: 90%;
+    width: 35%;
+    color:${(props) => props.theme.cores.rosinhas[50]};
+    font-size: .8rem;
+    border: 2px solid ${(props) => props.theme.cores.rosinhas[50]};
+    border-radius: .375rem;
+    background-color: ${(props) => props.theme.cores.psicodelicas[800]};
+    :hover{
+        background-color: ${(props) => props.theme.cores.psicodelicas[900]};
+    }
+`;
+export const BotaoDesEquipa = styled.button`
+    height: 90%;
+    width: 35%;
+    color:${(props) => props.theme.cores.rosinhas[50]};
+    font-size: .8rem;
+    border: 2px solid ${(props) => props.theme.cores.rosinhas[50]};
+    border-radius: .375rem;
+    background-color: ${(props) => props.theme.cores.psicodelicas[800]};
+    :hover{
+        background-color: ${(props) => props.theme.cores.psicodelicas[900]};
+    }
 `;
 export const CaixaHistoria = styled.div`
     width: 99%;

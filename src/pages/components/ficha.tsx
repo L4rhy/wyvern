@@ -63,6 +63,8 @@ import {
    TituloAparencia,
    Aparencia,
    StatusPersonagem,
+   BotaoEquipa,
+   BotaoDesEquipa
 } from "@/styles/components/styleFicha";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../stack/";
@@ -70,7 +72,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "../api/supabase";
 import { enviaMensagem } from "./chat";
 import { atualizaBonus } from "../../stack/stock"
-import { DescobreBonus } from "../api/regras"
+import { DescobreBonus, UpdateDesEquipaArmadura, UpdateEquipaArmadura } from "../api/regras"
 
 export default function Ficha() {
    const stock = useSelector((state: RootState) => state.stock);
@@ -83,13 +85,157 @@ export default function Ficha() {
    const [bonusConstituicao, setBonusConstituicao] = useState(0);
    const [bonusInteligencia, setBonusInteligencia] = useState(0);
    const [bonusCarisma, setBonusCarisma] = useState(0);
+   const EquipaArma = (novoValor:any) =>{
+      const armas = personagem[0]?.armas
+      const atualizaArmas = () =>{
+         armas.forEach((value:any)=>{
+            if(value===novoValor){
+               value.equipada=true
+            }
+         })
+      }
+      
+      const update = async () => {
+         const { error } = await supabase
+            .from("Personagens")
+            .update({ armas: armas})
+            .eq("nome", personagem[0]?.nome)
+            .select()
+
+         if (error) {
+            console.log(error);
+         }
+      };
+      atualizaArmas()
+      update();
+   }
+   const DesEquipaArma = (novoValor:any) =>{
+      const armas = personagem[0]?.armas
+      const atualizaArmas = () =>{
+         armas.forEach((value:any)=>{
+            if(value===novoValor){
+               value.equipada=false
+            }
+         })
+      }
+      
+      const update = async () => {
+         const { error } = await supabase
+            .from("Personagens")
+            .update({ armas: armas})
+            .eq("nome", personagem[0]?.nome)
+            .select()
+
+         if (error) {
+            console.log(error);
+         }
+      };
+      atualizaArmas()
+      update();
+   }
+   const EquipaArmadura = (novoValor:any) =>{
+      const armaduras:any[] = personagem[0]?.armaduras
+      const atualizaArmaduras = () =>{
+         armaduras.forEach((value)=>{
+            if(value===novoValor){
+               value.equipada=true
+            }
+         })
+      }
+      
+      const update = async () => {
+         const { error } = await supabase
+            .from("Personagens")
+            .update({ armaduras: armaduras})
+            .eq("nome", personagem[0]?.nome)
+            .select()
+
+         if (error) {
+            console.log(error);
+         }
+      };
+      atualizaArmaduras()
+      update();
+   }
+   const DesEquipaArmadura = (novoValor:any) =>{
+      const armaduras:any[] = personagem[0]?.armaduras
+      const atualizaArmaduras = () =>{
+         armaduras.forEach((value)=>{
+            if(value===novoValor){
+               value.equipada=false
+            }
+         })
+      }
+      
+      const update = async () => {
+         const { error } = await supabase
+            .from("Personagens")
+            .update({ armaduras: armaduras})
+            .eq("nome", personagem[0]?.nome)
+            .select()
+
+         if (error) {
+            console.log(error);
+         }
+      };
+      atualizaArmaduras()
+      update();
+   }
+   const EquipaUtilidade = (novoValor:any) =>{
+      const utilidades:any[] = personagem[0]?.utilidades
+      const atualizaUtilidades = () =>{
+         utilidades.forEach((value)=>{
+            if(value===novoValor){
+               value.equipada=true
+            }
+         })
+      }
+      
+      const update = async () => {
+         const { error } = await supabase
+            .from("Personagens")
+            .update({ utilidades: utilidades})
+            .eq("nome", personagem[0]?.nome)
+            .select()
+
+         if (error) {
+            console.log(error);
+         }
+      };
+      atualizaUtilidades()
+      update();
+   }
+   const DesEquipaUtilidade = (novoValor:any) =>{
+      const utilidades:any[] = personagem[0]?.utilidades
+      const atualizaUtilidades = () =>{
+         utilidades.forEach((value)=>{
+            if(value===novoValor){
+               value.equipada=false
+            }
+         })
+      }
+      
+      const update = async () => {
+         const { error } = await supabase
+            .from("Personagens")
+            .update({ utilidades: utilidades})
+            .eq("nome", personagem[0]?.nome)
+            .select()
+
+         if (error) {
+            console.log(error);
+         }
+      };
+      atualizaUtilidades()
+      update();
+   }
    const CriaBonus = () => {
-      setBonusForca(DescobreBonus(personagem?.forca))
-      setBonusDestreza(DescobreBonus(personagem?.destreza))
-      setBonusPrecisao(DescobreBonus(personagem?.precisao))
-      setBonusConstituicao(DescobreBonus(personagem?.constituicao))
-      setBonusInteligencia(DescobreBonus(personagem?.inteligencia))
-      setBonusCarisma(DescobreBonus(personagem?.carisma))
+      setBonusForca(DescobreBonus(personagem[0]?.forca))
+      setBonusDestreza(DescobreBonus(personagem[0]?.destreza))
+      setBonusPrecisao(DescobreBonus(personagem[0]?.precisao))
+      setBonusConstituicao(DescobreBonus(personagem[0]?.constituicao))
+      setBonusInteligencia(DescobreBonus(personagem[0]?.inteligencia))
+      setBonusCarisma(DescobreBonus(personagem[0]?.carisma))
       dispatch(atualizaBonus({
          forca:bonusForca,
          destreza:bonusDestreza,
@@ -122,14 +268,14 @@ export default function Ficha() {
                filter: `nome=eq.${stock.personagemUsuario}`
             },
             (payload) => {
-               setPersonagem(payload.new);
+               personagem.unshift(payload.new);
             }
          )
          .subscribe()
       return () => {
          supabase.removeChannel(subscribe);
       };
-   }, [stock]);
+   }, [stock, personagem]);
    const CriaProeficiencias1 = () => {
       return (
          <>
@@ -407,7 +553,23 @@ export default function Ficha() {
    const CriaArmaduras = (value:any) => {
       return (
          <Iten>
-            <NomeIten>{value.nome}</NomeIten>
+            <NomeIten>
+               {value.nome}
+               <BotaoEquipa 
+               onClick={()=>{
+                  EquipaArmadura(value)
+                  UpdateEquipaArmadura(personagem[0],value)
+                  }}>
+                     Equipar
+               </BotaoEquipa>
+               <BotaoDesEquipa 
+               onClick={()=>{
+                  DesEquipaArmadura(value)
+                  UpdateDesEquipaArmadura(personagem[0],value)
+                  }}>
+                     Desequipar
+               </BotaoDesEquipa>
+            </NomeIten>
             <DescricaoIten>{value.descricao}</DescricaoIten>
          </Iten>
       );
@@ -415,15 +577,23 @@ export default function Ficha() {
    const CriaArmas = (value:any) => {
       return (
          <Iten>
-            <NomeIten>{value.nome}</NomeIten>
+            <NomeIten>
+               {value.nome}
+               <BotaoEquipa onClick={()=>EquipaArma(value)}>Equipar</BotaoEquipa>
+               <BotaoDesEquipa onClick={()=>DesEquipaArma(value)}>Desequipar</BotaoDesEquipa>
+            </NomeIten>
             <DescricaoIten>{value.descricao}</DescricaoIten>
          </Iten>
       );
    };
-   const CriaUtilidades = (value:any, index:number) => {
+   const CriaUtilidades = (value:any) => {
       return (
          <Iten>
-            <NomeIten>{value.nome}</NomeIten>
+            <NomeIten>
+               {value.nome}
+               <BotaoEquipa onClick={()=>EquipaUtilidade(value)}>Equipar</BotaoEquipa>
+               <BotaoDesEquipa onClick={()=>DesEquipaUtilidade(value)}>Desequipar</BotaoDesEquipa>
+            </NomeIten>
             <DescricaoIten>{value.descricao}</DescricaoIten>
          </Iten>
       );
@@ -433,8 +603,8 @@ export default function Ficha() {
          <NomeNivel>
             <Nome>Nome: {personagem[0]?.nome}</Nome>
             <Nivel>Nivel: {personagem[0]?.nivel}</Nivel>
-            <StatusPersonagem>{personagem[0]?.statusPersonagem}</StatusPersonagem>
          </NomeNivel>
+            <StatusPersonagem>{personagem[0]?.statusPersonagem}</StatusPersonagem>
          <EspecieClasse>
             <Especie>Espécie: {personagem[0]?.especie}</Especie>
             <Classe>Classe: {personagem[0]?.classe}</Classe>

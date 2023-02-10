@@ -9,6 +9,14 @@ import { useSelector } from "react-redux"
 import { campanha } from "types/supabase";
 import {RootState} from "../stack"
 import { supabase } from "./api/supabase";
+import Chat from "./components/Narradora/chat";
+import Usuario from "./components/Narradora/usuario";
+import Mapas from "./components/Narradora/mapa";
+import Fichas from "./components/Narradora/ficha"
+import Magia from "./components/Narradora/magia"
+import Ataques from "./components/Narradora/ataque";
+import Dados from "./components/Narradora/dados";
+import Narradora from "./components/Narradora/narradora";
 
 export default function MesaNarradora(){
     const stock = useSelector((state:RootState)=>state.stock)
@@ -24,7 +32,6 @@ export default function MesaNarradora(){
 
     const [campanhaAtual, setCampanhaAtual] = useState<any>([])
     const nomeCampanha = stock.campanhaUsuario
-
 
     useEffect(()=>{
         const pegaCampanha = async () =>{
@@ -46,19 +53,20 @@ export default function MesaNarradora(){
             table: 'campanhas',
             filter: `nomeCampanha=eq.${nomeCampanha}`
         }, payload => {
-            setCampanhaAtual(payload.new)
+            campanhaAtual.unshift(payload.new)
         })
         .subscribe()
 
         return () =>{
             supabase.removeChannel(subscription)
         }
-    }, [nomeCampanha])
+    }, [nomeCampanha, campanhaAtual])
     useEffect(()=>{
         if(!stock.logged){
             router.push("/login")
         }
     },[stock, router])
+
     return(
         <>
             <Head>
@@ -70,48 +78,56 @@ export default function MesaNarradora(){
                 </BotaoUser>
                     <Caixa state={stateUser}>
                         <Flechinha/>
+                        <Usuario/>
                     </Caixa>
                 <BotaoFicha state={stateFicha}>
                     <IconFicha/>
                 </BotaoFicha>
                     <Caixa state={stateFicha}>
                         <Flechinha/>
+                        <Fichas/>
                     </Caixa>
                 <BotaoChat state={stateChat}>
                     <IconChat/>
                 </BotaoChat>
                     <Caixa state={stateChat}>
                         <Flechinha/>
+                        <Chat/>
                     </Caixa>
                 <BotaoMapa state={stateMapa}>
                     <IconMapa/>
                 </BotaoMapa>
                     <Caixa state={stateMapa}>
                         <Flechinha/>
+                        <Mapas/>
                     </Caixa>
                 <BotaoMagia state={stateMagia}>
                     <IconMagia/>
                 </BotaoMagia>
                     <Caixa state={stateMagia}>
                         <Flechinha/>
+                        <Magia/>
                     </Caixa>
                 <BotaoEspada state={stateEspada}>
                     <IconEspada/>
                 </BotaoEspada>
                     <Caixa state={stateEspada}>
                         <Flechinha/>
+                        <Ataques/>
                     </Caixa>
                 <BotaoDado state={stateDado}>
                     <IconDado/>
                 </BotaoDado>
                     <Caixa state={stateDado}>
                         <Flechinha/>
+                        <Dados/>
                     </Caixa>
                 <BotaoNarradora state={stateNarradora}>
                     <IconNarradora/>
                 </BotaoNarradora>
                     <Caixa state={stateNarradora}>
                         <Flechinha/>
+                        <Narradora/>
                     </Caixa>
                 <ContainerMapa>
                     <Mapa defaultValue={campanhaAtual[0]?.mapaAtual}>

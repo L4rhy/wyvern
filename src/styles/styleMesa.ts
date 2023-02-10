@@ -20,7 +20,7 @@ export const Fundo = styled.div`
         ${(props) => props.theme.cores.psicodelicas[700]});
 `;
 export const ContainerMapa = styled.div`
-    width: 65%;
+    width: 60%;
 `;
 export const Mapa = styled.div`
     width: 100%;
@@ -459,7 +459,7 @@ export const BotaoDadoMobile = styled.button`
 export const Flechinha = styled(PopoverArrow)``;
 export const Caixa = styled(Popover)`
     height: 96vh;
-    width: 46vw;
+    width: 50vw;
     background-color:${(props) => props.theme.cores.psicodelicas[800]};
     display: flex;
     align-items: center;
